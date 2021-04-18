@@ -1,6 +1,6 @@
 # surfing_sns
 
-A new Flutter application.
+サーファー専用SNS
 
 ## Getting Started
 
