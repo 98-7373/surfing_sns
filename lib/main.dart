@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:surfing_sns/screens/home_screen.dart';
+import 'package:surfing_sns/screen/home_screen.dart';
 import 'package:surfing_sns/style.dart';
 
 void main () => runApp(MyApp());
