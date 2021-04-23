@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "140103525812",
+    "project_id": "flutter-univ-surfing-sns",
+    "storage_bucket": "flutter-univ-surfing-sns.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140103525812:android:f27ca51cc1b89de395bee1",
+        "android_client_info": {
+          "package_name": "com.example.surfing_sns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140103525812-g2fks4kir9deo6ujhct73vatugkfde47.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuL7jGCS8KarBrWygcONRu_qkuviKB3W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140103525812-g2fks4kir9deo6ujhct73vatugkfde47.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
