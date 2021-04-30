@@ -27,6 +27,7 @@ void initState() {
   super.initState();
 }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,23 +43,23 @@ void initState() {
         items: [
           BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.home),
-              label: ("home"),
+              label: ("Home"),
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.search),
-            label: ("search"),
+            label: ("Search"),
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.plusSquare),
-            label: ("team"),
+            label: ("Team"),
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.sun),
-            label: ("sun"),
+            label: ("Weather"),
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.user),
-            label: ("user"),
+            label: ("Profile"),
           ),
         ],
       ),
