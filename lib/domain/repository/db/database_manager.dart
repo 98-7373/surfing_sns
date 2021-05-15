@@ -6,7 +6,7 @@ import 'package:surfing_sns/data_models/user.dart';
 class DatabaseManager {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<bool> searchUserInDb(auth.User firebaseUser) async {
+  Future<bool> searchUserInDb(auth.User firebaseUser,) async {
     final query = await _db
         .collection("users")
         .where("userId", isEqualTo: firebaseUser.uid)
@@ -17,7 +17,7 @@ class DatabaseManager {
     return false;
   }
 
-  Future<void> insertUser(User user) async {
+  Future<void> insertUser(User user,) async {
     await _db.collection("users").doc(user.userId).set(user.toMap());
   }
 

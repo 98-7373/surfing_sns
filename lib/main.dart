@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surfing_sns/di/providers.dart';
 import 'package:surfing_sns/screen/home_screen.dart';
 import 'package:surfing_sns/screen/login_screen.dart';
 import 'package:surfing_sns/style.dart';
+import 'package:surfing_sns/view/login/login_page.dart';
 import 'package:surfing_sns/viewmodel/login_view_model.dart';
 
 void main() async {
@@ -14,7 +14,7 @@ void main() async {
 
   runApp(
     MultiProvider(
-      providers: globalProviders,
+
       child: MyApp(),
     ),
   );
@@ -23,7 +23,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final loginViewModel = Provider.of<LoginViewModel>(context, listen: false);
     return MaterialApp(
       title: "Namido",
       debugShowCheckedModeBanner: false,
@@ -38,15 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         fontFamily: RegularFont,
       ),
-      home: FutureBuilder(
-          future: loginViewModel.isSignIn(),
-          builder: (context, AsyncSnapshot<bool> snapshot) {
-            if (snapshot.hasData && snapshot.data) {
-              return HomeScreen();
-            } else {
-              return LoginScreen();
-            }
-          }),
+      home: HomeScreen(),
     );
   }
 }
