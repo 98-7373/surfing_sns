@@ -1,27 +1,73 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:surfing_sns/screen/home_screen.dart';
-import 'package:surfing_sns/style.dart';
+import 'package:provider/provider.dart';
+import 'package:surfing_sns/view/login/login_page.dart';
+import 'package:surfing_sns/view/page/signup_page.dart';
 
-void main () => runApp(MyApp());
+
+import 'di/providers.dart';
+import 'main_model.dart';
+
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(
+      MultiProvider(
+        providers: globalProviders,
+        child: MyApp(),
+      )
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Namido",
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        buttonColor: Colors.white30,
-        primaryIconTheme: IconThemeData(
-          color: Colors.white,
+      title: 'Flutter Demo',
+      home: ChangeNotifierProvider<MainModel>(
+        create: (_) => MainModel(),
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('コリアンダー'),
+          ),
+          body: Consumer<MainModel>(builder: (context, model, child) {
+            return Center(
+              child: Column(
+                children: [
+                  Text(
+                    model.kboyText,
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
+                  ),
+                  RaisedButton(
+                    child: Text('新規登録'),
+                    onPressed: () {
+                      // ここでなにか
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    },
+                  ),
+                  RaisedButton(
+                    child: Text('ログイン'),
+                    onPressed: () {
+                      // ここでなにか
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            );
+          }),
         ),
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        fontFamily: RegularFont,
       ),
-      home: HomeScreen(),
     );
   }
 }
