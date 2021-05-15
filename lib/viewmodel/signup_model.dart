@@ -28,10 +28,13 @@ class SignUpModel extends ChangeNotifier {
       email: mail,
       password: password,
     )).user;
+
     final email = firebaseUser.email;
+
     if (firebaseUser == null) {
       return false;
     }
+
     //usersにコレクション追加
     Firestore.instance.collection('users').add(
       {

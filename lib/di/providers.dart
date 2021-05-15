@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:surfing_sns/domain/repository/db/database_manager.dart';
+import 'package:surfing_sns/viewmodel/login_model.dart';
 import 'package:surfing_sns/viewmodel/login_view_model.dart';
 import 'package:surfing_sns/viewmodel/signup_model.dart';
 
@@ -29,5 +30,4 @@ List<SingleChildWidget> viewModels = [
         signUpModel: Provider.of<SignUpModel>(context, listen: false)
     ),
   ),
-
 ];

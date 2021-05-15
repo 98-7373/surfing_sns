@@ -1,12 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surfing_sns/screen/home_screen.dart';
-import 'package:surfing_sns/screen/login_screen.dart';
-import 'package:surfing_sns/style.dart';
 import 'package:surfing_sns/view/login/login_page.dart';
 import 'package:surfing_sns/view/page/signup_page.dart';
-import 'package:surfing_sns/viewmodel/login_view_model.dart';
+
 
 import 'di/providers.dart';
 import 'main_model.dart';
@@ -52,6 +49,16 @@ class MyApp extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    },
+                  ),
+                  RaisedButton(
+                    child: Text('ログイン'),
+                    onPressed: () {
+                      // ここでなにか
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     },
                   ),

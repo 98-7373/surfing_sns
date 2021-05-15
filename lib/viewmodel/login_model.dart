@@ -2,8 +2,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
+import 'package:surfing_sns/domain/repository/db/database_manager.dart';
 
 class LoginModel extends ChangeNotifier {
+  final DatabaseManager dbManager;
+  LoginModel({this.dbManager});
+
   String mail = '';
   String password = '';
 
@@ -18,16 +22,15 @@ class LoginModel extends ChangeNotifier {
       throw ('パスワードを入力してください');
     }
     // todo
-    final auth.User user = (await _auth.createUserWithEmailAndPassword(
+    final firebaseUser = await _auth.signInWithEmailAndPassword(
       email: mail,
       password: password,
-    ))
-        .user;
-    final email = user.email;
-
+    );
+    final uid = firebaseUser.user.uid;
+    // TODO
     Firestore.instance.collection('users').add(
       {
-        'email': email,
+        'userId': uid,
         'createdAt': Timestamp.now(),
       },
     );
