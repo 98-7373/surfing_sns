@@ -45,7 +45,7 @@ class LoginPage extends StatelessWidget {
                     child: Text('登録する'),
                     onPressed: () async {
                       try {
-                        await model.signUp();
+                        await model.signIn();
                         _showDialog(context, '登録完了しました');
                       } catch (e) {
                         _showDialog(context, e.toString());

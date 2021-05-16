@@ -1,10 +1,11 @@
+
+
+
 import 'package:flutter/material.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
 
-class MainModel extends ChangeNotifier {
-  String kboyText = 'KBOY';
-
-  void changeKboyText() {
-    kboyText = 'kboyさんかっこいい！！！';
-    notifyListeners();
-  }
+class MainModel {
+  MainModel({
+    @required UserRepository userRepository,
+});
 }
