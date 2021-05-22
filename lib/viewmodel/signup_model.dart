@@ -23,10 +23,7 @@ class SignUpModel extends ChangeNotifier {
         email: mail,
         password: password,
       )).user;
-      final String uid = firebaseUser.uid;
-      if (firebaseUser == null) {
-        return false;
-      }
+      final uid = firebaseUser.uid;
     } catch (e){
       print("sign in error caught!");
       return false;
