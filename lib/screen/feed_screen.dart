@@ -15,7 +15,21 @@ class FeedScreen extends StatelessWidget {
           body: Consumer<FeedModel>(
             builder: (context, model, child) {
               final feeds = model.feeds;
-              final listtiles = feeds.map((feed) => ListTile(title: Text(feed.title,)
+              final listtiles = feeds.map((feed) => ListTile(
+                  title: Text(feed.title,),
+                trailing: IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () async {
+
+                  //TODO画面遷移
+                    await Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => AddFeedPage(feed: feed,),
+                      fullscreenDialog: true,
+                    ),
+                    );
+                    model.fetchFeeds();
+                  },
+              ),
               )
               ).toList();
               return ListView(

@@ -9,7 +9,7 @@ class FeedModel extends ChangeNotifier {
     final docs =
       await  Firestore.instance
           .collection("feeds").get();
-    final feeds = docs.docs.map((docs) => Feed(docs["title"])).toList();
+    final feeds = docs.docs.map((docs) => Feed(docs)).toList();
     this.feeds = feeds;
     notifyListeners();
   }
