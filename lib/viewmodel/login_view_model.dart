@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/viewmodel/signup_model.dart';
 
-import 'login_model.dart';
-
 class LoginViewModel extends ChangeNotifier{
   final SignUpModel signUpModel;
   LoginViewModel({this.signUpModel});

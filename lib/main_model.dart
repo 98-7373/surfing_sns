@@ -1,10 +1,14 @@
+
+
+
 import 'package:flutter/material.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
 
 class MainModel extends ChangeNotifier {
-  String kboyText = 'KBOY';
+  String suzuki = "suzukiko";
 
-  void changeKboyText() {
-    kboyText = 'kboyさんかっこいい！！！';
+  void Changesuzuki() {
+    suzuki = "鈴木さん";
     notifyListeners();
   }
 }

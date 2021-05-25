@@ -1,8 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
+import 'package:surfing_sns/domain/repository/user_repository_imp.dart';
+import 'package:surfing_sns/screen/feed_screen.dart';
 import 'package:surfing_sns/view/login/login_page.dart';
 import 'package:surfing_sns/view/page/signup_page.dart';
+import 'package:surfing_sns/viewmodel/login_model.dart';
 
 
 import 'di/providers.dart';
@@ -12,16 +17,11 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
-  runApp(
-      MultiProvider(
-        providers: globalProviders,
-        child: MyApp(),
-      )
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,18 +30,12 @@ class MyApp extends StatelessWidget {
         create: (_) => MainModel(),
         child: Scaffold(
           appBar: AppBar(
-            title: Text('コリアンダー'),
+            title: Text('ログイン'),
           ),
           body: Consumer<MainModel>(builder: (context, model, child) {
             return Center(
               child: Column(
                 children: [
-                  Text(
-                    model.kboyText,
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
-                  ),
                   RaisedButton(
                     child: Text('新規登録'),
                     onPressed: () {
@@ -52,6 +46,18 @@ class MyApp extends StatelessWidget {
                       );
                     },
                   ),
+                  Text(
+                    model.suzuki,
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
+                  ),
+                  RaisedButton(
+                    child: Text('押して'),
+                    onPressed: () {
+                      model.Changesuzuki();
+                    },
+                  ),
                   RaisedButton(
                     child: Text('ログイン'),
                     onPressed: () {
@@ -59,6 +65,16 @@ class MyApp extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    },
+                  ),
+                  RaisedButton(
+                    child: Text('Feed'),
+                    onPressed: () {
+                      // ここでなにか
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FeedScreen()),
                       );
                     },
                   ),
