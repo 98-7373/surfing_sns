@@ -6,12 +6,16 @@ class FeedModel extends ChangeNotifier {
   List<Feed> feeds = [];
 
   Future fetchFeeds() async {
-    final docs =
-      await  Firestore.instance
-          .collection("feeds").get();
+    final docs = await Firestore.instance.collection("feeds").get();
     final feeds = docs.docs.map((docs) => Feed(docs)).toList();
     this.feeds = feeds;
     notifyListeners();
   }
 
+  Future deleteFeed(Feed feed) async {
+    await Firestore.instance
+        .collection("feeds")
+        .doc(feed.documentId)
+        .delete();
+  }
 }
