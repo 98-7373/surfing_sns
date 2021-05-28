@@ -12,11 +12,9 @@ class AddFeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isUpdate = feed != null;
     final textEditingController = TextEditingController();
-
     if (isUpdate) {
       textEditingController.text = feed.title;
     }
-
     return ChangeNotifierProvider<AddFeeModel>(
         create: (_) => AddFeeModel(),
         child: Scaffold(
@@ -89,7 +87,6 @@ class AddFeedPage extends StatelessWidget {
         )
     );
   }
-
   Future addFeed(AddFeeModel model, BuildContext context) async {
     try {
       await model.addFeedToFirebase();
@@ -168,5 +165,4 @@ class AddFeedPage extends StatelessWidget {
        );
      }
    }
-
 }

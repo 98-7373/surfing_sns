@@ -18,7 +18,7 @@ class LoginViewModel extends ChangeNotifier{
     isLoading = true;
     notifyListeners();
 
-    isSuccessful = await signUpModel.signIn();
+    isSuccessful = await signUpModel.signUp();
     isLoading = false;
     notifyListeners();
   }

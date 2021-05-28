@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surfing_sns/add_feed_page.dart';
 import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/user.dart';
 import 'package:surfing_sns/viewmodel/feed_model.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -32,7 +33,6 @@ class FeedScreen extends StatelessWidget {
                   },
               ),
                 onLongPress: () async{
-                //    TODO削除
                   await showDialog(
                       context: context,
                       builder: (BuildContext context) {
