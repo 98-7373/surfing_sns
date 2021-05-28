@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/screen/home_screen.dart';
 import 'package:surfing_sns/viewmodel/login_model.dart';
 import 'package:surfing_sns/viewmodel/signup_model.dart';
@@ -11,7 +13,10 @@ class LoginPage extends StatelessWidget {
     final passwordController = TextEditingController();
 
     return ChangeNotifierProvider<LoginModel>(
-      create: (_) => LoginModel(),
+      create: (_) => LoginModel(
+        authRepository: context.read<FirebaseAuthRepository>(),
+        userRepository: context.read<UserRepository>(),
+      )..init(),
       child: Scaffold(
         appBar: AppBar(
           title: Text('サインアップ'),
@@ -27,8 +32,8 @@ class LoginPage extends StatelessWidget {
                       hintText: 'example@kboy.com',
                     ),
                     controller: mailController,
-                    onChanged: (text) {
-                      model.mail = text;
+                    onChanged: (String email) {
+                      model.email = email;
                     },
                   ),
                   TextField(
@@ -37,15 +42,15 @@ class LoginPage extends StatelessWidget {
                     ),
                     obscureText: true,
                     controller: passwordController,
-                    onChanged: (text) {
-                      model.password = text;
+                    onChanged: (String password) {
+                      model.password = password;
                     },
                   ),
                   RaisedButton(
                     child: Text('登録する'),
                     onPressed: () async {
                       try {
-                        await model.signIn();
+                        await model.login();
                         _showDialog(context, 'ログイン完了しました！');
                       } catch (e) {
                         _showDialog(context, e.toString());

@@ -14,13 +14,13 @@ class SignUpModel extends ChangeNotifier {
         _userRepository = userRepository;
   final FirebaseAuthRepository _authRepository;
   final UserRepository _userRepository;
-  String mail = '';
+  String email = '';
   String password = '';
 
   final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
 
   Future signUp() async {
-      if (mail == null || mail.isEmpty) {
+      if (email == null || email.isEmpty) {
         throw ('メールアドレスを入力してください');
       }
       if (password == null || password.isEmpty) {
@@ -28,7 +28,7 @@ class SignUpModel extends ChangeNotifier {
       }
       final User user = _buildUser();
       try {
-        await _authRepository.signUp(mail, password);
+        await _authRepository.signUp(email, password);
         final String uid = _authRepository.getUid();
         await _userRepository.addUser(uid, user);
       } catch(e) {
@@ -36,8 +36,6 @@ class SignUpModel extends ChangeNotifier {
       }
       notifyListeners();
   }
-
-
 
   User _buildUser() {
     return User(

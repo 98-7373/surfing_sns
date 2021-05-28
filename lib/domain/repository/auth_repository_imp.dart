@@ -19,4 +19,8 @@ class FirebaseAuthRepositoryImp extends FirebaseAuthRepository {
       password: password,
     );
   }
+  @override
+  Future<void> login(String email, String password) async {
+    await _auth.signInWithEmailAndPassword(email: email, password: password);
+  }
 }
