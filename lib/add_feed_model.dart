@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/feed.dart';
@@ -20,6 +19,7 @@ class AddFeeModel extends ChangeNotifier {
     final document = Firestore.instance.collection('feeds').doc(feed.documentId);
     await document.update({
       'title': feedTitle,
+
     },
     );
     

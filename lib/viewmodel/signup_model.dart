@@ -1,32 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
-import 'package:surfing_sns/data_models/user.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
+import 'package:surfing_sns/user.dart';
 
 class SignUpModel extends ChangeNotifier {
+  SignUpModel({
+    @required FirebaseAuthRepository authRepository,
+    @required UserRepository userRepository})
+
+      : _authRepository = authRepository,
+        _userRepository = userRepository;
+  final FirebaseAuthRepository _authRepository;
+  final UserRepository _userRepository;
   String mail = '';
   String password = '';
-  static User currentUser;
 
   final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
 
-  Future signIn() async {
-    try {
-      if (mail.isEmpty) {
+  Future signUp() async {
+      if (mail == null || mail.isEmpty) {
         throw ('メールアドレスを入力してください');
       }
-
-      if (password.isEmpty) {
+      if (password == null || password.isEmpty) {
         throw ('パスワードを入力してください');
       }
-      // todo
-      final firebaseUser = (await _auth.createUserWithEmailAndPassword(
-        email: mail,
-        password: password,
-      )).user;
-      final uid = firebaseUser.uid;
-    } catch (e){
-      print("sign in error caught!");
-      return false;
-    }
+      final User user = _buildUser();
+      try {
+        await _authRepository.signUp(mail, password);
+        final String uid = _authRepository.getUid();
+        await _userRepository.addUser(uid, user);
+      } catch(e) {
+        throw ('error');
+      }
+      notifyListeners();
+  }
+
+
+
+  User _buildUser() {
+    return User(
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
   }
 }

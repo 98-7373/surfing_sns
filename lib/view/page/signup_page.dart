@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/screen/home_screen.dart';
 import 'package:surfing_sns/viewmodel/signup_model.dart';
 
@@ -8,9 +11,11 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final mailController = TextEditingController();
     final passwordController = TextEditingController();
-
     return ChangeNotifierProvider<SignUpModel>(
-      create: (_) => SignUpModel(),
+      create: (_) => SignUpModel(
+        authRepository: context.read<FirebaseAuthRepository>(),
+        userRepository: context.read<UserRepository>(),
+      ),
       child: Scaffold(
         appBar: AppBar(
           title: Text('サインアップ'),
@@ -26,8 +31,8 @@ class SignUpPage extends StatelessWidget {
                       hintText: 'example@kboy.com',
                     ),
                     controller: mailController,
-                    onChanged: (text) {
-                      model.mail = text;
+                    onChanged: (String mail) {
+                      model.mail = mail;
                     },
                   ),
                   TextField(
@@ -36,15 +41,15 @@ class SignUpPage extends StatelessWidget {
                     ),
                     obscureText: true,
                     controller: passwordController,
-                    onChanged: (text) {
-                      model.password = text;
+                    onChanged: (String password) {
+                      model.password = password;
                     },
                   ),
                   RaisedButton(
                     child: Text('登録する'),
                     onPressed: () async {
                       try {
-                        await model.signIn();
+                        await model.signUp();
                         _showDialog(context, '登録完了しました');
                       } catch (e) {
                         _showDialog(context, e.toString());

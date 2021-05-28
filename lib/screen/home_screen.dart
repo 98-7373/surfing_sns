@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:surfing_sns/screen/feed_screen.dart';
 import 'package:surfing_sns/view/page/feed_page.dart';
 import 'package:surfing_sns/view/page/profile_page.dart';
 import 'package:surfing_sns/view/page/surf_search_page.dart';
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
 @override
 void initState() {
   _pages = [
-    FeedPage(),
+    FeedScreen(),
     SurfSearchPage(),
     TeamPage(),
     WeatherPage(),

@@ -5,8 +5,7 @@ class Feed {
     documentId = doc.id;
     title = doc['title'];
   }
-
-
   String documentId;
   String title;
+
 }
