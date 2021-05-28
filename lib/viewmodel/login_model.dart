@@ -1,40 +1,45 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/user.dart';
 import 'package:surfing_sns/viewmodel/signup_model.dart';
 
 class LoginModel extends ChangeNotifier {
-  String mail = '';
+  LoginModel({
+    @required FirebaseAuthRepository authRepository,
+    @required UserRepository userRepository})
+
+      : _authRepository = authRepository,
+        _userRepository = userRepository;
+  final FirebaseAuthRepository _authRepository;
+  final UserRepository _userRepository;
+
+
+  String email = '';
   String password = '';
-  final SignUpModel signUpModel;
-  LoginModel({this.signUpModel});
 
   final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
 
-  Future signIn() async {
-      if (mail.isEmpty) {
-        throw ('メールアドレスを入力してください');
-      }
+  Future<void> init() async {
+    notifyListeners();
+  }
 
-      if (password.isEmpty) {
-        throw ('パスワードを入力してください');
-      }
-      // todo
-      final result = await _auth.signInWithEmailAndPassword(
-        email: mail,
-        password: password,);
-      final uid = result.user.uid;
-      final User fire = _buildUser();
-
-      if (uid ==  null) {
-        return false;
-      }
+  Future<void> login() async {
+    if (email == null || email.isEmpty) {
+      throw 'メールアドレスを入力してください';
+    }
+    if (password == null || password.isEmpty) {
+      throw 'パスワードを入力してください';
+    }
+    try {
+      await _authRepository.login(email, password);
+      final String uid = _authRepository.getUid();
+    } catch (e) {
+      throw ('エラー');
+    }
+    notifyListeners();
   }
 
 
-  User _buildUser() {
-    return User(
-        createdAt: DateTime.now()
-    );
-  }
 }

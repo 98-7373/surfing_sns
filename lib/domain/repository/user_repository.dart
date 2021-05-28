@@ -2,4 +2,5 @@ import 'package:flutter/material.dart';
 import 'package:surfing_sns/user.dart';
   abstract class UserRepository {
     Future<void> addUser(String uid, User user);
+
 }

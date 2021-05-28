@@ -31,8 +31,8 @@ class SignUpPage extends StatelessWidget {
                       hintText: 'example@kboy.com',
                     ),
                     controller: mailController,
-                    onChanged: (String mail) {
-                      model.mail = mail;
+                    onChanged: (String email) {
+                      model.email = email;
                     },
                   ),
                   TextField(

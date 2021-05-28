@@ -7,6 +7,7 @@ class UserRepositoryImp implements UserRepository {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   CollectionReference _users;
+  String email = "";
 
   void init() {
     _users = _firestore.collection('users');
@@ -20,12 +21,14 @@ class UserRepositoryImp implements UserRepository {
         await _users.doc(uid).set(<String, dynamic>{
           'userId': uid,
           'displayName': user.displayName,
-          'role': user.role,
-          'coupleId': uid,
           'createdAt': user.createdAt,
-          'updatedAt': user.updatedAt
+          'updatedAt': user.updatedAt,
+          'photoUrl': user.photoUrl,
+          'email': email,
+          'bio': "",
         });
       }
     });
   }
+
 }

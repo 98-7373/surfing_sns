@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 class User {
   User({
     this.userId,
@@ -11,6 +10,7 @@ class User {
     this.updatedAt,
     this.email,
     this.password,
+    this.photoUrl,
   });
   String email;
   String password;
@@ -18,6 +18,7 @@ class User {
   String displayName;
   String role;
   String coupleId;
+  String photoUrl;
   DateTime createdAt;
   DateTime updatedAt;
 }
