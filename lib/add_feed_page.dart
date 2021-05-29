@@ -25,7 +25,8 @@ class AddFeedPage extends StatelessWidget {
             builder: (context, model, child) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(children: <Widget>[
+                child: Column(
+                  children: <Widget>[
                   TextField(
                    controller: textEditingController,
                     onChanged: (text) {

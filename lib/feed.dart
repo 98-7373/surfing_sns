@@ -7,5 +7,4 @@ class Feed {
   }
   String documentId;
   String title;
-
 }
