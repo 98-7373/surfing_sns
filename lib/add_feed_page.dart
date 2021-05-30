@@ -15,6 +15,7 @@ class AddFeedPage extends StatelessWidget {
     if (isUpdate) {
       textEditingController.text = feed.title;
     }
+
     return ChangeNotifierProvider<AddFeeModel>(
         create: (_) => AddFeeModel(),
         child: Scaffold(

@@ -3,9 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:surfing_sns/add_feed_page.dart';
 import 'package:surfing_sns/feed.dart';
 import 'package:surfing_sns/feed_details_page.dart';
-import 'package:surfing_sns/user.dart';
 import 'package:surfing_sns/viewmodel/feed_model.dart';
-
 class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
