@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/auth_repository_imp.dart';
+import 'package:surfing_sns/domain/repository/feed_repository.dart';
+import 'package:surfing_sns/domain/repository/feed_repository_imp.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository_imp.dart';
 import 'package:surfing_sns/main_models.dart';
@@ -29,6 +31,9 @@ void main() async {
           ),
           Provider<UserRepository>(
             create: (BuildContext context) => UserRepositoryImp()..init(),
+          ),
+          Provider<FeedRepository>(
+            create: (BuildContext context) => FeedRepositoryImp()..init(),
           ),
         ],
             child: MyApp(),

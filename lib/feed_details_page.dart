@@ -3,7 +3,6 @@ import 'package:surfing_sns/feed.dart';
 
 class FeedDetailsPage extends StatelessWidget {
   FeedDetailsPage({this.feed});
-
   final Feed feed;
 
   @override
