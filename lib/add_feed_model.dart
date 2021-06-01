@@ -16,7 +16,7 @@ class AddFeeModel extends ChangeNotifier {
     );
   }
   Future updateFeed(Feed feed) async {
-    final document = Firestore.instance.collection('feeds').doc(feed.documentId);
+    final document = Firestore.instance.collection('feeds').doc(feed.userId);
     await document.update({
       'title': feedTitle,
 
