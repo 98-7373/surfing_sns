@@ -63,8 +63,8 @@ class AddFeeModel extends ChangeNotifier {
       imageStoragePath: _imageStoragePath,
       imageUrl: _imageUrl,
       locationString: _locationString,
-
     );
+    await _feedRepository.add(feed);
   }
 
 
