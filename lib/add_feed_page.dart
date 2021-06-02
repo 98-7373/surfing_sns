@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
 import 'package:surfing_sns/viewmodel/feed_model.dart';
 
 import 'add_feed_model.dart';
+import 'domain/repository/auth_repository.dart';
+import 'domain/repository/user_repository.dart';
 
 class AddFeedPage extends StatelessWidget {
   AddFeedPage({this.feed});
-
   final Feed feed;
 
   @override
@@ -17,9 +19,12 @@ class AddFeedPage extends StatelessWidget {
     if (isUpdate) {
       textEditingController.text = feed.title;
     }
-
     return ChangeNotifierProvider<AddFeeModel>(
-        create: (_) => AddFeeModel(),
+        create: (_) => AddFeeModel(
+          authRepository: context.read<FirebaseAuthRepository>(),
+          userRepository: context.read<UserRepository>(),
+          feedRepository: context.read<FeedRepository>(),
+        ),
         child: Scaffold(
           appBar: AppBar(
             title: Text(

@@ -21,4 +21,5 @@ class User {
   String photoUrl;
   DateTime createdAt;
   DateTime updatedAt;
+
 }

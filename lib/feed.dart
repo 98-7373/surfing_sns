@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Feed {
   Feed({
     this.title,
@@ -9,7 +8,6 @@ class Feed {
     this.imageStoragePath,
     this.caption,
     this.locationString,
-
     bool isDone,
     this.deadline,
     this.createdAt,
