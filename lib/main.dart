@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
     final MainModels models = MainModels(
       authRepository: context.read<FirebaseAuthRepository>(),
           userRepository: context.read<UserRepository>(),
+      feedRepository: context.read<FeedRepository>(),
     );
     return MaterialApp(
       title: 'Flutter Demo',

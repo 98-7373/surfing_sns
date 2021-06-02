@@ -9,7 +9,8 @@ class FeedModel extends ChangeNotifier {
   Future fetchFeeds() async {
     final docs = await Firestore.instance.collection("feeds").get();
     //['title] = userId 更新
-    final feeds = docs.docs.map((docs) => Feed(docs)).toList();
+    //TODO FEDD(doc)←doc消してる
+    final feeds = docs.docs.map((docs) => Feed()).toList();
     this.feeds = feeds;
     notifyListeners();
   }
@@ -17,7 +18,7 @@ class FeedModel extends ChangeNotifier {
   Future deleteFeed(Feed feed) async {
     await Firestore.instance
         .collection("feeds")
-        .doc(feed.documentId)
+        .doc(feed.userId)
         .delete();
   }
 }
