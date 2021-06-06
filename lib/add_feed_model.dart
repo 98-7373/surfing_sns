@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:surfing_sns/assign.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
 import 'domain/repository/auth_repository.dart';
@@ -8,29 +9,41 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class AddFeeModel extends ChangeNotifier {
   String feedTitle = "";
+  String captionTitle = "";
+
   AddFeeModel({
+    @required FirebaseAuthRepository authRepository,
     @required FeedRepository feedRepository,
     Feed feed,
-    FirebaseAuthRepository authRepository,
-    UserRepository userRepository,
-}) {
+}) : _authRepository = authRepository
+
+  {
     _feedRepository = feedRepository;
     if (feed != null){
       _feed = feed;
-      _userId = userId;
-      _caption = caption;
-      _locationString = locationString;
-      _imageStoragePath = imageStoragePath;
-      _imageUrl = imageUrl;
-      _feedId = feedId;
+      _title = feed.title;
+      _userId = _feed.userId;
+      _caption = _feed.caption;
+      _locationString = _feed.locationString;
+      _imageStoragePath = _feed.imageStoragePath;
+      _deadline = _feed.deadline;
+      _imageUrl = _feed.imageUrl;
+      _feedId = _feed.feedId;
+      _assign = _feed.assign;
     }
   }
-
+  final FirebaseAuthRepository _authRepository;
   FeedRepository _feedRepository;
   Feed _feed;
 
   String _userId;
   String get userId => _userId;
+
+  DateTime _deadline;
+  DateTime get deadline => _deadline;
+
+  String _title;
+  String get title => _title;
 
   String _feedId;
   String get feedId => _feedId;
@@ -47,34 +60,83 @@ class AddFeeModel extends ChangeNotifier {
   String _locationString;
   String get locationString => _locationString;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  // 内部はAssignTypeで保持して、表示はStringに切り替える
+  AssignType _assign;
+  String get assign => _assign.jpnValue;
 
 
-  final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
+  void changeTitle(String title) {
+    _title = title;
+    notifyListeners();
+  }
 
-  //TODO 新規追加処理
-  Future addFeedToFirebase() async {
-    if(feedTitle.isEmpty){
+  void changeCaption(String caption) {
+    _caption = caption;
+    notifyListeners();
+  }
+  void changeAssign(AssignType assign) {
+    _assign = assign;
+    notifyListeners();
+  }
+
+  //Feed 新規追加処理
+  Future<void> addFeedToFirebase() async {
+    if(feedTitle == null){
       throw(' タイトルを入れてください');
     }
+    final Feed feed = _buildFeed();
+    try {
+      final String uid = _authRepository.getUid();
+      await _feedRepository.addFeedUser(uid,feed);
+    } catch(e) {
+      throw ('error');
+    }
+    notifyListeners();
+  }
+
+  void startLoading() {
+    _isLoading = true;
+    notifyListeners();
+  }
+
+  void endLoading() {
+    _isLoading = false;
+    notifyListeners();
+  }
+  void changeDeadline(DateTime deadline) {
+    _deadline = deadline;
+    notifyListeners();
+  }
+
+  // 更新処理
+  Future<void> updateFeed() async {
+    if (_feed == null) {
+      throw 'タイトルを記入してください';
+    }
+    // documentの存在確認
+    final bool isExist = await _feedRepository.isExist(_feed.userId);
+    if (!isExist) {
+      // 存在しない場合
+      return;
+    }
+    // idから引っ張ってくる
+    final Feed currentFeed = await _feedRepository.findById(_feed.userId);
+    // isDoneとcreatedAtは変更しない
     final Feed feed = Feed(
-      userId: _userId,
-      feedId: _feedId,
-      caption: _caption,
-      imageStoragePath: _imageStoragePath,
-      imageUrl: _imageUrl,
-      locationString: _locationString,
+      userId: currentFeed.userId,
+      updatedAt: DateTime.now(),
+      assign: _assign,
     );
-    await _feedRepository.add(feed);
+    await _feedRepository.updateFeed(feed);
   }
 
-
-  Future updateFeed(Feed feed) async {
-    final document = Firestore.instance.collection('feeds').doc(feed.userId);
-    await document.update({
-      'title': feedTitle,
-
-    },
+  Feed _buildFeed() {
+    return Feed(
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
     );
   }
-
 }

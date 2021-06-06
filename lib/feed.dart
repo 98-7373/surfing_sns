@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:surfing_sns/assign.dart';
 class Feed {
   Feed({
     this.title,
@@ -8,6 +9,7 @@ class Feed {
     this.imageStoragePath,
     this.caption,
     this.locationString,
+    this.assign,
     bool isDone,
     this.deadline,
     this.createdAt,
@@ -16,13 +18,14 @@ class Feed {
 
   final String userId;
   String title;
-  String feedId;
+  final String feedId;
   String imageUrl;
   String imageStoragePath;
   String caption;
   String locationString;
   bool _isDone;
   bool get isDone => _isDone;
+  AssignType assign;
   DateTime deadline;
   DateTime createdAt;
   DateTime updatedAt;
