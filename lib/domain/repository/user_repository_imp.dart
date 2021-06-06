@@ -4,10 +4,10 @@ import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/user.dart';
 
 class UserRepositoryImp implements UserRepository {
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   CollectionReference _users;
   String email = "";
+  static User  currentUser;
 
   void init() {
     _users = _firestore.collection('users');
@@ -24,10 +24,17 @@ class UserRepositoryImp implements UserRepository {
           'createdAt': user.createdAt,
           'updatedAt': user.updatedAt,
           'photoUrl': user.photoUrl,
-          'email': email,
+          'email': user.email,
           'bio': "",
         });
       }
     });
+  }
+
+  //データ取得
+  @override
+  Future<User> getUserInfoFromDbById(String uid) async {
+    final query = await _users.where("userId", isEqualTo: uid).get();
+    return User.fromMap(query.docs[0].data());
   }
 }
