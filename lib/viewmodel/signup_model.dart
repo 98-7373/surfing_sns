@@ -8,7 +8,8 @@ import 'package:surfing_sns/feed.dart';
 import 'package:surfing_sns/user.dart';
 
 class SignUpModel extends ChangeNotifier {
-  static User  currentUser;
+  static User currentUser;
+
   SignUpModel({
     @required FirebaseAuthRepository authRepository,
     @required UserRepository userRepository,
@@ -28,23 +29,21 @@ class SignUpModel extends ChangeNotifier {
 
 
   Future signUp() async {
-      if (email == null || email.isEmpty) {
-        throw ('メールアドレスを入力してください');
-      }
-      if (password == null || password.isEmpty) {
-        throw ('パスワードを入力してください');
-      }
-      final User user = _buildUser();
-
-      try {
-        await _authRepository.signUp(email, password);
-        final String uid = _authRepository.getUid();
-        await _userRepository.addUser(uid, user);
-        // currentUser = await _userRepository.getUserInfoFromDbById(uid);
-      } catch(e) {
-        throw ('error');
-      }
-      notifyListeners();
+    if (email == null || email.isEmpty) {
+      throw ('メールアドレスを入力してください');
+    }
+    if (password == null || password.isEmpty) {
+      throw ('パスワードを入力してください');
+    }
+    final User user = _buildUser();
+    try {
+      await _authRepository.signUp(email, password);
+      final String uid = _authRepository.getUid();
+      await _userRepository.addUser(uid, user);
+    } catch (e) {
+      throw ('error');
+    }
+    notifyListeners();
   }
 
   User _buildUser() {

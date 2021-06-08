@@ -8,8 +8,6 @@ import 'domain/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class AddFeeModel extends ChangeNotifier {
-  String feedTitle = "";
-  String captionTitle = "";
 
   AddFeeModel({
     @required FirebaseAuthRepository authRepository,
@@ -84,13 +82,17 @@ class AddFeeModel extends ChangeNotifier {
 
   //Feed 新規追加処理
   Future<void> addFeedToFirebase() async {
-    if(feedTitle == null){
+    if(_title == null){
       throw(' タイトルを入れてください');
+    }
+    if(caption == null){
+      throw(' 詳細を入れてください');
     }
     final Feed feed = _buildFeed();
     try {
       final String uid = _authRepository.getUid();
       await _feedRepository.addFeedUser(uid,feed);
+      await _feedRepository.add(uid, feed, caption, title);
     } catch(e) {
       throw ('error');
     }
@@ -132,7 +134,7 @@ class AddFeeModel extends ChangeNotifier {
     );
     await _feedRepository.updateFeed(feed);
   }
-
+  //TODO
   Feed _buildFeed() {
     return Feed(
       createdAt: DateTime.now(),

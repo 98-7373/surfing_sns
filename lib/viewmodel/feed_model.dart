@@ -25,18 +25,14 @@ class FeedModel extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
-
   // 非同期処理の開始時に呼び、isLoadingをtrueに変更する
   void startLoading() {
     _isLoading = true;
   }
-
   // 非同期処理の終了時に呼び、isLoadingをfalseに変更する
   void endLoading() {
     _isLoading = false;
   }
-
-
   // repositoryのメソッドを呼んでTodoのリストを取得する
   // コンストラクタではFeedRepositoryImpの方を渡しているので
   // 実際の処理はそちらを参照すること

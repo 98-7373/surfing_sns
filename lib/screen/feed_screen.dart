@@ -79,8 +79,7 @@ List<FeedCard> _buildTodoCardList({
   FeedModel model,
 }) {
   return feedList
-      .map((Feed feed) =>
-      FeedCard(
+      .map((Feed feed) => FeedCard(
         feed: feed,
         onChangeCheck: (bool check) async {
           await model.changeCheck(feed.userId, check);
