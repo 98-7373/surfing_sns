@@ -12,7 +12,8 @@ import 'domain/repository/auth_repository.dart';
 class AddFeedPage extends StatelessWidget {
   const AddFeedPage({Feed feed}) : _feed = feed;
   final Feed _feed;
-
+  final String title = "";
+  final String caption = "";
   @override
   Widget build(BuildContext context) {
     // 詳細ページ表示の初期化処理
@@ -66,8 +67,8 @@ class AddFeedPage extends StatelessWidget {
                                       labelText: 'タイトル',
                                       hintText: 'タイトル',
                                     ),
-                                    onChanged: (String feedTitle) {
-                                      model.changeTitle(feedTitle);
+                                    onChanged: (String title) {
+                                      model.changeTitle(title);
                                     },
                                     controller: _titleController,
                                   ),
@@ -95,8 +96,8 @@ class AddFeedPage extends StatelessWidget {
                                     keyboardType: TextInputType.multiline,
                                     minLines: 2,
                                     maxLines: null,
-                                    onChanged: (String captionTitle) {
-                                      model.changeCaption(captionTitle);
+                                    onChanged: (String caption) {
+                                      model.changeCaption(caption);
                                     },
                                     controller: _bodyController,
                                   ),

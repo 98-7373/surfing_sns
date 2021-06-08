@@ -5,7 +5,7 @@ abstract class FeedRepository {
   Future<void> addFeedUser(String uid,Feed feed);
   Future<List<Feed>> findAll();
   Future<Feed> findById(String uid);
-  Future<void> add(Feed feed);
+  Future<void> add(String uid,Feed feed, String title, String caption);
   Future<void> changeCheck(String uid, bool check, DateTime updatedAt);
   Future<bool> isExist(String uid);
   Future<void> deleteFeeds(String uid);

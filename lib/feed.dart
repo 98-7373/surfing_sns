@@ -33,4 +33,29 @@ class Feed {
   void changeCheck(bool check) {
     _isDone = check;
   }
+
+  factory Feed.fromMap(Map<String, dynamic> map) {
+    return new Feed(
+      userId: map['userId'] as String,
+      caption: map['caption'] as String,
+      title: map['title'] as String,
+      imageUrl: map['imageUrl'] as String,
+      imageStoragePath: map['imageStoragePath'] as String,
+      locationString: map['locationString'] as String,
+      feedId: map['feedId'] as String,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    // ignore: unnecessary_cast
+    return {
+      'userId': this.userId,
+      'caption': this.caption,
+      'title': this.title,
+      'imageUrl': this.imageUrl,
+      'imageStoragePath': this.imageStoragePath,
+      'locationString': this.locationString,
+      'feedId': this.feedId,
+    } as Map<String, dynamic>;
+  }
 }

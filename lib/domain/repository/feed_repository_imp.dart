@@ -29,6 +29,22 @@ Future<void> addFeedUser(String uid, Feed feed) async {
     }
   });
 }
+  //userId元にfeedsを追加
+  Future<void> add(String uid, Feed feed, String caption, String title) async {
+    _feeds.doc(uid).snapshots().listen((DocumentSnapshot event) async {
+      if (!event.exists) {
+        await _feeds.doc(uid).set(<String, dynamic>{
+          'userId': uid,
+          'caption': caption,
+          'imageStoragePath': feed.imageStoragePath,
+          'imageUrl': feed.imageUrl,
+          'locationString': feed.locationString,
+          'feedId': feed.feedId,
+          'title': title,
+        });
+      }
+    });
+  }
 
   Future<List<Feed>> findAll() async {
     //TODO userId取得
@@ -55,7 +71,7 @@ Future<void> addFeedUser(String uid, Feed feed) async {
     return result;
   }
 
-  /// documentIdからFeedを取得する
+  /// uidからFeedを取得する
   @override
   Future<Feed> findById(String uid) async {
     final DocumentSnapshot result =
@@ -75,22 +91,6 @@ Future<void> addFeedUser(String uid, Feed feed) async {
     }
     return feed;
   }
-
-  @override
-  Future<void> add(Feed feed) async {
-    final CollectionReference feeds =
-    _feeds.doc().collection('feeds');
-    await feeds.add(<String, dynamic>{
-      'userId': feed.userId,
-      'feedId': feed.feedId,
-      'imageUrl': feed.imageUrl,
-      'assign': feed.assign.value,
-      'imageStoragePath': feed.imageStoragePath,
-      'caption': feed.caption,
-      'locationString': feed.locationString,
-    });
-  }
-
   /// uidがドキュメントがfeedsコレクションに存在するかどうかの確認
   @override
   Future<bool> isExist(String uid) async {

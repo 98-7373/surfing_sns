@@ -12,7 +12,6 @@ class UserRepositoryImp implements UserRepository {
   void init() {
     _users = _firestore.collection('users');
   }
-
   @override
   Future<void> addUser(String uid, User user) async {
     // usersコレクションにuserを追加する
@@ -30,11 +29,11 @@ class UserRepositoryImp implements UserRepository {
       }
     });
   }
+  @override
+  Future<User> getUserInfoFromDbById(String uid) {
+    // TODO: implement getUserInfoFromDbById
+    throw UnimplementedError();
+  }
 
   //データ取得
-  @override
-  Future<User> getUserInfoFromDbById(String uid) async {
-    final query = await _users.where("userId", isEqualTo: uid).get();
-    return User.fromMap(query.docs[0].data());
-  }
 }
