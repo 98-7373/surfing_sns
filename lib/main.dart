@@ -10,6 +10,7 @@ import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository_imp.dart';
 import 'package:surfing_sns/main_models.dart';
 import 'package:surfing_sns/screen/feed_screen.dart';
+import 'package:surfing_sns/screen/home_screen.dart';
 import 'package:surfing_sns/view/login/login_page.dart';
 import 'package:surfing_sns/view/page/signup_page.dart';
 import 'package:surfing_sns/viewmodel/login_model.dart';
@@ -36,19 +37,17 @@ void main() async {
             create: (BuildContext context) => FeedRepositoryImp()..init(),
           ),
         ],
-            child: MyApp(),
+        child: MyApp(),
       )
   );
-
 }
-
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MainModels models = MainModels(
       authRepository: context.read<FirebaseAuthRepository>(),
-          userRepository: context.read<UserRepository>(),
+      userRepository: context.read<UserRepository>(),
       feedRepository: context.read<FeedRepository>(),
     );
     return MaterialApp(

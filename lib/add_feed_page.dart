@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:surfing_sns/assign.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
@@ -10,10 +12,12 @@ import 'add_feed_model.dart';
 import 'domain/repository/auth_repository.dart';
 
 class AddFeedPage extends StatelessWidget {
-  const AddFeedPage({Feed feed}) : _feed = feed;
+   AddFeedPage({Feed feed}) : _feed = feed;
   final Feed _feed;
   final String title = "";
   final String caption = "";
+  File _image;
+  final picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
     // 詳細ページ表示の初期化処理
@@ -106,53 +110,23 @@ class AddFeedPage extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(
-                              top: 30,
-                              left: 20,
-                              right: 20,
-                            ),
-                            child: InkWell(
-                              child: Row(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Center(
+                              child: Column(
                                 children: <Widget>[
-                                  const Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.black54,
-                                  ),
                                   const SizedBox(
                                     width: 16.0,
+                                    height: 320,
                                   ),
-                                    const Text('なし'),
+                                  RaisedButton(
+                                      //TODO 画像反映させたい
+                                      onPressed: () async {
+                                        _getImageFile();
+                                      },
+                                    child: Text('写真'),
+                                      ),
                                 ],
                               ),
-                              onTap: () async {
-                                await _selectDate(context, model);
-                              },
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                              top: 30,
-                              left: 20,
-                              right: 20,
-                            ),
-                            child: InkWell(
-                              child: Row(
-                                children: <Widget>[
-                                  const Icon(
-                                    Icons.account_circle,
-                                    color: Colors.black54,
-                                  ),
-                                  const SizedBox(
-                                    width: 16.0,
-                                  ),
-                                    const Text('なし'),
-                                ],
-                              ),
-                              onTap: () async {
-                                final AssignType assign =
-                                await _showAssignDialog(context: context);
-                                model.changeAssign(assign);
-                              },
                             ),
                           ),
                           Container(
@@ -209,15 +183,25 @@ class AddFeedPage extends StatelessWidget {
     );
     model.changeDeadline(selected);
   }
-Future<AssignType> _showAssignDialog({@required BuildContext context}) async {
-  final AssignType result = await showDialog<AssignType>(
-    context: context,
-    builder: (BuildContext context) {
-      return SelectAssignDialog();
-    },
-  );
-  return result;
-}
+  Future<AssignType> _showAssignDialog({@required BuildContext context}) async {
+    final AssignType result = await showDialog<AssignType>(
+      context: context,
+      builder: (BuildContext context) {
+        return SelectAssignDialog();
+      },
+    );
+    return result;
+  }
+  //TODO 写真フォルダ
+  Future<File>  _getImageFile() async {
+    final pickedFile = File((await picker.getImage(source: ImageSource.gallery)).path);
+    print("image: ${pickedFile.path}");
+  }
+   //TODO カメラ
+   Future<File>  _getImageCamera() async {
+     final pickedImage = File((await picker.getImage(source: ImageSource.camera)).path);
+     print("camera: ${pickedImage.path}");
+   }
 }
 
 

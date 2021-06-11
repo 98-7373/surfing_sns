@@ -40,18 +40,6 @@ class FeedModel extends ChangeNotifier {
     _feedList = await _feedRepository.findAll();
     notifyListeners();
   }
-
-  // 完了したかどうかのチェックボックスの値を変更するメソッド
-  Future<void> changeCheck(String uid, bool check) async {
-    final bool isExist = await _feedRepository.isExist(uid);
-    if (isExist) {
-      await _feedRepository.changeCheck(uid, check, DateTime.now());
-    } else {
-      // documentが存在しない場合
-    }
-    await fetchFeedList();
-    notifyListeners();
-  }
   //削除処理
   Future<void> deleteFeeds(String uid) async {
     await _feedRepository.deleteFeeds(uid);

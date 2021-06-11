@@ -4,7 +4,6 @@ import 'package:surfing_sns/add_feed_page.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
 import 'package:surfing_sns/feed_card.dart';
-import 'package:surfing_sns/feed_details_page.dart';
 import 'package:surfing_sns/viewmodel/feed_model.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -18,10 +17,14 @@ class FeedScreen extends StatelessWidget {
         builder: (BuildContext context, FeedModel model, Widget child) {
           final List<Feed> feedList = model.feedList;
           return Scaffold(
+            appBar: AppBar(
+              title: Text('掲示板'),
+            ),
             body: Stack(
               children: <Widget>[
                 if (feedList != null)
                   ListView(
+                    padding: EdgeInsets.all(8),
                     children: _buildTodoCardList(
                       context: context,
                       feedList: feedList,
@@ -57,47 +60,44 @@ class FeedScreen extends StatelessWidget {
     );
   }
 
-Future<void> _pushWithReload({
-  @required BuildContext context,
-  @required FeedModel model,
-  Feed feed,
-}) async {
-  await Navigator.push(
-    context,
-    MaterialPageRoute<AddFeedPage>(
-      builder: (BuildContext context) =>
-      feed != null ? AddFeedPage(feed: feed) : AddFeedPage(),
-      fullscreenDialog: false,
-    ),
-  );
-  model.init();
-}
+  Future<void> _pushWithReload({
+    @required BuildContext context,
+    @required FeedModel model,
+    Feed feed,
+  }) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute<AddFeedPage>(
+        builder: (BuildContext context) =>
+        feed != null ? AddFeedPage(feed: feed) : AddFeedPage(),
+        fullscreenDialog: false,
+      ),
+    );
+    model.init();
+  }
 
-List<FeedCard> _buildTodoCardList({
-  BuildContext context,
-  List<Feed> feedList,
-  FeedModel model,
-}) {
-  return feedList
-      .map((Feed feed) => FeedCard(
-        feed: feed,
-        onChangeCheck: (bool check) async {
-          await model.changeCheck(feed.userId, check);
-        },
-        onTap: () async {
-          await _pushWithReload(
-            context: context,
-            model: model,
-            feed: feed,
-          );
-        },
-        delete: () async {
-          await model.deleteFeeds(feed.userId);
-        },
-        isDeletable: feed.isDone,
-      ))
-      .toList();
-}
+  List<FeedCard> _buildTodoCardList({
+    BuildContext context,
+    List<Feed> feedList,
+    FeedModel model,
+  }) {
+    return feedList
+        .map((Feed feed) => FeedCard(
+      feed: feed,
+      onTap: () async {
+        await _pushWithReload(
+          context: context,
+          feed: feed,
+          model: model,
+        );
+      },
+      delete: () async {
+        await model.deleteFeeds(feed.userId);
+      },
+      isDeletable: feed.isDone,
+    ))
+        .toList();
+  }
 }
 
 

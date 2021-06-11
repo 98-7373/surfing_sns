@@ -13,7 +13,7 @@ class AddFeeModel extends ChangeNotifier {
     @required FirebaseAuthRepository authRepository,
     @required FeedRepository feedRepository,
     Feed feed,
-}) : _authRepository = authRepository
+  }) : _authRepository = authRepository
 
   {
     _feedRepository = feedRepository;
@@ -83,10 +83,10 @@ class AddFeeModel extends ChangeNotifier {
   //Feed 新規追加処理
   Future<void> addFeedToFirebase() async {
     if(_title == null){
-      throw(' タイトルを入れてください');
+      throw('タイトルを入れてください');
     }
     if(caption == null){
-      throw(' 詳細を入れてください');
+      throw('詳細を入れてください');
     }
     final Feed feed = _buildFeed();
     try {
@@ -119,7 +119,7 @@ class AddFeeModel extends ChangeNotifier {
       throw 'タイトルを記入してください';
     }
     // documentの存在確認
-    final bool isExist = await _feedRepository.isExist(_feed.userId);
+    final bool isExist = await _feedRepository.isExist(userId);
     if (!isExist) {
       // 存在しない場合
       return;
@@ -128,12 +128,14 @@ class AddFeeModel extends ChangeNotifier {
     final Feed currentFeed = await _feedRepository.findById(_feed.userId);
     // isDoneとcreatedAtは変更しない
     final Feed feed = Feed(
+      title: _title,
+      caption: _caption,
       userId: currentFeed.userId,
       updatedAt: DateTime.now(),
-      assign: _assign,
     );
     await _feedRepository.updateFeed(feed);
   }
+
   //TODO
   Feed _buildFeed() {
     return Feed(
