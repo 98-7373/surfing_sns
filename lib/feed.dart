@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:surfing_sns/assign.dart';
 class Feed {
-  Feed({
+  Feed(
+      {
     this.title,
     this.userId,
     this.feedId,
@@ -14,6 +15,7 @@ class Feed {
     this.deadline,
     this.createdAt,
     this.updatedAt,
+    DateTime feedTime,
   }) : _isDone = isDone;
 
   final String userId;

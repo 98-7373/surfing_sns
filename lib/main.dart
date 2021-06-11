@@ -10,6 +10,7 @@ import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository_imp.dart';
 import 'package:surfing_sns/main_models.dart';
 import 'package:surfing_sns/screen/feed_screen.dart';
+import 'package:surfing_sns/screen/home_screen.dart';
 import 'package:surfing_sns/view/login/login_page.dart';
 import 'package:surfing_sns/view/page/signup_page.dart';
 import 'package:surfing_sns/viewmodel/login_model.dart';
@@ -39,9 +40,7 @@ void main() async {
             child: MyApp(),
       )
   );
-
 }
-
 
 class MyApp extends StatelessWidget {
   @override

@@ -21,11 +21,9 @@ class AddFeedPage extends StatelessWidget {
     final String _buttonTitle = _feed != null ? '更新' : '追加';
     final TextEditingController _titleController = TextEditingController();
     final TextEditingController _bodyController = TextEditingController();
-
     if (_feed != null) {
       _titleController.text = _feed.title;
       _bodyController.text = _feed.caption;
-
     }
     return ChangeNotifierProvider<AddFeeModel>(
       create: (_) => _feed != null
@@ -106,56 +104,6 @@ class AddFeedPage extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(
-                              top: 30,
-                              left: 20,
-                              right: 20,
-                            ),
-                            child: InkWell(
-                              child: Row(
-                                children: <Widget>[
-                                  const Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.black54,
-                                  ),
-                                  const SizedBox(
-                                    width: 16.0,
-                                  ),
-                                    const Text('なし'),
-                                ],
-                              ),
-                              onTap: () async {
-                                await _selectDate(context, model);
-                              },
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                              top: 30,
-                              left: 20,
-                              right: 20,
-                            ),
-                            child: InkWell(
-                              child: Row(
-                                children: <Widget>[
-                                  const Icon(
-                                    Icons.account_circle,
-                                    color: Colors.black54,
-                                  ),
-                                  const SizedBox(
-                                    width: 16.0,
-                                  ),
-                                    const Text('なし'),
-                                ],
-                              ),
-                              onTap: () async {
-                                final AssignType assign =
-                                await _showAssignDialog(context: context);
-                                model.changeAssign(assign);
-                              },
-                            ),
-                          ),
-                          Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 8,
                               vertical: 8,
@@ -181,15 +129,6 @@ class AddFeedPage extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: model.isLoading,
-                    child: Container(
-                      color: Colors.black.withOpacity(0.3),
-                      child: const Center(
-                        child: CircularProgressIndicator(),
                       ),
                     ),
                   ),
