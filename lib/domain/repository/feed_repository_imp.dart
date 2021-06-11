@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:surfing_sns/assign.dart';
 import 'package:surfing_sns/feed.dart';
@@ -13,22 +14,22 @@ class FeedRepositoryImp implements FeedRepository {
   }
 
   //TODO　新規登録時にのみ使用。
-Future<void> addFeedUser(String uid, Feed feed) async {
-  // feedsコレクションにfeedを追加する
-  _feeds.doc(uid).snapshots().listen((DocumentSnapshot event) async {
-    if (!event.exists) {
-      await _feeds.doc(uid).set(<String, dynamic>{
-        'userId': uid,
-        'caption': feed.caption,
-        'imageStoragePath': feed.imageStoragePath,
-        'imageUrl': feed.imageUrl,
-        'locationString': feed.locationString,
-        'feedId': feed.feedId,
-        'title': feed.title,
-      });
-    }
-  });
-}
+  Future<void> addFeedUser(String uid, Feed feed) async {
+    // feedsコレクションにfeedを追加する
+    _feeds.doc(uid).snapshots().listen((DocumentSnapshot event) async {
+      if (!event.exists) {
+        await _feeds.doc(uid).set(<String, dynamic>{
+          'userId': uid,
+          'caption': feed.caption,
+          'imageStoragePath': feed.imageStoragePath,
+          'imageUrl': feed.imageUrl,
+          'locationString': feed.locationString,
+          'feedId': feed.feedId,
+          'title': feed.title,
+        });
+      }
+    });
+  }
   //userId元にfeedsを追加
   Future<void> add(String uid, Feed feed, String caption, String title) async {
     _feeds.doc(uid).snapshots().listen((DocumentSnapshot event) async {
@@ -49,7 +50,7 @@ Future<void> addFeedUser(String uid, Feed feed) async {
   Future<List<Feed>> findAll() async {
     //TODO userId取得
     final QuerySnapshot feeds =
-    await _feeds.doc().collection('feeds').get();
+    await _feeds.get();
     // todosコレクションがない場合はnullを返す
     if (feeds.docs.isEmpty) {
       return null;
@@ -57,13 +58,13 @@ Future<void> addFeedUser(String uid, Feed feed) async {
     final List<Feed> result = feeds.docs
         .map(
           (QueryDocumentSnapshot feed) => Feed(
-            userId: feed.id,
-            feedId: feed['feedId'],
-            imageUrl: feed['imageUrl'],
-            imageStoragePath: feed['imageStoragePath'],
-            caption: feed['caption'],
-            assign: Assign.from(feed['assign']),
-            locationString: feed['locationString'],
+        userId: feed.id,
+        feedId: feed['feedId'],
+        imageUrl: feed['imageUrl'],
+        imageStoragePath: feed['imageStoragePath'],
+        caption: feed['caption'],
+        locationString: feed['locationString'],
+            title: feed['title'],
       ),
     )
         .toList();
@@ -75,7 +76,7 @@ Future<void> addFeedUser(String uid, Feed feed) async {
   @override
   Future<Feed> findById(String uid) async {
     final DocumentSnapshot result =
-    await _feeds.doc().collection('feeds').doc(uid).get();
+    await _feeds.doc(uid).get();
     Feed feed;
     if (result.id == uid) {
       // DateTime or null
@@ -84,9 +85,9 @@ Future<void> addFeedUser(String uid, Feed feed) async {
         feedId: result['feedId'],
         imageUrl: result['imageUrl'],
         imageStoragePath: result['imageStoragePath'],
-        assign: Assign.from(result['assign']),
         caption: result['caption'],
         locationString: result['locationString'],
+        title: result['title'],
       );
     }
     return feed;
@@ -96,7 +97,7 @@ Future<void> addFeedUser(String uid, Feed feed) async {
   Future<bool> isExist(String uid) async {
     final DocumentSnapshot result =
     //TODO
-    await _feeds.doc().collection('feeds').doc(uid).get();
+    await _feeds.doc().get();
     return result.exists;
   }
 
@@ -107,30 +108,16 @@ Future<void> addFeedUser(String uid, Feed feed) async {
     await _feeds.doc().collection('feeds').doc(uid).delete();
   }
 
-  @override
-  Future<void> changeCheck(
-      String uid, bool check, DateTime updatedAt) async {
-    await _feeds
-        .doc()
-        .collection('feeds')
-        .doc()
-        .update(<String, dynamic>{
-      'isDone': check,
-      'updatedAt': updatedAt,
-    });
-  }
-
 
   @override
   Future<void> updateFeed(Feed feed) async {
-    await _feeds
-        .doc()
-        .collection('feeds')
-        .doc(feed.userId)
+    await _feeds.doc(
+        feed.userId)
         .update(<String, dynamic>{
       'userId': feed.userId,
       'assign': feed.assign.value,
-
+      'title': feed.title,
+      'caption': feed.caption,
     });
   }
 

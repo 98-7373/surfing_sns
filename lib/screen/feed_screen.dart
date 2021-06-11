@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surfing_sns/add_feed_page.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
 import 'package:surfing_sns/feed_card.dart';
 import 'package:surfing_sns/feed_details_page.dart';
 import 'package:surfing_sns/viewmodel/feed_model.dart';
-
 class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<FeedModel>(
       create: (BuildContext context) =>
-      FeedModel(feedRepository: context.read<FeedRepository>())
+      FeedModel(feedRepository: context.read<FeedRepository>(),)
         ..init(),
       child: Consumer<FeedModel>(
         builder: (BuildContext context, FeedModel model, Widget child) {
           final List<Feed> feedList = model.feedList;
           return Scaffold(
+            appBar: AppBar(
+              title: Text('掲示板'),
+            ),
             body: Stack(
               children: <Widget>[
                 if (feedList != null)
                   ListView(
+                    padding: EdgeInsets.all(8),
                     children: _buildTodoCardList(
                       context: context,
                       feedList: feedList,
@@ -81,14 +85,11 @@ List<FeedCard> _buildTodoCardList({
   return feedList
       .map((Feed feed) => FeedCard(
         feed: feed,
-        onChangeCheck: (bool check) async {
-          await model.changeCheck(feed.userId, check);
-        },
         onTap: () async {
           await _pushWithReload(
             context: context,
-            model: model,
             feed: feed,
+            model: model,
           );
         },
         delete: () async {

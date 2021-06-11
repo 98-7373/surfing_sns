@@ -15,6 +15,7 @@ class FeedCard extends StatelessWidget {
   final Function onTap;
   final Function delete;
   final bool isDeletable;
+
   Feed get todo => _feed;
 
   @override
@@ -25,34 +26,59 @@ class FeedCard extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
-          Checkbox(
-            value: _feed.isDone,
-            onChanged: onChangeCheck,
-          ),
-          Flexible(
-            child: Container(
-              margin: const EdgeInsets.only(
-                right: 8.0,
+          //TODO　写真
+          Stack(
+            children: [
+              //TODO 写真ここに入れる
+              Image.asset(
+                'assets/images/nami1.PNG',
+                height: 130,
+                fit: BoxFit.cover,
               ),
-              child: InkWell(
-                child: Text(
-                  _feed.title,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+              Container(
+                  margin: const EdgeInsets.only(
+                    left: 140.0,
+                  ),
+                  child: InkWell(
+                     child: Text(
+                       _feed.title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    onTap: onTap,
+                  ),
                 ),
-                onTap: onTap,
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 140,
+                    top: 20,
+                  ).copyWith(bottom: 0),
+                  child: Text(
+                    _feed.caption,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
               ),
-            ),
+              // ignore: deprecated_member_use
+              ButtonTheme.bar(
+                child: ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      padding: EdgeInsets.only(
+                        left: 280,
+                        top: 100,
+                      ),
+                      //TODO マップは選択した地域の名称になる(理想はDB作って選択式にする)
+                      child: const Text('マップ'),
+                      //TODO Googleマップ遷移
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
-          Container(
-            child: Visibility(
-              visible: isDeletable,
-              child: IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: delete,
-              ),
-            ),
-          )
         ],
       ),
     );

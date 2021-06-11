@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
-import 'package:surfing_sns/user.dart';
 
 class FeedModel extends ChangeNotifier {
   FeedModel({@required FeedRepository feedRepository})
@@ -11,6 +11,8 @@ class FeedModel extends ChangeNotifier {
   // repositoryは内部で生成せず、コンストラクタで受け取る
   final FeedRepository _feedRepository;
 
+  // Abstractの方のrepositoryにのみ依存する
+  // repositoryは内部で生成せず、コンストラクタで受け取る
   // Feedのリストのプライベートフィールド
   // ゲッターだけ定義し、値の変更はfetchFeedListによってのみ行われる
   List<Feed> _feedList;
@@ -38,18 +40,6 @@ class FeedModel extends ChangeNotifier {
   // 実際の処理はそちらを参照すること
   Future<void> fetchFeedList() async {
     _feedList = await _feedRepository.findAll();
-    notifyListeners();
-  }
-
-  // 完了したかどうかのチェックボックスの値を変更するメソッド
-  Future<void> changeCheck(String uid, bool check) async {
-    final bool isExist = await _feedRepository.isExist(uid);
-    if (isExist) {
-      await _feedRepository.changeCheck(uid, check, DateTime.now());
-    } else {
-      // documentが存在しない場合
-    }
-    await fetchFeedList();
     notifyListeners();
   }
   //削除処理

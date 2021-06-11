@@ -13,7 +13,7 @@ class AddFeeModel extends ChangeNotifier {
     @required FirebaseAuthRepository authRepository,
     @required FeedRepository feedRepository,
     Feed feed,
-}) : _authRepository = authRepository
+  }) : _authRepository = authRepository
 
   {
     _feedRepository = feedRepository;
@@ -130,7 +130,8 @@ class AddFeeModel extends ChangeNotifier {
     final Feed feed = Feed(
       userId: currentFeed.userId,
       updatedAt: DateTime.now(),
-      assign: _assign,
+      title: title,
+      caption: caption,
     );
     await _feedRepository.updateFeed(feed);
   }
