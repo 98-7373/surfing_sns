@@ -3,21 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:surfing_sns/assign.dart';
+import 'package:surfing_sns/components/hero_image.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/screen/enlarge_image_screen.dart';
 import 'package:surfing_sns/select_assingn_page.dart';
 import 'package:surfing_sns/viewmodel/feed_model.dart';
 
 import 'add_feed_model.dart';
 import 'domain/repository/auth_repository.dart';
 
+// ignore: must_be_immutable
 class AddFeedPage extends StatelessWidget {
-   AddFeedPage({Feed feed}) : _feed = feed;
+  AddFeedPage({Feed feed}) : _feed = feed;
   final Feed _feed;
   final String title = "";
   final String caption = "";
-  File _image;
-  final picker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
     // 詳細ページ表示の初期化処理
@@ -29,148 +31,157 @@ class AddFeedPage extends StatelessWidget {
     if (_feed != null) {
       _titleController.text = _feed.title;
       _bodyController.text = _feed.caption;
-
     }
     return ChangeNotifierProvider<AddFeeModel>(
       create: (_) => _feed != null
           ? AddFeeModel(
-          authRepository: context.read<FirebaseAuthRepository>(),
-          feedRepository: context.read<FeedRepository>(), feed: _feed)
+              authRepository: context.read<FirebaseAuthRepository>(),
+              feedRepository: context.read<FeedRepository>(),
+              feed: _feed)
           : AddFeeModel(
-          authRepository: context.read<FirebaseAuthRepository>(),
-          feedRepository: context.read<FeedRepository>()),
+              authRepository: context.read<FirebaseAuthRepository>(),
+              feedRepository: context.read<FeedRepository>()),
       child: Consumer<AddFeeModel>(
-          builder: (BuildContext context, AddFeeModel model, Widget child) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(_appBarTitle),
-              ),
-              body: Stack(
-                children: <Widget>[
-                  SingleChildScrollView(
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              children: <Widget>[
-                                const Icon(
-                                  Icons.create,
-                                  color: Colors.black54,
-                                ),
-                                const SizedBox(
-                                  width: 16.0,
-                                ),
-                                Flexible(
-                                  child: TextField(
-                                    decoration: const InputDecoration(
-                                      labelText: 'タイトル',
-                                      hintText: 'タイトル',
-                                    ),
-                                    onChanged: (String title) {
-                                      model.changeTitle(title);
-                                    },
-                                    controller: _titleController,
-                                  ),
-                                ),
-                              ],
+          builder: (BuildContext context, AddFeeModel model, Widget child,) {
+            //TODO Image.fileとってくる元の情報ないよ
+            final image = Image.file(model.imageFile);
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(_appBarTitle),
+          ),
+          body: Stack(
+            children: <Widget>[
+              SingleChildScrollView(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(
+                              Icons.create,
+                              color: Colors.black54,
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              children: <Widget>[
-                                const Icon(
-                                  Icons.description,
-                                  color: Colors.black54,
-                                ),
-                                const SizedBox(
-                                  width: 16.0,
-                                ),
-                                Flexible(
-                                  child: TextField(
-                                    decoration: const InputDecoration(
-                                      labelText: '詳細',
-                                      hintText: '詳細',
-                                    ),
-                                    keyboardType: TextInputType.multiline,
-                                    minLines: 2,
-                                    maxLines: null,
-                                    onChanged: (String caption) {
-                                      model.changeCaption(caption);
-                                    },
-                                    controller: _bodyController,
-                                  ),
-                                ),
-                              ],
+                            const SizedBox(
+                              width: 16.0,
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Center(
-                              child: Column(
-                                children: <Widget>[
-                                  const SizedBox(
-                                    width: 16.0,
-                                    height: 320,
-                                  ),
-                                  RaisedButton(
-                                      //TODO 画像反映させたい
-                                      onPressed: () async {
-                                        _getImageFile();
-                                      },
-                                    child: Text('写真'),
-                                      ),
-                                ],
+                            Flexible(
+                              child: TextField(
+                                decoration: const InputDecoration(
+                                  labelText: 'タイトル',
+                                  hintText: 'タイトル',
+                                ),
+                                onChanged: (String title) {
+                                  model.changeTitle(title);
+                                },
+                                controller: _titleController,
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 8,
-                            ),
-                            child: RaisedButton(
-                              onPressed: () async {
-                                model.startLoading();
-                                try {
-                                  if (_feed != null) {
-                                    // 更新処理
-                                    await model.updateFeed();
-                                  } else {
-                                    // 新規追加処理
-                                    await model.addFeedToFirebase();
-                                  }
-                                  Navigator.pop(context);
-                                } catch (e) {
-                                  Text('error');
-                                }
-                                model.endLoading();
-                              },
-                              child: Text(_buttonTitle),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: model.isLoading,
-                    child: Container(
-                      color: Colors.black.withOpacity(0.3),
-                      child: const Center(
-                        child: CircularProgressIndicator(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(
+                              Icons.description,
+                              color: Colors.black54,
+                            ),
+                            const SizedBox(
+                              width: 16.0,
+                            ),
+                            Flexible(
+                              child: TextField(
+                                decoration: const InputDecoration(
+                                  labelText: '詳細',
+                                  hintText: '詳細',
+                                ),
+                                keyboardType: TextInputType.multiline,
+                                minLines: 2,
+                                maxLines: null,
+                                onChanged: (String caption) {
+                                  model.changeCaption(caption);
+                                },
+                                controller: _bodyController,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              const SizedBox(
+                                width: 16.0,
+                                height: 320,
+                              ),
+                              ListTile(
+                                leading: HeroImage(
+                                  image: image,
+                                  onTap: () =>
+                                      _displayLargeImage(context, image),
+                                ),
+                              ),
+                              RaisedButton(
+                                //TODO 画像反映させたい
+                                onPressed: () async {
+                                  await model.getImageFile();
+                                },
+                                child: Text('写真'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
+                        child: RaisedButton(
+                          onPressed: () async {
+                            model.startLoading();
+                            try {
+                              if (_feed != null) {
+                                // 更新処理
+                                await model.updateFeed();
+                              } else {
+                                // 新規追加処理
+                                await model.addFeedToFirebase();
+                              }
+                              Navigator.pop(context);
+                            } catch (e) {
+                              Text('error');
+                            }
+                            model.endLoading();
+                          },
+                          child: Text(_buttonTitle),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            );
-          }),
+              Visibility(
+                visible: model.isLoading,
+                child: Container(
+                  color: Colors.black.withOpacity(0.3),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 
@@ -183,6 +194,7 @@ class AddFeedPage extends StatelessWidget {
     );
     model.changeDeadline(selected);
   }
+
   Future<AssignType> _showAssignDialog({@required BuildContext context}) async {
     final AssignType result = await showDialog<AssignType>(
       context: context,
@@ -192,16 +204,14 @@ class AddFeedPage extends StatelessWidget {
     );
     return result;
   }
-  //TODO 写真フォルダ
-  Future<File>  _getImageFile() async {
-    final pickedFile = File((await picker.getImage(source: ImageSource.gallery)).path);
-    print("image: ${pickedFile.path}");
+
+  _displayLargeImage(BuildContext context, Image image) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (_) => EnlargeImageScreen(
+            image: image,
+              )),
+    );
   }
-   //TODO カメラ
-   Future<File>  _getImageCamera() async {
-     final pickedImage = File((await picker.getImage(source: ImageSource.camera)).path);
-     print("camera: ${pickedImage.path}");
-   }
 }
-
-

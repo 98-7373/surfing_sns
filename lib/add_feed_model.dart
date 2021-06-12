@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:surfing_sns/assign.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
@@ -8,6 +11,9 @@ import 'domain/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class AddFeeModel extends ChangeNotifier {
+
+  File imageFile;
+  final picker = ImagePicker();
 
   AddFeeModel({
     @required FirebaseAuthRepository authRepository,
@@ -143,4 +149,10 @@ class AddFeeModel extends ChangeNotifier {
       updatedAt: DateTime.now(),
     );
   }
+
+  Future<File> getImageFile() async {
+    final pickedFile = File((await picker.getImage(source: ImageSource.gallery)).path);
+    print("image: ${pickedFile.path}");
+  }
+
 }
