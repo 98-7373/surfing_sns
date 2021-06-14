@@ -23,6 +23,7 @@ class LoginPage extends StatelessWidget {
         child: Scaffold(
           body: Consumer<LoginModel>(
             builder: (context, model, child) {
+
             return Stack(
               children: <Widget>[
                 Container(
@@ -181,6 +182,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             );
+
             },
           ),
         )
