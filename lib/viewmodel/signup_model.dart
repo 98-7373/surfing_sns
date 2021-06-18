@@ -26,8 +26,6 @@ class SignUpModel extends ChangeNotifier {
   String password = '';
 
   final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
-
-
   Future signUp() async {
     if (email == null || email.isEmpty) {
       throw ('メールアドレスを入力してください');
@@ -40,6 +38,7 @@ class SignUpModel extends ChangeNotifier {
       await _authRepository.signUp(email, password);
       final String uid = _authRepository.getUid();
       await _userRepository.addUser(uid, user);
+      await _feedRepository.createFeedsCollection(uid);
     } catch (e) {
       throw ('error');
     }

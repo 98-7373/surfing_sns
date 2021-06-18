@@ -19,7 +19,7 @@ class AddFeedPage extends StatelessWidget {
   final Feed _feed;
   final String title = "";
   final String caption = "";
-
+  final picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
     // 詳細ページ表示の初期化処理
@@ -41,10 +41,11 @@ class AddFeedPage extends StatelessWidget {
           : AddFeeModel(
               authRepository: context.read<FirebaseAuthRepository>(),
               feedRepository: context.read<FeedRepository>()),
-      child: Consumer<AddFeeModel>(
-          builder: (BuildContext context, AddFeeModel model, Widget child,) {
-            //TODO Image.fileとってくる元の情報ないよ
-            final image = Image.file(model.imageFile);
+      child: Consumer<AddFeeModel>(builder: (
+        BuildContext context,
+        AddFeeModel model,
+        Widget child,
+      ) {
         return Scaffold(
           appBar: AppBar(
             title: Text(_appBarTitle),
@@ -86,6 +87,31 @@ class AddFeedPage extends StatelessWidget {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(
+                                width: 160,
+                                height: 100,
+                                child: InkWell(
+                                  onTap: () async {
+                                 final pickedFile = await picker.getImage(source: ImageSource.gallery);
+                                 model.setImage(File(pickedFile.path));
+                                  },
+                                  child: model.imageFile != null
+                                      ? Image.file(model.imageFile)
+                                      : Container(
+                                    color: Colors.grey,
+                                  ),
+
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           children: <Widget>[
                             const Icon(
@@ -111,33 +137,6 @@ class AddFeedPage extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Center(
-                          child: Column(
-                            children: <Widget>[
-                              const SizedBox(
-                                width: 16.0,
-                                height: 320,
-                              ),
-                              ListTile(
-                                leading: HeroImage(
-                                  image: image,
-                                  onTap: () =>
-                                      _displayLargeImage(context, image),
-                                ),
-                              ),
-                              RaisedButton(
-                                //TODO 画像反映させたい
-                                onPressed: () async {
-                                  await model.getImageFile();
-                                },
-                                child: Text('写真'),
-                              ),
-                            ],
-                          ),
                         ),
                       ),
                       Container(
@@ -185,33 +184,5 @@ class AddFeedPage extends StatelessWidget {
     );
   }
 
-  Future<void> _selectDate(BuildContext context, AddFeeModel model) async {
-    final DateTime selected = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2021),
-      lastDate: DateTime(2031),
-    );
-    model.changeDeadline(selected);
-  }
 
-  Future<AssignType> _showAssignDialog({@required BuildContext context}) async {
-    final AssignType result = await showDialog<AssignType>(
-      context: context,
-      builder: (BuildContext context) {
-        return SelectAssignDialog();
-      },
-    );
-    return result;
-  }
-
-  _displayLargeImage(BuildContext context, Image image) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (_) => EnlargeImageScreen(
-            image: image,
-              )),
-    );
-  }
 }

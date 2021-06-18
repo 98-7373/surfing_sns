@@ -16,7 +16,7 @@ class FeedCard extends StatelessWidget {
   final Function delete;
   final bool isDeletable;
 
-  Feed get todo => _feed;
+  Feed get feed => _feed;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +30,9 @@ class FeedCard extends StatelessWidget {
           Stack(
             children: [
               //TODO 写真ここに入れる
-              Image.asset(
-                'assets/images/nami1.PNG',
+              Image.network(_feed.imageUrl,
                 height: 130,
-                fit: BoxFit.cover,
-              ),
+                fit: BoxFit.cover,),
               Flexible(
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -78,7 +76,16 @@ class FeedCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
+              Container(
+                child: Visibility(
+                  visible: isDeletable,
+                  child: IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: delete,
+                  ),
+                ),
+              ),
             ],
           ),
         ],

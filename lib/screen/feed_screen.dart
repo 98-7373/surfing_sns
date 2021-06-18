@@ -75,7 +75,6 @@ class FeedScreen extends StatelessWidget {
     );
     model.init();
   }
-
   List<FeedCard> _buildTodoCardList({
     BuildContext context,
     List<Feed> feedList,
@@ -94,7 +93,6 @@ class FeedScreen extends StatelessWidget {
       delete: () async {
         await model.deleteFeeds(feed.userId);
       },
-      isDeletable: feed.isDone,
     ))
         .toList();
   }
