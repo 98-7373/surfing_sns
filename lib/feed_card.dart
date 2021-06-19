@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/feed.dart';
 
@@ -7,7 +8,7 @@ class FeedCard extends StatelessWidget {
     this.onChangeCheck,
     this.onTap,
     this.delete,
-    this.isDeletable,
+    this.isDeletable, this.imageUrl,
   }) : _feed = feed;
 
   final Feed _feed;
@@ -17,7 +18,7 @@ class FeedCard extends StatelessWidget {
   final bool isDeletable;
 
   Feed get feed => _feed;
-
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -30,9 +31,8 @@ class FeedCard extends StatelessWidget {
           Stack(
             children: [
               //TODO 写真ここに入れる
-              Image.network(_feed.imageUrl,
-                height: 130,
-                fit: BoxFit.cover,),
+              CachedNetworkImage(imageUrl: imageUrl,
+              fit: BoxFit.cover,),
               Flexible(
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -75,15 +75,6 @@ class FeedCard extends StatelessWidget {
                       onPressed: () {},
                     ),
                   ],
-                ),
-              ),
-              Container(
-                child: Visibility(
-                  visible: isDeletable,
-                  child: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: delete,
-                  ),
                 ),
               ),
             ],

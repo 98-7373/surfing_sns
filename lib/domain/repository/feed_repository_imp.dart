@@ -4,12 +4,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:surfing_sns/assign.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/storage_repository.dart';
 import 'package:surfing_sns/feed.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:surfing_sns/user.dart';
 import 'package:uuid/uuid.dart';
 import 'feed_repository.dart';
 class FeedRepositoryImp implements FeedRepository {
+  FeedRepositoryImp({StorageRepository storageRepository})
+      : _storageRepository = storageRepository;
+  final StorageRepository _storageRepository;
   File imageFile;
   final String title = "";
   final String caption = "";
@@ -36,7 +41,7 @@ class FeedRepositoryImp implements FeedRepository {
   @override
   Future<void> add(Feed feed) async {
     final CollectionReference recruitment =
-    _feeds.doc(feed.userId).collection('recruitment');
+    _feeds.doc().collection('recruitment');
     await recruitment.add(<String, dynamic>{
       'title': feed.title,
       'caption': feed.caption,
@@ -69,13 +74,13 @@ class FeedRepositoryImp implements FeedRepository {
   //TODO 取得
   @override
   Future<List<Feed>> findAll() async {
-    final QuerySnapshot todos =
+    final QuerySnapshot feeds =
     await _feeds.doc().collection('recruitment').get();
     // todosコレクションがない場合はnullを返す
-    if (todos.docs.isEmpty) {
+    if (feeds.docs.isEmpty) {
       return null;
     }
-    final List<Feed> result = todos.docs
+    final List<Feed> result = feeds.docs
         .map(
           (QueryDocumentSnapshot feed) => Feed(
         userId: feed.id,
@@ -95,21 +100,21 @@ class FeedRepositoryImp implements FeedRepository {
   @override
   Future<bool> isExist(String uid) async {
     final DocumentSnapshot result =
-    await _feeds.doc(uid).collection('recruitment').doc(uid).get();
+    await _feeds.doc().collection('recruitment').doc(uid).get();
     return result.exists;
   }
 
   /// ドキュメントfeeds削除処理
   @override
   Future<void> deleteFeeds(String uid,) async {
-    //TODO
-    await _feeds.doc().collection('feeds').doc(uid).delete();
+    final String getfeedId = await _getFeedId();
+    await _feeds.doc(getfeedId).collection('feeds').doc(uid).delete();
   }
 
   @override
   Future<void> updateFeed(Feed feed) async {
     await _feeds
-        .doc(feed.userId)
+        .doc()
         .collection('recruitment')
         .doc(feed.userId)
         .update(<String, dynamic>{
@@ -144,6 +149,12 @@ class FeedRepositoryImp implements FeedRepository {
     final srorageRef = FirebaseStorage.instance.ref().child(storageId);
     final uploadTask = srorageRef.putFile(imageFile);
     return await uploadTask.then((TaskSnapshot snapshot) => snapshot.ref.getDownloadURL());
+  }
+
+  Future<String> _getFeedId() async {
+    final String getfeedId =
+    await _storageRepository.loadPersistenceStorage(key_couple_id);
+    return getfeedId;
   }
 
 }

@@ -103,7 +103,6 @@ class AddFeedPage extends StatelessWidget {
                                       : Container(
                                     color: Colors.grey,
                                   ),
-
                                 ),
                               )
                             ],
@@ -183,6 +182,4 @@ class AddFeedPage extends StatelessWidget {
       }),
     );
   }
-
-
 }

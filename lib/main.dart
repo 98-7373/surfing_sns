@@ -13,10 +13,8 @@ import 'package:surfing_sns/screen/feed_screen.dart';
 import 'package:surfing_sns/screen/home_screen.dart';
 import 'package:surfing_sns/view/login/login_page.dart';
 import 'package:surfing_sns/view/page/signup_page.dart';
-import 'package:surfing_sns/viewmodel/login_model.dart';
-
-
-import 'di/providers.dart';
+import 'domain/repository/storage_repository.dart';
+import 'domain/repository/storage_repository_imp.dart';
 import 'main_model.dart';
 
 void main() async {
@@ -27,6 +25,9 @@ void main() async {
   runApp(
       MultiProvider(
         providers: <SingleChildWidget>[
+          Provider<StorageRepository>(
+            create: (BuildContext context) => StorageRepositoryImp(),
+          ),
           Provider<FirebaseAuthRepository>(
             create: (BuildContext context) => FirebaseAuthRepositoryImp(),
           ),
@@ -34,7 +35,9 @@ void main() async {
             create: (BuildContext context) => UserRepositoryImp()..init(),
           ),
           Provider<FeedRepository>(
-            create: (BuildContext context) => FeedRepositoryImp()..init(),
+            create: (BuildContext context) => FeedRepositoryImp(
+              storageRepository: context.read<StorageRepository>(),
+            )..init(),
           ),
         ],
         child: MyApp(),
@@ -49,6 +52,7 @@ class MyApp extends StatelessWidget {
       authRepository: context.read<FirebaseAuthRepository>(),
       userRepository: context.read<UserRepository>(),
       feedRepository: context.read<FeedRepository>(),
+      storageRepository: context.read<StorageRepository>(),
     );
     return MaterialApp(
       title: 'Flutter Demo',

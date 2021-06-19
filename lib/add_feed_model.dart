@@ -131,6 +131,8 @@ class AddFeeModel extends ChangeNotifier {
       throw(' 詳細を入れてください');
     }
     final String uid = _authRepository.getUid();
+    final storageId = Uuid().v1();
+    final imageUrl = await uploadImageToStorage(imageFile, storageId);
     // documentの存在確認
     final bool isExist = await _feedRepository.isExist(_feed.userId);
     if (!isExist) {
@@ -143,8 +145,8 @@ class AddFeeModel extends ChangeNotifier {
       userId: currentFeed.userId,
       title: _title,
       caption: _caption,
-      imageUrl: _imageUrl,
-      imageStoragePath: _imageStoragePath,
+      imageUrl: imageUrl,
+      imageStoragePath: storageId,
       feedId: _feedId,
     );
     await _feedRepository.updateFeed(feed);
@@ -155,8 +157,8 @@ class AddFeeModel extends ChangeNotifier {
   }
 
   Future<String> uploadImageToStorage(File imageFile, String storageId) async {
-    final srorageRef = FirebaseStorage.instance.ref().child(storageId);
-    final uploadTask = srorageRef.putFile(imageFile);
+    final storageRef = FirebaseStorage.instance.ref().child(storageId);
+    final uploadTask = storageRef.putFile(imageFile);
     return await uploadTask.then((TaskSnapshot snapshot) => snapshot.ref.getDownloadURL());
   }
 
