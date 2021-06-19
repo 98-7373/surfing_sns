@@ -20,6 +20,7 @@ class FeedRepositoryImp implements FeedRepository {
   final String caption = "";
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   CollectionReference _feeds;
+
   void init() {
     _feeds = _firestore.collection('feeds');
   }
@@ -34,14 +35,15 @@ class FeedRepositoryImp implements FeedRepository {
     // 自分のuserIdを格納しておく
     final CollectionReference users =
     _feeds.doc(feedsId).collection('users');
-    users.doc(uid).set(<String, dynamic>{
+    users.doc().set(<String, dynamic>{
       'userId': uid,
     });
   }
   @override
   Future<void> add(Feed feed) async {
+    final String getfeedId = await _getFeedId();
     final CollectionReference recruitment =
-    _feeds.doc().collection('recruitment');
+    _feeds.doc(getfeedId).collection('recruitment');
     await recruitment.add(<String, dynamic>{
       'title': feed.title,
       'caption': feed.caption,
@@ -74,8 +76,9 @@ class FeedRepositoryImp implements FeedRepository {
   //TODO 取得
   @override
   Future<List<Feed>> findAll() async {
+    final String getfeedId = await _getFeedId();
     final QuerySnapshot feeds =
-    await _feeds.doc().collection('recruitment').get();
+    await _feeds.doc(getfeedId).collection('recruitment').get();
     // todosコレクションがない場合はnullを返す
     if (feeds.docs.isEmpty) {
       return null;
@@ -99,8 +102,9 @@ class FeedRepositoryImp implements FeedRepository {
   /// uidがドキュメントがfeedsコレクションに存在するかどうかの確認
   @override
   Future<bool> isExist(String uid) async {
+    final String getfeedId = await _getFeedId();
     final DocumentSnapshot result =
-    await _feeds.doc().collection('recruitment').doc(uid).get();
+    await _feeds.doc(getfeedId).collection('recruitment').doc(uid).get();
     return result.exists;
   }
 
@@ -113,8 +117,9 @@ class FeedRepositoryImp implements FeedRepository {
 
   @override
   Future<void> updateFeed(Feed feed) async {
+    final String getfeedId = await _getFeedId();
     await _feeds
-        .doc()
+        .doc(getfeedId)
         .collection('recruitment')
         .doc(feed.userId)
         .update(<String, dynamic>{
@@ -128,8 +133,9 @@ class FeedRepositoryImp implements FeedRepository {
   }
   @override
   Future<Feed> findById(String userId, String uid) async {
+    final String getfeedId = await _getFeedId();
     final DocumentSnapshot result =
-    await _feeds.doc(uid).collection('recruitment').doc(userId).get();
+    await _feeds.doc(getfeedId).collection('recruitment').doc(userId).get();
     Feed feed;
     if (result.id == userId) {
       feed = Feed(

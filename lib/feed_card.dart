@@ -23,7 +23,7 @@ class FeedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(1),
       ),
       child: Row(
         children: <Widget>[
@@ -31,8 +31,11 @@ class FeedCard extends StatelessWidget {
           Stack(
             children: [
               //TODO 写真ここに入れる
-              CachedNetworkImage(imageUrl: imageUrl,
-              fit: BoxFit.cover,),
+              Image.network(imageUrl,
+                height: 135,
+              width: 130,
+              fit: BoxFit.cover,
+              ),
               Flexible(
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -43,6 +46,7 @@ class FeedCard extends StatelessWidget {
                       _feed.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
+                      style: TextStyle(fontSize: 16),
                     ),
                     onTap: onTap,
                   ),

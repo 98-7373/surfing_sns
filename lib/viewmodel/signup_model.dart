@@ -28,15 +28,15 @@ class SignUpModel extends ChangeNotifier {
   final FeedRepository _feedRepository;
   String email = '';
   String password = '';
-  String _coupleId;
-  String get coupleId => _coupleId;
+  String _uid;
+  String get uid => _uid;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
 
-  Future<void> init({String coupleId}) async {
-    if (coupleId != null) {
-      _coupleId = coupleId;
+  Future<void> init({String uid}) async {
+    if (uid != null) {
+      _uid = uid;
     }
     notifyListeners();
   }
@@ -62,7 +62,11 @@ class SignUpModel extends ChangeNotifier {
       await _authRepository.signUp(email, password);
       final String uid = _authRepository.getUid();
         await _userRepository.addUser(uid, user);
+        final Feed feed = Feed(
+          userId: uid,
+        );
         await _feedRepository.createFeedsCollection(uid);
+        await _storageRepository.savePersistenceStorage(key_couple_id, uid);
     } catch (e) {
       throw ('error');
     }

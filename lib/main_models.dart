@@ -4,7 +4,7 @@ import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'domain/repository/storage_repository.dart';
 
-class MainModels {
+class MainModels extends ChangeNotifier {
   MainModels({
     @required FirebaseAuthRepository authRepository,
     @required UserRepository userRepository,

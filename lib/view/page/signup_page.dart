@@ -9,8 +9,8 @@ import 'package:surfing_sns/screen/home_screen.dart';
 import 'package:surfing_sns/viewmodel/signup_model.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({this.coupleId});
-  final String coupleId;
+  const SignUpPage({this.uid});
+  final String uid;
   @override
   Widget build(BuildContext context) {
     Color colors = Color(0xff909bbf);
@@ -22,7 +22,7 @@ class SignUpPage extends StatelessWidget {
         userRepository: context.read<UserRepository>(),
         feedRepository: context.read<FeedRepository>(),
         storageRepository: context.read<StorageRepository>(),
-      )..init(coupleId: coupleId),
+      )..init(uid: uid),
         child: Scaffold(
           body: Consumer<SignUpModel>(
             builder: (context, model, child) {
@@ -31,7 +31,7 @@ class SignUpPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/nami1.PNG'),
+                            image: AssetImage('assets/images/2.png'),
                             fit: BoxFit.cover)),
                   ),
                   Container(

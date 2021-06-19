@@ -83,6 +83,7 @@ class FeedScreen extends StatelessWidget {
     return feedList
         .map((Feed feed) => FeedCard(
       feed: feed,
+      imageUrl: feed.imageUrl,
       onTap: () async {
         await _pushWithReload(
           context: context,

@@ -18,37 +18,35 @@ import 'domain/repository/storage_repository_imp.dart';
 import 'main_model.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(
-      MultiProvider(
-        providers: <SingleChildWidget>[
-          Provider<StorageRepository>(
-            create: (BuildContext context) => StorageRepositoryImp(),
-          ),
-          Provider<FirebaseAuthRepository>(
-            create: (BuildContext context) => FirebaseAuthRepositoryImp(),
-          ),
-          Provider<UserRepository>(
-            create: (BuildContext context) => UserRepositoryImp()..init(),
-          ),
-          Provider<FeedRepository>(
-            create: (BuildContext context) => FeedRepositoryImp(
-              storageRepository: context.read<StorageRepository>(),
-            )..init(),
-          ),
-        ],
-        child: MyApp(),
-      )
-  );
+  runApp(MultiProvider(
+    providers: <SingleChildWidget>[
+      Provider<StorageRepository>(
+        create: (BuildContext context) => StorageRepositoryImp(),
+      ),
+      Provider<FirebaseAuthRepository>(
+        create: (BuildContext context) => FirebaseAuthRepositoryImp(),
+      ),
+      Provider<UserRepository>(
+        create: (BuildContext context) => UserRepositoryImp()..init(),
+      ),
+      Provider<FeedRepository>(
+        create: (BuildContext context) => FeedRepositoryImp(
+          storageRepository: context.read<StorageRepository>(),
+        )..init(),
+      ),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final MainModels models = MainModels(
+    Color colors = Color(0xff090a0a);
+    final MainModels model = MainModels(
       authRepository: context.read<FirebaseAuthRepository>(),
       userRepository: context.read<UserRepository>(),
       feedRepository: context.read<FeedRepository>(),
@@ -56,62 +54,90 @@ class MyApp extends StatelessWidget {
     );
     return MaterialApp(
       title: 'Flutter Demo',
-      home: ChangeNotifierProvider<MainModel>(
-        create: (_) => MainModel(
+      home: ChangeNotifierProvider<MainModels>(
+        create: (BuildContext context) => MainModels(
+          feedRepository: context.read<FeedRepository>(),
+          userRepository: context.read<UserRepository>(),
+          authRepository: context.read<FirebaseAuthRepository>(),
+          storageRepository: context.read<StorageRepository>(),
         ),
         child: Scaffold(
-          appBar: AppBar(
-            title: Text('ログイン'),
-          ),
-          body: Consumer<MainModel>(builder: (context, model, child) {
-            return Center(
-              child: Column(
-                children: [
-                  RaisedButton(
-                    child: Text('新規登録'),
-                    onPressed: () {
-                      // ここでなにか
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
-                      );
-                    },
-                  ),
-                  Text(
-                    model.suzuki,
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
-                  ),
-                  RaisedButton(
-                    child: Text('押して'),
-                    onPressed: () {
-                      model.Changesuzuki();
-                    },
-                  ),
-                  RaisedButton(
-                    child: Text('ログイン'),
-                    onPressed: () {
-                      // ここでなにか
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
-                    },
-                  ),
-                  RaisedButton(
-                    child: Text('Feed'),
-                    onPressed: () {
-                      // ここでなにか
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => FeedScreen()),
-                      );
-                    },
-                  ),
-                ],
+          body: Consumer<MainModels>(builder: (context, model, child) {
+            return Stack(children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/3.png'),
+                        fit: BoxFit.cover)),
               ),
-            );
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Colors.transparent,
+                  Colors.transparent,
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              ),
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      height: 50,
+                      width: double.infinity,
+                      margin: EdgeInsets.only(left: 70, right: 70),
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => SignUpPage()));
+                        },
+                        color: colors,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          "新規登録",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      height: 50,
+                      width: double.infinity,
+                      margin: EdgeInsets.only(left: 70, right: 70),
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => LoginPage()));
+                        },
+                        color: colors,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          "ログイン",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
+              ),
+            ]);
           }),
         ),
       ),

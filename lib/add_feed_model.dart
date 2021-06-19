@@ -90,22 +90,20 @@ class AddFeeModel extends ChangeNotifier {
     if(_title == null){
       throw('タイトルを入れてください');
     }
-    if(_caption == null){
-      throw(' 詳細を入れてください');
-    }
-    final String uid = _authRepository.getUid();
+
     final storageId = Uuid().v1();
     final imageUrl = await uploadImageToStorage(imageFile, storageId);
+
     final Feed feed = Feed(
       title: _title,
       caption: _caption,
-      userId: uid,
+      userId: _userId,
       feedId: Uuid().v1(),
       imageUrl: imageUrl,
       imageStoragePath: storageId,
     );
+
     await _feedRepository.add(feed);
-    notifyListeners();
   }
 
   void startLoading() {
@@ -127,12 +125,8 @@ class AddFeeModel extends ChangeNotifier {
     if (_title == null) {
       throw 'タイトルを記入してください';
     }
-    if(_caption == null){
-      throw(' 詳細を入れてください');
-    }
     final String uid = _authRepository.getUid();
-    final storageId = Uuid().v1();
-    final imageUrl = await uploadImageToStorage(imageFile, storageId);
+
     // documentの存在確認
     final bool isExist = await _feedRepository.isExist(_feed.userId);
     if (!isExist) {
@@ -145,8 +139,8 @@ class AddFeeModel extends ChangeNotifier {
       userId: currentFeed.userId,
       title: _title,
       caption: _caption,
-      imageUrl: imageUrl,
-      imageStoragePath: storageId,
+      imageUrl: _imageUrl,
+      imageStoragePath: _imageStoragePath,
       feedId: _feedId,
     );
     await _feedRepository.updateFeed(feed);
