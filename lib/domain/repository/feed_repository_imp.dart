@@ -40,7 +40,7 @@ class FeedRepositoryImp implements FeedRepository {
     });
   }
   @override
-  Future<void> add(Feed feed) async {
+  Future<void> add(Feed feed, String uid) async {
     final String getfeedId = await _getFeedId();
     final CollectionReference recruitment =
     _feeds.doc(getfeedId).collection('recruitment');

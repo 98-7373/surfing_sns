@@ -93,17 +93,17 @@ class AddFeeModel extends ChangeNotifier {
 
     final storageId = Uuid().v1();
     final imageUrl = await uploadImageToStorage(imageFile, storageId);
-
+    final String uid = _authRepository.getUid();
     final Feed feed = Feed(
       title: _title,
       caption: _caption,
-      userId: _userId,
+      userId: uid,
       feedId: Uuid().v1(),
       imageUrl: imageUrl,
       imageStoragePath: storageId,
     );
 
-    await _feedRepository.add(feed);
+    await _feedRepository.add(feed, uid);
   }
 
   void startLoading() {
