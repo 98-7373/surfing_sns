@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surfing_sns/add_feed_page.dart';
-import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
 import 'package:surfing_sns/feed_card.dart';
-import 'package:surfing_sns/feed_details_page.dart';
 import 'package:surfing_sns/viewmodel/feed_model.dart';
+
 class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<FeedModel>(
       create: (BuildContext context) =>
-      FeedModel(feedRepository: context.read<FeedRepository>(),)
+      FeedModel(feedRepository: context.read<FeedRepository>())
         ..init(),
       child: Consumer<FeedModel>(
         builder: (BuildContext context, FeedModel model, Widget child) {
@@ -61,44 +60,43 @@ class FeedScreen extends StatelessWidget {
     );
   }
 
-Future<void> _pushWithReload({
-  @required BuildContext context,
-  @required FeedModel model,
-  Feed feed,
-}) async {
-  await Navigator.push(
-    context,
-    MaterialPageRoute<AddFeedPage>(
-      builder: (BuildContext context) =>
-      feed != null ? AddFeedPage(feed: feed) : AddFeedPage(),
-      fullscreenDialog: false,
-    ),
-  );
-  model.init();
-}
-
-List<FeedCard> _buildTodoCardList({
-  BuildContext context,
-  List<Feed> feedList,
-  FeedModel model,
-}) {
-  return feedList
-      .map((Feed feed) => FeedCard(
-        feed: feed,
-        onTap: () async {
-          await _pushWithReload(
-            context: context,
-            feed: feed,
-            model: model,
-          );
-        },
-        delete: () async {
-          await model.deleteFeeds(feed.userId);
-        },
-        isDeletable: feed.isDone,
-      ))
-      .toList();
-}
+  Future<void> _pushWithReload({
+    @required BuildContext context,
+    @required FeedModel model,
+    Feed feed,
+  }) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute<AddFeedPage>(
+        builder: (BuildContext context) =>
+        feed != null ? AddFeedPage(feed: feed) : AddFeedPage(),
+        fullscreenDialog: false,
+      ),
+    );
+    model.init();
+  }
+  List<FeedCard> _buildTodoCardList({
+    BuildContext context,
+    List<Feed> feedList,
+    FeedModel model,
+  }) {
+    return feedList
+        .map((Feed feed) => FeedCard(
+      feed: feed,
+      imageUrl: feed.imageUrl,
+      onTap: () async {
+        await _pushWithReload(
+          context: context,
+          feed: feed,
+          model: model,
+        );
+      },
+      delete: () async {
+        await model.deleteFeeds(feed.userId);
+      },
+    ))
+        .toList();
+  }
 }
 
 
