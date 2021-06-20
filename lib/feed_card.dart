@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/feed.dart';
 
@@ -7,7 +8,7 @@ class FeedCard extends StatelessWidget {
     this.onChangeCheck,
     this.onTap,
     this.delete,
-    this.isDeletable,
+    this.isDeletable, this.imageUrl,
   }) : _feed = feed;
 
   final Feed _feed;
@@ -16,13 +17,13 @@ class FeedCard extends StatelessWidget {
   final Function delete;
   final bool isDeletable;
 
-  Feed get todo => _feed;
-
+  Feed get feed => _feed;
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(1),
       ),
       child: Row(
         children: <Widget>[
@@ -30,24 +31,27 @@ class FeedCard extends StatelessWidget {
           Stack(
             children: [
               //TODO 写真ここに入れる
-              Image.asset(
-                'assets/images/nami1.PNG',
-                height: 130,
+              Image.network(imageUrl,
+                height: 135,
+                width: 130,
                 fit: BoxFit.cover,
               ),
-              Container(
+              Flexible(
+                child: Container(
                   margin: const EdgeInsets.only(
                     left: 140.0,
                   ),
                   child: InkWell(
-                     child: Text(
-                       _feed.title,
+                    child: Text(
+                      _feed.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
+                      style: TextStyle(fontSize: 16),
                     ),
                     onTap: onTap,
                   ),
                 ),
+              ),
               Container(
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -76,7 +80,7 @@ class FeedCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ],

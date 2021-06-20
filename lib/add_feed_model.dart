@@ -1,14 +1,21 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:surfing_sns/assign.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
+import 'package:surfing_sns/domain/repository/user_repository_imp.dart';
 import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/user.dart';
+import 'package:uuid/uuid.dart';
 import 'domain/repository/auth_repository.dart';
 import 'domain/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class AddFeeModel extends ChangeNotifier {
-
+  File imageFile;
   AddFeeModel({
     @required FirebaseAuthRepository authRepository,
     @required FeedRepository feedRepository,
@@ -22,14 +29,12 @@ class AddFeeModel extends ChangeNotifier {
       _title = feed.title;
       _userId = _feed.userId;
       _caption = _feed.caption;
-      _locationString = _feed.locationString;
-      _imageStoragePath = _feed.imageStoragePath;
-      _deadline = _feed.deadline;
       _imageUrl = _feed.imageUrl;
-      _feedId = _feed.feedId;
-      _assign = _feed.assign;
     }
   }
+  User feedUser;
+  User get currentUser => UserRepositoryImp.currentUser;
+
   final FirebaseAuthRepository _authRepository;
   FeedRepository _feedRepository;
   Feed _feed;
@@ -75,28 +80,30 @@ class AddFeeModel extends ChangeNotifier {
     _caption = caption;
     notifyListeners();
   }
+
   void changeAssign(AssignType assign) {
     _assign = assign;
     notifyListeners();
   }
-
   //Feed 新規追加処理
   Future<void> addFeedToFirebase() async {
     if(_title == null){
-      throw(' タイトルを入れてください');
+      throw('タイトルを入れてください');
     }
-    if(caption == null){
-      throw(' 詳細を入れてください');
-    }
-    final Feed feed = _buildFeed();
-    try {
-      final String uid = _authRepository.getUid();
-      await _feedRepository.addFeedUser(uid,feed);
-      await _feedRepository.add(uid, feed, caption, title);
-    } catch(e) {
-      throw ('error');
-    }
-    notifyListeners();
+
+    final storageId = Uuid().v1();
+    final imageUrl = await uploadImageToStorage(imageFile, storageId);
+
+    final Feed feed = Feed(
+      title: _title,
+      caption: _caption,
+      userId: _userId,
+      feedId: Uuid().v1(),
+      imageUrl: imageUrl,
+      imageStoragePath: storageId,
+    );
+
+    await _feedRepository.add(feed);
   }
 
   void startLoading() {
@@ -115,9 +122,11 @@ class AddFeeModel extends ChangeNotifier {
 
   // 更新処理
   Future<void> updateFeed() async {
-    if (_feed == null) {
+    if (_title == null) {
       throw 'タイトルを記入してください';
     }
+    final String uid = _authRepository.getUid();
+
     // documentの存在確認
     final bool isExist = await _feedRepository.isExist(_feed.userId);
     if (!isExist) {
@@ -125,21 +134,28 @@ class AddFeeModel extends ChangeNotifier {
       return;
     }
     // idから引っ張ってくる
-    final Feed currentFeed = await _feedRepository.findById(_feed.userId);
-    // isDoneとcreatedAtは変更しない
+    final Feed currentFeed = await _feedRepository.findById(uid, userId);
     final Feed feed = Feed(
       userId: currentFeed.userId,
-      updatedAt: DateTime.now(),
-      title: title,
-      caption: caption,
+      title: _title,
+      caption: _caption,
+      imageUrl: _imageUrl,
+      imageStoragePath: _imageStoragePath,
+      feedId: _feedId,
     );
     await _feedRepository.updateFeed(feed);
   }
-  //TODO
-  Feed _buildFeed() {
-    return Feed(
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-    );
+  setImage(File imageFile) {
+    this.imageFile = imageFile;
+    notifyListeners();
   }
+
+  Future<String> uploadImageToStorage(File imageFile, String storageId) async {
+    final storageRef = FirebaseStorage.instance.ref().child(storageId);
+    final uploadTask = storageRef.putFile(imageFile);
+    return await uploadTask.then((TaskSnapshot snapshot) => snapshot.ref.getDownloadURL());
+  }
+
+
+
 }
