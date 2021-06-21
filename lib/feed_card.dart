@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/screen/enlarge_image_screen.dart';
 
 class FeedCard extends StatelessWidget {
   const FeedCard({
@@ -19,6 +20,7 @@ class FeedCard extends StatelessWidget {
 
   Feed get feed => _feed;
   final String imageUrl;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -30,25 +32,38 @@ class FeedCard extends StatelessWidget {
           //TODO　写真
           Stack(
             children: [
-              //TODO 写真ここに入れる
-              Image.network(imageUrl,
-                height: 135,
-                width: 130,
-                fit: BoxFit.cover,
+              Hero(
+                tag: feed.imageUrl,
+                child: Image.network(feed.imageUrl,
+                  height: 133,
+                  width: 135,
+                  fit: BoxFit.cover,
+                ),
               ),
+              //TODO 写真ここに入れる
               Flexible(
                 child: Container(
                   margin: const EdgeInsets.only(
                     left: 140.0,
                   ),
                   child: InkWell(
-                    child: Text(
-                      _feed.title,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    onTap: onTap,
+                      child: Text(
+                        _feed.title,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            fullscreenDialog: true,
+                            builder: (BuildContext context) =>
+                                EnlargeImageScreen(
+                                  feed: feed,
+                                ),
+                          ),
+                        );
+                      },
                   ),
                 ),
               ),
@@ -60,7 +75,7 @@ class FeedCard extends StatelessWidget {
                   ).copyWith(bottom: 0),
                   child: Text(
                     _feed.caption,
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 12),
                   ),
                 ),
               ),

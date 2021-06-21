@@ -20,6 +20,7 @@ class FeedModel extends ChangeNotifier {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
+
   // 画面生成の際に呼び出される初期化関数
   // fetchFeedListを直接呼ばずinit経由で呼ぶ（後々処理追加するかもしれないので）
   Future<void> init() async {
