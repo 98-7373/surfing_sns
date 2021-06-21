@@ -44,23 +44,23 @@ void initState() {
         items: [
           BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.home),
-              label: ("Home"),
+              label: ("掲示板"),
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.search),
-            label: ("Search"),
+            label: ("スポット"),
           ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.plusSquare),
-            label: ("Team"),
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.sun),
-            label: ("Weather"),
-          ),
+          // BottomNavigationBarItem(
+          //   icon: FaIcon(FontAwesomeIcons.plusSquare),
+          //   label: ("Team"),
+          // ),
+          // BottomNavigationBarItem(
+          //   icon: FaIcon(FontAwesomeIcons.sun),
+          //   label: ("Weather"),
+          // ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.user),
-            label: ("Profile"),
+            label: ("プロフィール"),
           ),
         ],
       ),

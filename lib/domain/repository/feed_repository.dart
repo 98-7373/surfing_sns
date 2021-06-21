@@ -5,7 +5,7 @@ import 'package:surfing_sns/feed.dart';
 import 'package:surfing_sns/user.dart';
 
 abstract class FeedRepository {
-  Future<void> add(Feed feed);
+  Future<void> add(Feed feed, String uid);
   Future<void> createFeedsCollection(String uid);
   Future<List<Feed>> findAll();
   Future<Feed> findById(String userId, String uid);

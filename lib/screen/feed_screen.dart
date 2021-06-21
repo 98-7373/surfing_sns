@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:surfing_sns/add_feed_model.dart';
 import 'package:surfing_sns/add_feed_page.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/feed.dart';
@@ -11,15 +12,14 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<FeedModel>(
       create: (BuildContext context) =>
-      FeedModel(feedRepository: context.read<FeedRepository>())
+      FeedModel(
+        feedRepository: context.read<FeedRepository>(),)
         ..init(),
       child: Consumer<FeedModel>(
         builder: (BuildContext context, FeedModel model, Widget child) {
           final List<Feed> feedList = model.feedList;
           return Scaffold(
-            appBar: AppBar(
-              title: Text('掲示板'),
-            ),
+            appBar: AppBar(),
             body: Stack(
               children: <Widget>[
                 if (feedList != null)

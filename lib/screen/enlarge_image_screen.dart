@@ -1,21 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/components/hero_image.dart';
+import 'package:surfing_sns/feed.dart';
 
 
 class EnlargeImageScreen extends StatelessWidget {
-  final Image image;
-  EnlargeImageScreen({this.image});
+  final Feed feed;
+  EnlargeImageScreen({this.feed});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: HeroImage(
-          onTap: () {
-            Navigator.pop(context);
-          }
+      appBar: AppBar(
+        title: Hero(
+          tag: 'title' + feed.title,
+          child: Material(
+            color: Colors.transparent,
+            child: Text(
+              feed.title,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
         ),
+      ),
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: Column(
+              children: <Widget>[
+                Hero(
+                  tag: 'image' + feed.imageUrl,
+                  child: Image.network(feed.imageUrl,
+                    fit: BoxFit.fitWidth,
+                    height: 300,),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Hero(
+            tag: 'caption' + feed.caption,
+            child: Material(
+              color: Colors.transparent,
+              child: Text(
+                feed.caption,
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

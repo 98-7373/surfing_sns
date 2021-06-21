@@ -15,11 +15,12 @@ import 'domain/repository/auth_repository.dart';
 
 // ignore: must_be_immutable
 class AddFeedPage extends StatelessWidget {
-  AddFeedPage({Feed feed}) : _feed = feed;
+  AddFeedPage({Feed feed, this.imageUrl}) : _feed = feed;
   final Feed _feed;
   final String title = "";
   final String caption = "";
   final picker = ImagePicker();
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     // 詳細ページ表示の初期化処理

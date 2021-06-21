@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       storageRepository: context.read<StorageRepository>(),
     );
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       home: ChangeNotifierProvider<MainModels>(
         create: (BuildContext context) => MainModels(
           feedRepository: context.read<FeedRepository>(),
