@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:surfing_sns/components/hero_image.dart';
 import 'package:surfing_sns/feed.dart';
 
-
 class EnlargeImageScreen extends StatelessWidget {
   final Feed feed;
+
   EnlargeImageScreen({this.feed});
 
   @override
@@ -29,9 +29,26 @@ class EnlargeImageScreen extends StatelessWidget {
               children: <Widget>[
                 Hero(
                   tag: 'image' + feed.imageUrl,
-                  child: Image.network(feed.imageUrl,
+                  child: Image.network(
+                    feed.imageUrl,
                     fit: BoxFit.fitWidth,
-                    height: 300,),
+                    height: 300,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    child: Hero(
+                      tag: 'caption' + feed.caption,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(
+                          feed.caption,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 Row(
                   children: [
