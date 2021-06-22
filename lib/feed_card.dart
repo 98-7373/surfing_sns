@@ -9,7 +9,8 @@ class FeedCard extends StatelessWidget {
     this.onChangeCheck,
     this.onTap,
     this.delete,
-    this.isDeletable, this.imageUrl,
+    this.isDeletable,
+    this.imageUrl,
   }) : _feed = feed;
 
   final Feed _feed;
@@ -27,78 +28,77 @@ class FeedCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(1),
       ),
-      child: Row(
-        children: <Widget>[
-          //TODO　写真
-          Stack(
-            children: [
-              Hero(
-                tag: feed.imageUrl,
-                child: Image.network(feed.imageUrl,
-                  height: 133,
-                  width: 135,
-                  fit: BoxFit.cover,
-                ),
+      child: Expanded(
+        child: Stack(
+          children: [
+            Hero(
+              tag: feed.imageUrl,
+              child: Image.network(
+                feed.imageUrl,
+                height: 133,
+                width: 135,
+                fit: BoxFit.cover,
               ),
-              //TODO 写真ここに入れる
-              Flexible(
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    left: 140.0,
-                  ),
-                  child: InkWell(
-                      child: Text(
-                        _feed.title,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            fullscreenDialog: true,
-                            builder: (BuildContext context) =>
-                                EnlargeImageScreen(
-                                  feed: feed,
-                                ),
-                          ),
-                        );
-                      },
-                  ),
+            ),
+            //TODO 写真ここに入れる
+            Flexible(
+              child: Container(
+                margin: const EdgeInsets.only(
+                  left: 140.0,
                 ),
-              ),
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 140,
-                    top: 20,
-                  ).copyWith(bottom: 0),
+                child: InkWell(
                   child: Text(
-                    _feed.caption,
-                    style: TextStyle(fontSize: 12),
+                    _feed.title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(fontSize: 16),
                   ),
-                ),
-              ),
-              // ignore: deprecated_member_use
-              ButtonTheme.bar(
-                child: ButtonBar(
-                  children: <Widget>[
-                    FlatButton(
-                      padding: EdgeInsets.only(
-                        left: 280,
-                        top: 100,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (BuildContext context) => EnlargeImageScreen(
+                          feed: feed,
+                        ),
                       ),
-                      //TODO マップは選択した地域の名称になる(理想はDB作って選択式にする)
-                      child: const Text('マップ'),
-                      //TODO Googleマップ遷移
-                      onPressed: () {},
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+            Container(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 140,
+                  top: 20,
+                ).copyWith(bottom: 0),
+                child: Text(
+                  _feed.caption,
+                  style: TextStyle(fontSize: 12),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            // ignore: deprecated_member_use
+            ButtonTheme.bar(
+              child: ButtonBar(
+                children: <Widget>[
+                  FlatButton(
+                    padding: EdgeInsets.only(
+                      left: 280,
+                      top: 100,
+                    ),
+                    //TODO マップは選択した地域の名称になる(理想はDB作って選択式にする)
+                    child: const Text('マップ'),
+                    //TODO Googleマップ遷移
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
