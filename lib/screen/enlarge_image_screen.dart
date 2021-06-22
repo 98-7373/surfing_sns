@@ -33,24 +33,26 @@ class EnlargeImageScreen extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                     height: 300,),
                 ),
+                Row(
+                  children: [
+                    Hero(
+                      tag: 'caption' + feed.caption,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(
+                          feed.caption,
+                          style: TextStyle(fontSize: 26),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Hero(
-            tag: 'caption' + feed.caption,
-            child: Material(
-              color: Colors.transparent,
-              child: Text(
-                feed.caption,
-                style: TextStyle(fontSize: 16),
-              ),
             ),
           ),
         ],
       ),
+
     );
   }
 }
