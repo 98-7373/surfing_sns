@@ -86,13 +86,14 @@ class AddFeedPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 30,
+                        vertical: 30),
                         child: Center(
                           child: Column(
                             children: <Widget>[
                               SizedBox(
                                 width: 160,
-                                height: 100,
+                                height: 160,
                                 child: InkWell(
                                   onTap: () async {
                                  final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -101,6 +102,7 @@ class AddFeedPage extends StatelessWidget {
                                   child: model.imageFile != null
                                       ? Image.file(model.imageFile)
                                       : Container(
+                                    child: Center(child: Text('写真を追加')),
                                     color: Colors.grey,
                                   ),
                                 ),
@@ -127,7 +129,7 @@ class AddFeedPage extends StatelessWidget {
                                   hintText: '詳細',
                                 ),
                                 keyboardType: TextInputType.multiline,
-                                minLines: 2,
+                                minLines: 3,
                                 maxLines: null,
                                 onChanged: (String caption) {
                                   model.changeCaption(caption);
