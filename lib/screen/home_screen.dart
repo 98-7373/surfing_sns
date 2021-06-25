@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:surfing_sns/screen/feed_screen.dart';
-import 'package:surfing_sns/view/page/feed_page.dart';
-import 'package:surfing_sns/view/page/profile_page.dart';
-import 'package:surfing_sns/view/page/surf_search_page.dart';
-import 'package:surfing_sns/view/page/team_page.dart';
-import 'package:surfing_sns/view/page/weather_page.dart';
+import 'package:surfing_sns/presentation/feed_list/feed_screen.dart';
+import 'package:surfing_sns/presentation/page/feed_page.dart';
+import 'package:surfing_sns/presentation/page/profile_page.dart';
+import 'package:surfing_sns/presentation/page/surf_search_page.dart';
+import 'package:surfing_sns/presentation/page/team_page.dart';
+import 'package:surfing_sns/presentation/page/weather_page.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

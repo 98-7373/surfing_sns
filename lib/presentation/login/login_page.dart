@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/screen/home_screen.dart';
-import 'package:surfing_sns/viewmodel/login_model.dart';
-import 'package:surfing_sns/viewmodel/signup_model.dart';
+
+import 'login_model.dart';
 
 class LoginPage extends StatelessWidget {
   @override

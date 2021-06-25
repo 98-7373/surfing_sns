@@ -3,15 +3,13 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:surfing_sns/assign.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
-import 'package:surfing_sns/domain/repository/user_repository_imp.dart';
-import 'package:surfing_sns/feed.dart';
-import 'package:surfing_sns/user.dart';
+import 'package:surfing_sns/infrastructure/user_repository_imp.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
+import 'package:surfing_sns/domain/entity/user.dart';
 import 'package:uuid/uuid.dart';
-import 'domain/repository/auth_repository.dart';
-import 'domain/repository/user_repository.dart';
+import '../../domain/repository/auth_repository.dart';
+import '../../domain/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class AddFeeModel extends ChangeNotifier {
@@ -66,10 +64,6 @@ class AddFeeModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  // 内部はAssignTypeで保持して、表示はStringに切り替える
-  AssignType _assign;
-  String get assign => _assign.jpnValue;
-
 
   void changeTitle(String title) {
     _title = title;
@@ -81,10 +75,6 @@ class AddFeeModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeAssign(AssignType assign) {
-    _assign = assign;
-    notifyListeners();
-  }
   //Feed 新規追加処理
   Future<void> addFeedToFirebase() async {
     if(_title == null){

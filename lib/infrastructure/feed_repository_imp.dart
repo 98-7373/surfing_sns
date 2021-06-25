@@ -3,14 +3,13 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
-import 'package:surfing_sns/assign.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/storage_repository.dart';
-import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:surfing_sns/user.dart';
+import 'package:surfing_sns/domain/entity/user.dart';
 import 'package:uuid/uuid.dart';
-import 'feed_repository.dart';
+import '../domain/repository/feed_repository.dart';
 class FeedRepositoryImp implements FeedRepository {
   FeedRepositoryImp({StorageRepository storageRepository})
       : _storageRepository = storageRepository;

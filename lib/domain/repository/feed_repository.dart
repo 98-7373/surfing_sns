@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:surfing_sns/feed.dart';
-import 'package:surfing_sns/user.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
+import 'package:surfing_sns/domain/entity/user.dart';
 
 abstract class FeedRepository {
   Future<void> add(Feed feed, String uid);

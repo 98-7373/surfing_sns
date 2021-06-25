@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
-import 'package:surfing_sns/user.dart';
-import 'package:surfing_sns/viewmodel/signup_model.dart';
+import 'package:surfing_sns/domain/entity/user.dart';
 
 class LoginModel extends ChangeNotifier {
   LoginModel({

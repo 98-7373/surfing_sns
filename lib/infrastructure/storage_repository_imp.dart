@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:surfing_sns/domain/repository/persistence_storage_provider.dart';
+import 'package:surfing_sns/infrastructure/persistence_storage_provider.dart';
 import 'package:surfing_sns/domain/repository/storage_repository.dart';
 class StorageRepositoryImp implements StorageRepository {
 

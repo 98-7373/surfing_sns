@@ -2,16 +2,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:surfing_sns/assign.dart';
-import 'package:surfing_sns/components/hero_image.dart';
+import 'package:surfing_sns/presentation/components/hero_image.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
-import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
 import 'package:surfing_sns/screen/enlarge_image_screen.dart';
-import 'package:surfing_sns/select_assingn_page.dart';
-import 'package:surfing_sns/viewmodel/feed_model.dart';
+
 
 import 'add_feed_model.dart';
-import 'domain/repository/auth_repository.dart';
+import '../../domain/repository/auth_repository.dart';
 
 // ignore: must_be_immutable
 class AddFeedPage extends StatelessWidget {
