@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:surfing_sns/components/hero_image.dart';
-import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/presentation/components/hero_image.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
 
 class EnlargeImageScreen extends StatelessWidget {
   final Feed feed;

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
-import 'package:surfing_sns/user.dart';
+import 'package:surfing_sns/domain/entity/user.dart';
 
 class UserRepositoryImp implements UserRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

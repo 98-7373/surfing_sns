@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
 import 'package:surfing_sns/screen/enlarge_image_screen.dart';
 
 class FeedCard extends StatelessWidget {

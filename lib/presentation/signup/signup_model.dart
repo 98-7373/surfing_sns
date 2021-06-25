@@ -5,8 +5,8 @@ import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/domain/repository/storage_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
-import 'package:surfing_sns/feed.dart';
-import 'package:surfing_sns/user.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
+import 'package:surfing_sns/domain/entity/user.dart';
 
 class SignUpModel extends ChangeNotifier {
   static User currentUser;

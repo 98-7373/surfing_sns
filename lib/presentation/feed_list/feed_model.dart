@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
-import 'package:surfing_sns/feed.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
 
 class FeedModel extends ChangeNotifier {
   FeedModel({@required FeedRepository feedRepository})

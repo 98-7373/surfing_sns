@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surfing_sns/add_feed_model.dart';
-import 'package:surfing_sns/add_feed_page.dart';
+import 'package:surfing_sns/presentation/feed_detail/add_feed_model.dart';
+import 'package:surfing_sns/presentation/feed_detail/add_feed_page.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
-import 'package:surfing_sns/feed.dart';
-import 'package:surfing_sns/feed_card.dart';
-import 'package:surfing_sns/viewmodel/feed_model.dart';
+import 'package:surfing_sns/domain/entity/feed.dart';
+import 'package:surfing_sns/presentation/widget/feed_card.dart';
+import 'package:surfing_sns/presentation/feed_list/feed_model.dart';
 
 class FeedScreen extends StatelessWidget {
   @override
