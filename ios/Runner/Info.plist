@@ -50,5 +50,9 @@
     <key>NSMicrophoneUsageDescription</key>
     <string>投稿するのにマイクが必要になります</string>
 	<!-- end -->
+	<!-- google map section -->
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
+	<!-- end -->
 </dict>
 </plist>
