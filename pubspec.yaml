@@ -34,6 +34,8 @@ dependencies:
   uuid: ^2.1.0
   cached_network_image: ^2.3.3
   shared_preferences: ^0.5.12+4
+  expansion_tile_card: ^1.1.0
+  google_maps_flutter: ^0.5.28+1
 
   # FireBase
   cloud_firestore: ^0.14.4

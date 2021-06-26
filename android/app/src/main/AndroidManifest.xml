@@ -43,5 +43,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Goggle Maps API -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBuL7jGCS8KarBrWygcONRu_qkuviKB3W8"/>
     </application>
 </manifest>
