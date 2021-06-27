@@ -89,10 +89,8 @@ class FeedCard extends StatelessWidget {
                       left: 280,
                       top: 100,
                     ),
-                    //TODO マップは選択した地域の名称になる(理想はDB作って選択式にする)
                     child: const Text('削除'),
-                    //TODO Googleマップ遷移
-                    onPressed: () {},
+                    onPressed: delete,
                   ),
                 ],
               ),
