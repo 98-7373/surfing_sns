@@ -111,7 +111,7 @@ class FeedRepositoryImp implements FeedRepository {
   @override
   Future<void> deleteFeeds(String uid,) async {
     final String getfeedId = await _getFeedId();
-    await _feeds.doc(getfeedId).collection('feeds').doc(uid).delete();
+    await _feeds.doc(getfeedId).collection('recruitment').doc(uid).delete();
   }
 
   @override

@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:surfing_sns/presentation/feed_list/feed_screen.dart';
 import 'package:surfing_sns/presentation/map_list/map_screen.dart';
-import 'package:surfing_sns/presentation/page/feed_page.dart';
 import 'package:surfing_sns/presentation/page/profile_page.dart';
-import 'package:surfing_sns/presentation/page/surf_search_page.dart';
-import 'package:surfing_sns/presentation/page/team_page.dart';
-import 'package:surfing_sns/presentation/page/weather_page.dart';
-import 'package:surfing_sns/presentation/surf_list/surf_screen.dart';
-import 'package:surfing_sns/presentation/widget/surf_card.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
