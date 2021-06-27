@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>surfing_sns</string>
+	<string>サフトモ</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -41,18 +41,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<!-- end -->
-	<!-- image_picker section -->
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>掲示板に投稿するために写真を追加します</string>
-    <key>NSCameraUsageDescription</key>
-    <string>掲示板に投稿するためにカメラを起動します</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>投稿するのにマイクが必要になります</string>
-	<!-- end -->
-	<!-- google map section -->
-    <key>io.flutter.embedded_views_preview</key>
-    <true/>
-	<!-- end -->
+	<string>掲示板に投稿するために写真を追加します</string>
+	<key>NSCameraUsageDescription</key>
+	<string>掲示板に投稿するためにカメラを起動します</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>投稿するのにマイクが必要になります</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
 </dict>
 </plist>

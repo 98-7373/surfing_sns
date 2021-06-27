@@ -54,10 +54,10 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/nami1.PNG"
+  image_path: "assets/images/surf.png"
 
   adaptive_icon_background: "#fffff"
-  adaptive_icon_foreground: "assets/images/nami1.PNG"
+  adaptive_icon_foreground: "assets/images/surf.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

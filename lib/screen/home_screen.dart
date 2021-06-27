@@ -23,9 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
 void initState() {
   _pages = [
     FeedScreen(),
-    SurfScreen(),
+    // SurfScreen(),
     MapScreen(),
-    WeatherPage(),
+    // WeatherPage(),
     ProfilePage(),
   ];
   super.initState();
@@ -49,10 +49,10 @@ void initState() {
               icon: FaIcon(FontAwesomeIcons.home),
               label: ("掲示板"),
           ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.search),
-            label: ("スポット"),
-          ),
+          // BottomNavigationBarItem(
+          //   icon: FaIcon(FontAwesomeIcons.search),
+          //   label: ("スポット"),
+          // ),
            BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.map),
             label: ("マップ"),

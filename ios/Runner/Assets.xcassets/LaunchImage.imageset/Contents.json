@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "nami1.PNG",
+      "filename" : "surf.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "nami1-1.PNG",
+      "filename" : "surf-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "nami1-2.PNG",
+      "filename" : "surf-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
