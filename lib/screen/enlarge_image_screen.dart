@@ -8,6 +8,7 @@ class EnlargeImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: Hero(
           tag: 'title' + feed.title,
           child: Material(

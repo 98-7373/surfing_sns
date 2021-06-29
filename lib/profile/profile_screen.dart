@@ -1,37 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surfing_sns/presentation/feed_detail/add_feed_model.dart';
-import 'package:surfing_sns/presentation/feed_detail/add_feed_page.dart';
-import 'package:surfing_sns/domain/repository/feed_repository.dart';
-import 'package:surfing_sns/domain/entity/feed.dart';
-import 'package:surfing_sns/presentation/widget/feed_card.dart';
-import 'package:surfing_sns/presentation/feed_list/feed_model.dart';
+import 'package:surfing_sns/domain/entity/user.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
+import 'package:surfing_sns/presentation/widget/profile.dart';
+import 'package:surfing_sns/profile/profile_model.dart';
+import 'package:surfing_sns/profile_edit/profile_edit.dart';
 
-class FeedScreen extends StatelessWidget {
+class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<FeedModel>(
+    return ChangeNotifierProvider<ProfileModel>(
       create: (BuildContext context) =>
-      FeedModel(
-        feedRepository: context.read<FeedRepository>(),)
+      ProfileModel(
+        userRepository: context.read<UserRepository>(),)
         ..init(),
-      child: Consumer<FeedModel>(
-        builder: (BuildContext context, FeedModel model, Widget child) {
-          final List<Feed> feedList = model.feedList;
+      child: Consumer<ProfileModel>(
+        builder: (BuildContext context, ProfileModel model, Widget child) {
+          final List<User> userList = model.userList;
           return Scaffold(
             appBar: AppBar(
-              title: Text('掲示板'),
               automaticallyImplyLeading: false,
+              title: Text('プロフィール'),
               backgroundColor: Colors.blueGrey,
             ),
             body: Stack(
               children: <Widget>[
-                if (feedList != null)
+                if (userList != null)
                   ListView(
                     padding: EdgeInsets.all(8),
                     children: _buildTodoCardList(
                       context: context,
-                      feedList: feedList,
+                      userList: userList,
                       model: model,
                     ),
                   )
@@ -67,42 +66,39 @@ class FeedScreen extends StatelessWidget {
 
   Future<void> _pushWithReload({
     @required BuildContext context,
-    @required FeedModel model,
-    Feed feed,
+    @required ProfileModel model,
+    User user,
   }) async {
     await Navigator.push(
       context,
-      MaterialPageRoute<AddFeedPage>(
+      MaterialPageRoute<ProfileEdit>(
         builder: (BuildContext context) =>
-        feed != null ? AddFeedPage(feed: feed) : AddFeedPage(),
+        user != null ? ProfileEdit(user: user) : ProfileEdit(),
         fullscreenDialog: false,
       ),
     );
     model.init();
   }
-  List<FeedCard> _buildTodoCardList({
+  List<Profile> _buildTodoCardList({
     BuildContext context,
-    List<Feed> feedList,
-    FeedModel model,
+    List<User> userList,
+    ProfileModel model,
   }) {
-    return feedList
-        .map((Feed feed) => FeedCard(
-      feed: feed,
-      imageUrl: feed.imageUrl,
+    return userList
+        .map((User user) => Profile(
+      user: user,
+      photoUrl: user.photoUrl,
       onTap: () async {
         await _pushWithReload(
           context: context,
-          feed: feed,
+          user: user,
           model: model,
         );
       },
       delete: () async {
-        await model.deleteFeeds(feed.userId);
+        await model.deleteFeeds(user.userId);
       },
     ))
         .toList();
   }
 }
-
-
-

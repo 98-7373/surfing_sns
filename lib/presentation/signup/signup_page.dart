@@ -150,7 +150,7 @@ class SignUpPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Text(
-                            "Sign In",
+                            "サインイン",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

@@ -11,8 +11,11 @@ class User {
     this.email,
     this.password,
     this.photoUrl,
+    this.profileId,
     this.bio,
+    this.imageStoragePath,
   });
+  String profileId;
   String email;
   String password;
   String userId;
@@ -21,6 +24,7 @@ class User {
   String coupleId;
   String photoUrl;
   String bio;
+  String imageStoragePath;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -31,6 +35,8 @@ class User {
       photoUrl: map['photoUrl'] as String,
       email: map['email'] as String,
       bio: map['bio'] as String,
+      imageStoragePath: map['imageStoragePath'] as String,
+      profileId: map['profileId'] as String,
     );
   }
 
@@ -42,6 +48,8 @@ class User {
       'photoUrl': this.photoUrl,
       'email': this.email,
       'bio': this.bio,
+      'imageStoragePath': this.imageStoragePath,
+      'profileId': this.profileId,
     } as Map<String, dynamic>;
   }
 }

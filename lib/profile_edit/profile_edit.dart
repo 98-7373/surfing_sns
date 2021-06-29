@@ -2,48 +2,44 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:surfing_sns/presentation/components/hero_image.dart';
-import 'package:surfing_sns/domain/repository/feed_repository.dart';
-import 'package:surfing_sns/domain/entity/feed.dart';
-import 'package:surfing_sns/screen/enlarge_image_screen.dart';
-
-
-import 'add_feed_model.dart';
-import '../../domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/entity/user.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
+import 'package:surfing_sns/profile_edit/profile_edit_model.dart';
 
 // ignore: must_be_immutable
-class AddFeedPage extends StatelessWidget {
-  AddFeedPage({Feed feed, this.imageUrl}) : _feed = feed;
-  final Feed _feed;
-  final String title = "";
-  final String caption = "";
+class ProfileEdit extends StatelessWidget {
+  ProfileEdit({User user, this.photoUrl}) : _user = user;
+  final User _user;
+  final String displayName = "";
+  final String bio = "";
   final picker = ImagePicker();
-  final String imageUrl;
+  final String photoUrl;
   @override
   Widget build(BuildContext context) {
     // 詳細ページ表示の初期化処理
-    final String _appBarTitle = _feed != null ? '更新' : '新規作成';
-    final String _buttonTitle = _feed != null ? '更新' : '追加';
+    final String _appBarTitle = _user != null ? '更新' : 'プロフィール作成';
+    final String _buttonTitle = _user != null ? '更新' : '追加';
     final TextEditingController _titleController = TextEditingController();
     final TextEditingController _bodyController = TextEditingController();
-    if (_feed != null) {
-      _titleController.text = _feed.title;
-      _bodyController.text = _feed.caption;
+    if (_user != null) {
+      _titleController.text = _user.displayName;
+      _bodyController.text = _user.bio;
     }
-    return ChangeNotifierProvider<AddFeeModel>(
-      create: (_) => _feed != null
-          ? AddFeeModel(
-              authRepository: context.read<FirebaseAuthRepository>(),
-              feedRepository: context.read<FeedRepository>(),
-              feed: _feed)
-          : AddFeeModel(
-              authRepository: context.read<FirebaseAuthRepository>(),
-              feedRepository: context.read<FeedRepository>()),
-      child: Consumer<AddFeeModel>(builder: (
-        BuildContext context,
-        AddFeeModel model,
-        Widget child,
-      ) {
+    return ChangeNotifierProvider<ProfileEditModel>(
+      create: (_) => _user != null
+          ? ProfileEditModel(
+          authRepository: context.read<FirebaseAuthRepository>(),
+          userRepository: context.read<UserRepository>(),
+          user: _user)
+          : ProfileEditModel(
+          authRepository: context.read<FirebaseAuthRepository>(),
+          userRepository: context.read<UserRepository>()),
+      child: Consumer<ProfileEditModel>(builder: (
+          BuildContext context,
+          ProfileEditModel model,
+          Widget child,
+          ) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.blueGrey,
@@ -59,6 +55,32 @@ class AddFeedPage extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 30,
+                            vertical: 30),
+                        child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(
+                                width: 160,
+                                height: 160,
+                                child: InkWell(
+                                  onTap: () async {
+                                    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+                                    model.setImage(File(pickedFile.path));
+                                  },
+                                  child: model.imageFile != null
+                                      ? Image.file(model.imageFile)
+                                      : Container(
+                                    child: Center(child: Text('プロフィール写真を追加')),
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           children: <Widget>[
@@ -72,42 +94,16 @@ class AddFeedPage extends StatelessWidget {
                             Flexible(
                               child: TextField(
                                 decoration: const InputDecoration(
-                                  labelText: 'タイトル',
-                                  hintText: 'タイトル',
+                                  labelText: '名前',
+                                  hintText: '名前',
                                 ),
-                                onChanged: (String title) {
-                                  model.changeTitle(title);
+                                onChanged: (String displayName) {
+                                  model.changeTitle(displayName);
                                 },
                                 controller: _titleController,
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 30,
-                        vertical: 30),
-                        child: Center(
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                width: 160,
-                                height: 160,
-                                child: InkWell(
-                                  onTap: () async {
-                                 final pickedFile = await picker.getImage(source: ImageSource.gallery);
-                                 model.setImage(File(pickedFile.path));
-                                  },
-                                  child: model.imageFile != null
-                                      ? Image.file(model.imageFile)
-                                      : Container(
-                                    child: Center(child: Text('写真を追加')),
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
                         ),
                       ),
                       Container(
@@ -124,14 +120,14 @@ class AddFeedPage extends StatelessWidget {
                             Flexible(
                               child: TextField(
                                 decoration: const InputDecoration(
-                                  labelText: '詳細',
-                                  hintText: '詳細',
+                                  labelText: '自己紹介文',
+                                  hintText: '自己紹介文',
                                 ),
                                 keyboardType: TextInputType.multiline,
                                 minLines: 3,
                                 maxLines: null,
-                                onChanged: (String caption) {
-                                  model.changeCaption(caption);
+                                onChanged: (String bio) {
+                                  model.changeCaption(bio);
                                 },
                                 controller: _bodyController,
                               ),
@@ -148,12 +144,12 @@ class AddFeedPage extends StatelessWidget {
                           onPressed: () async {
                             model.startLoading();
                             try {
-                              if (_feed != null) {
+                              if (_user != null) {
                                 // 更新処理
-                                await model.updateFeed();
+                                await model.updateUser();
                               } else {
                                 // 新規追加処理
-                                await model.addFeedToFirebase();
+                                await model.addUserToFirebase();
                               }
                               Navigator.pop(context);
                             } catch (e) {

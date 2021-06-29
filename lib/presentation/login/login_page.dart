@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Text(
-                              "Login",
+                              "ログイン",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
