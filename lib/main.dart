@@ -27,7 +27,9 @@ void main() async {
         create: (BuildContext context) => FirebaseAuthRepositoryImp(),
       ),
       Provider<UserRepository>(
-        create: (BuildContext context) => UserRepositoryImp()..init(),
+        create: (BuildContext context) => UserRepositoryImp(
+          storageRepository: context.read<StorageRepository>(),
+        )..init(),
       ),
       Provider<FeedRepository>(
         create: (BuildContext context) => FeedRepositoryImp(

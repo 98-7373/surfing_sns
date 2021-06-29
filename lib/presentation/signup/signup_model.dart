@@ -61,10 +61,10 @@ class SignUpModel extends ChangeNotifier {
     try {
       await _authRepository.signUp(email, password);
       final String uid = _authRepository.getUid();
-      await _userRepository.addUser(uid, user);
       final Feed feed = Feed(
         userId: uid,
       );
+      await _userRepository.createUsersCollection(uid);
       await _feedRepository.createFeedsCollection(uid);
       await _storageRepository.savePersistenceStorage(key_couple_id, uid);
     } catch (e) {

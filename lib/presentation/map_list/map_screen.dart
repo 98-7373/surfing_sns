@@ -24,8 +24,8 @@ class HomePageState extends State<MapScreen> {
       body: Stack(
         children: <Widget>[
           _buildGoogleMap(context),
-          _zoomminusfunction(),
-          _zoomplusfunction(),
+          // _zoomminusfunction(),
+          // _zoomplusfunction(),
           _buildContainer(),
         ],
       ),

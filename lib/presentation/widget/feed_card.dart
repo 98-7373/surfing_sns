@@ -26,7 +26,7 @@ class FeedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(1),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Expanded(
         child: Stack(
@@ -35,12 +35,11 @@ class FeedCard extends StatelessWidget {
               tag: feed.imageUrl,
               child: Image.network(
                 feed.imageUrl,
-                height: 133,
+                height: 137,
                 width: 135,
                 fit: BoxFit.cover,
               ),
             ),
-            //TODO 写真ここに入れる
             Flexible(
               child: Container(
                 margin: const EdgeInsets.only(
@@ -89,7 +88,10 @@ class FeedCard extends StatelessWidget {
                       left: 280,
                       top: 100,
                     ),
-                    child: const Text('削除'),
+                    child:  Text('削除',
+                    style: TextStyle(
+                      color: Colors.blueGrey
+                    ),),
                     onPressed: delete,
                   ),
                 ],

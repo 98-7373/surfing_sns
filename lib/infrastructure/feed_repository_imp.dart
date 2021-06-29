@@ -38,6 +38,7 @@ class FeedRepositoryImp implements FeedRepository {
       'userId': uid,
     });
   }
+
   @override
   Future<void> add(Feed feed, String uid) async {
     final String getfeedId = await _getFeedId();

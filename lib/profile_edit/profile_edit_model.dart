@@ -1,41 +1,32 @@
 import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:surfing_sns/domain/repository/feed_repository.dart';
-import 'package:surfing_sns/infrastructure/user_repository_imp.dart';
-import 'package:surfing_sns/domain/entity/feed.dart';
 import 'package:surfing_sns/domain/entity/user.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/user_repository.dart';
+import 'package:surfing_sns/infrastructure/user_repository_imp.dart';
 import 'package:uuid/uuid.dart';
-import '../../domain/repository/auth_repository.dart';
-import '../../domain/repository/user_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 
-class AddFeeModel extends ChangeNotifier {
+class ProfileEditModel extends ChangeNotifier{
   File imageFile;
-  AddFeeModel({
+  ProfileEditModel({
     @required FirebaseAuthRepository authRepository,
-    @required FeedRepository feedRepository,
-    Feed feed,
+    @required UserRepository userRepository,
+    User user,
   }) : _authRepository = authRepository
 
   {
-    _feedRepository = feedRepository;
-    if (feed != null){
-      _feed = feed;
-      _title = feed.title;
-      _userId = _feed.userId;
-      _caption = _feed.caption;
-      _imageUrl = _feed.imageUrl;
+    _userRepository = userRepository;
+    if (user != null){
+
     }
   }
   User feedUser;
   User get currentUser => UserRepositoryImp.currentUser;
 
   final FirebaseAuthRepository _authRepository;
-  FeedRepository _feedRepository;
-  Feed _feed;
+  UserRepository _userRepository;
+  User _user;
 
   String _userId;
   String get userId => _userId;
@@ -43,20 +34,20 @@ class AddFeeModel extends ChangeNotifier {
   DateTime _deadline;
   DateTime get deadline => _deadline;
 
-  String _title;
-  String get title => _title;
+  String _displayName;
+  String get displayName => _displayName;
 
-  String _feedId;
-  String get feedId => _feedId;
+  String _profileId;
+  String get profileId => _profileId;
 
-  String _imageUrl;
-  String get imageUrl => _imageUrl;
+  String _photoUrl;
+  String get photoUrl => _photoUrl;
 
   String _imageStoragePath;
   String get imageStoragePath => _imageStoragePath;
 
-  String _caption;
-  String get caption => _caption;
+  String _bio;
+  String get bio => _bio;
 
   String _locationString;
   String get locationString => _locationString;
@@ -64,35 +55,34 @@ class AddFeeModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-
-  void changeTitle(String title) {
-    _title = title;
+  void changeTitle(String displayName) {
+    _displayName = displayName;
     notifyListeners();
   }
 
-  void changeCaption(String caption) {
-    _caption = caption;
+  void changeCaption(String bio) {
+    _bio = bio;
     notifyListeners();
   }
 
   //Feed 新規追加処理
-  Future<void> addFeedToFirebase() async {
-    if(_title == null){
+  Future<void> addUserToFirebase() async {
+    if(_displayName == null){
       throw('タイトルを入れてください');
     }
     final storageId = Uuid().v1();
-    final imageUrl = await uploadImageToStorage(imageFile, storageId);
+    final photoUrl = await uploadImageToStorage(imageFile, storageId);
     final String uid = _authRepository.getUid();
-    final Feed feed = Feed(
-      title: _title,
-      caption: _caption,
+    final User user = User(
+      displayName: _displayName,
+      bio: _bio,
       userId: uid,
-      feedId: Uuid().v1(),
-      imageUrl: imageUrl,
+      profileId: Uuid().v1(),
+      photoUrl: photoUrl,
       imageStoragePath: storageId,
     );
 
-    await _feedRepository.add(feed, uid);
+    await _userRepository.add(user, uid);
   }
 
   void startLoading() {
@@ -109,29 +99,29 @@ class AddFeeModel extends ChangeNotifier {
     notifyListeners();
   }
   // 更新処理
-  Future<void> updateFeed() async {
-    if (_title == null) {
+  Future<void> updateUser() async {
+    if (_displayName == null) {
       throw 'タイトルを記入してください';
     }
     final String uid = _authRepository.getUid();
 
     // documentの存在確認
-    final bool isExist = await _feedRepository.isExist(_feed.userId);
+    final bool isExist = await _userRepository.isExist(_user.userId);
     if (!isExist) {
       // 存在しない場合
       return;
     }
     // idから引っ張ってくる
-    final Feed currentFeed = await _feedRepository.findById(uid, userId);
-    final Feed feed = Feed(
-      userId: currentFeed.userId,
-      title: _title,
-      caption: _caption,
-      imageUrl: _imageUrl,
+    final User currentUser = await _userRepository.findById(uid, userId);
+    final User user = User(
+      userId: currentUser.userId,
+      displayName: _displayName,
+      bio: _bio,
+      profileId: _profileId,
+      photoUrl: _photoUrl,
       imageStoragePath: _imageStoragePath,
-      feedId: _feedId,
     );
-    await _feedRepository.updateFeed(feed);
+    await _userRepository.updateUser(user);
   }
 
   setImage(File imageFile) {
@@ -144,7 +134,6 @@ class AddFeeModel extends ChangeNotifier {
     final uploadTask = storageRef.putFile(imageFile);
     return await uploadTask.then((TaskSnapshot snapshot) => snapshot.ref.getDownloadURL());
   }
-
 
 
 }
