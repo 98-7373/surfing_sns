@@ -17,8 +17,11 @@ class FeedModel extends ChangeNotifier {
   // ゲッターだけ定義し、値の変更はfetchFeedListによってのみ行われる
   List<Feed> _feedList;
   List<Feed> get feedList => _feedList;
+  List<Feed> _feedList1;
+  List<Feed> get feedList1 => _feedList1;
   bool _isLoading = true;
   bool get isLoading => _isLoading;
+
 
 
   // 画面生成の際に呼び出される初期化関数
@@ -28,6 +31,7 @@ class FeedModel extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
   // 非同期処理の開始時に呼び、isLoadingをtrueに変更する
   void startLoading() {
     _isLoading = true;
@@ -43,6 +47,7 @@ class FeedModel extends ChangeNotifier {
     _feedList = await _feedRepository.findAll();
     notifyListeners();
   }
+
   //削除処理
   Future<void> deleteFeeds(String uid) async {
     await _feedRepository.deleteFeeds(uid);
