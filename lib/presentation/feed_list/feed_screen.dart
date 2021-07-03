@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surfing_sns/presentation/feed_detail/add_feed_model.dart';
 import 'package:surfing_sns/presentation/feed_detail/add_feed_page.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/domain/entity/feed.dart';
@@ -14,10 +13,12 @@ class FeedScreen extends StatelessWidget {
       create: (BuildContext context) =>
       FeedModel(
         feedRepository: context.read<FeedRepository>(),)
+
         ..init(),
       child: Consumer<FeedModel>(
         builder: (BuildContext context, FeedModel model, Widget child) {
           final List<Feed> feedList = model.feedList;
+          final List<Feed> feedList1 = model.feedList1;
           return Scaffold(
             appBar: AppBar(
               title: Text('掲示板'),
@@ -79,6 +80,7 @@ class FeedScreen extends StatelessWidget {
       ),
     );
     model.init();
+
   }
   List<FeedCard> _buildTodoCardList({
     BuildContext context,
