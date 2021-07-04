@@ -18,6 +18,7 @@ class UserRepositoryImp implements UserRepository {
   String email = "";
   static User  currentUser;
 
+
   void init() {
     _users = _firestore.collection('users');
   }

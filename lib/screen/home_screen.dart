@@ -3,6 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:surfing_sns/presentation/feed_list/feed_screen.dart';
 import 'package:surfing_sns/presentation/map_list/map_screen.dart';
 import 'package:surfing_sns/presentation/page/profile_page.dart';
+import 'package:surfing_sns/presentation/page/weather_page.dart';
+import 'package:surfing_sns/presentation/surf_list/surf_screen.dart';
+import 'package:surfing_sns/presentation/widget/profile.dart';
 import 'package:surfing_sns/profile/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,10 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
 void initState() {
   _pages = [
     FeedScreen(),
-    // SurfScreen(),
+    SurfScreen(),
     MapScreen(),
-    // WeatherPage(),
-    ProfileScreen(),
+    WeatherPage(),
+    Profile(),
   ];
   super.initState();
 }
@@ -46,18 +49,18 @@ void initState() {
               icon: FaIcon(FontAwesomeIcons.home),
               label: ("掲示板"),
           ),
-          // BottomNavigationBarItem(
-          //   icon: FaIcon(FontAwesomeIcons.search),
-          //   label: ("スポット"),
-          // ),
+          BottomNavigationBarItem(
+             icon: FaIcon(FontAwesomeIcons.search),
+            label: ("スポット"),
+          ),
            BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.map),
             label: ("マップ"),
           ),
-          // BottomNavigationBarItem(
-          //   icon: FaIcon(FontAwesomeIcons.sun),
-          //   label: ("Weather"),
-          // ),
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.sun),
+            label: ("天気"),
+          ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.user),
             label: ("プロフィール"),
