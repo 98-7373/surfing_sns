@@ -13,7 +13,6 @@ class FeedScreen extends StatelessWidget {
       create: (BuildContext context) =>
       FeedModel(
         feedRepository: context.read<FeedRepository>(),)
-
         ..init(),
       child: Consumer<FeedModel>(
         builder: (BuildContext context, FeedModel model, Widget child) {

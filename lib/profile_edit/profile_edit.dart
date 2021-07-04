@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:surfing_sns/domain/entity/user.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/storage_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/profile_edit/profile_edit_model.dart';
 
@@ -15,6 +16,7 @@ class ProfileEdit extends StatelessWidget {
   final String bio = "";
   final picker = ImagePicker();
   final String photoUrl;
+
   @override
   Widget build(BuildContext context) {
     // 詳細ページ表示の初期化処理
@@ -31,10 +33,12 @@ class ProfileEdit extends StatelessWidget {
           ? ProfileEditModel(
           authRepository: context.read<FirebaseAuthRepository>(),
           userRepository: context.read<UserRepository>(),
-          user: _user)
+          user: _user, storageRepository: context.read<StorageRepository>())
           : ProfileEditModel(
           authRepository: context.read<FirebaseAuthRepository>(),
-          userRepository: context.read<UserRepository>()),
+          userRepository: context.read<UserRepository>(),
+          storageRepository: context.read<StorageRepository>())
+      ,
       child: Consumer<ProfileEditModel>(builder: (
           BuildContext context,
           ProfileEditModel model,
@@ -44,6 +48,13 @@ class ProfileEdit extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.blueGrey,
             title: Text(_appBarTitle),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.done),
+                //TODO
+                onPressed: null,
+              )
+            ],
           ),
           body: Stack(
             children: <Widget>[

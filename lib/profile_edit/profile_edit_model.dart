@@ -3,6 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/domain/entity/user.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/storage_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/infrastructure/user_repository_imp.dart';
 import 'package:uuid/uuid.dart';
@@ -12,18 +13,19 @@ class ProfileEditModel extends ChangeNotifier{
   ProfileEditModel({
     @required FirebaseAuthRepository authRepository,
     @required UserRepository userRepository,
+    @required StorageRepository storageRepository,
     User user,
-  }) : _authRepository = authRepository
-
+  }) : _authRepository = authRepository,
+  _storageRepository = storageRepository
   {
     _userRepository = userRepository;
     if (user != null){
-
     }
   }
   User feedUser;
   User get currentUser => UserRepositoryImp.currentUser;
 
+  final StorageRepository _storageRepository;
   final FirebaseAuthRepository _authRepository;
   UserRepository _userRepository;
   User _user;
@@ -81,8 +83,8 @@ class ProfileEditModel extends ChangeNotifier{
       photoUrl: photoUrl,
       imageStoragePath: storageId,
     );
-
     await _userRepository.add(user, uid);
+    await _storageRepository.savePersistenceStorage(key_couple_id, uid);
   }
 
   void startLoading() {

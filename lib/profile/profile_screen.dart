@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:surfing_sns/chat/chat.dart';
 import 'package:surfing_sns/domain/entity/user.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/presentation/widget/profile.dart';
@@ -26,12 +28,14 @@ class ProfileScreen extends StatelessWidget {
             body: Stack(
               children: <Widget>[
                 if (userList != null)
-                  ListView(
-                    padding: EdgeInsets.all(8),
-                    children: _buildTodoCardList(
-                      context: context,
-                      userList: userList,
-                      model: model,
+                  Container(
+                    child: ListView(
+                      padding: EdgeInsets.all(8),
+                      children: _buildTodoCardList(
+                        context: context,
+                        userList: userList,
+                        model: model,
+                      ),
                     ),
                   )
                 else

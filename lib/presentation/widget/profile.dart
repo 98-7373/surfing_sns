@@ -23,66 +23,67 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
-      child: Container(
-        child: Expanded(
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Center(
-                  child: ClipOval(
-                    child: Image.network(
-                      user.photoUrl,
-                      height: 143,
-                      width: 145,
-                      fit: BoxFit.cover,
-                    ),
+      child: Expanded(
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: Center(
+                child: ClipOval(
+                  child: Image.network(
+                    user.photoUrl,
+                    height: 143,
+                    width: 145,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(50.0),
-                  child: Flexible(
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 210,
+                left: 30,
+                right: 30,
+              ),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Container(
+                    height: 50,
+                    width: 300,
+                    color: Colors.blueGrey,
                     child: Center(
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                            top: 200
-                        ),
-                        child: InkWell(
-                          child: Text(
-                            _user.displayName,
-                            maxLines: 1,
-                            style: TextStyle(fontSize: 32),
-                          ),
-                        ),
+                        child: Text(
+                      user.displayName,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ),
-                  ),
+                    )),
+                  )),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 300,
+                  left: 20,
+                  right: 20,
                 ),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Container(
+                      height: 160,
+                      width: 300,
+                      color: Colors.pinkAccent,
+                      child: Text(user.bio,
+                      style: TextStyle(fontSize: 26,
+                      fontWeight: FontWeight.w500,),),
+                    )),
               ),
-              Container(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: 330
-                  ).copyWith(bottom: 0),
-                  child: Center(
-                    child: Text(
-                      _user.bio,
-                      style: TextStyle(fontSize: 22),
-                      maxLines: 4,
-                    ),
-                  ),
-                ),
-              ),
-              // ignore: deprecated_member_use
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
-
   }
 }
