@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:surfing_sns/domain/entity/feed.dart';
+import 'package:surfing_sns/enum.dart';
 import 'package:surfing_sns/screen/enlarge_image_screen.dart';
+import 'package:surfing_sns/web.dart';
 
 class FeedCard extends StatelessWidget {
   const FeedCard({
@@ -10,7 +13,7 @@ class FeedCard extends StatelessWidget {
     this.onTap,
     this.delete,
     this.isDeletable,
-    this.imageUrl,
+    this.imageUrl, this.userId,
   }) : _feed = feed;
 
   final Feed _feed;
@@ -21,38 +24,52 @@ class FeedCard extends StatelessWidget {
 
   Feed get feed => _feed;
   final String imageUrl;
+  final String userId;
+
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Expanded(
-        child: Stack(
-          children: [
-            Hero(
-              tag: feed.imageUrl,
-              child: Image.network(
-                feed.imageUrl,
-                height: 137,
-                width: 135,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Flexible(
-              child: Container(
-                margin: const EdgeInsets.only(
-                  left: 140.0,
-                ),
-                child: InkWell(
-                  child: Text(
-                    _feed.title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  onTap: () {
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.whatshot),
+            //TODO ユーザー
+            title: Text(_feed.title),
+            subtitle: Text(_feed.caption),
+            trailing: PopupMenuButton(
+              icon: Icon(Icons.more_vert),
+              onSelected: (value) => _onPopUpMenu(context, value),
+              itemBuilder: (context) {
+                if (feed.userId == userId) {
+                  return [
+                    PopupMenuItem(
+                      value: PostMenu.DELETE,
+                      child: Text('通報'),
+                    ),
+                    PopupMenuItem(
+                      value: PostMenu.SHARE,
+                      child: Text('シェア'),
+                    ),
+                  ];
+                } else {
+                  return [
+                    PopupMenuItem(
+                      value: PostMenu.SHARE,
+                      child: Text('シェア'),
+                    )
+                  ];
+                }
+              },),
+          ),
+          Image.network(feed.imageUrl),
+          ButtonTheme.bar(
+            child: ButtonBar(
+              children: <Widget>[
+                FlatButton(
+                  child: const Text('詳細'),
+                  onPressed: ()  {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         fullscreenDialog: true,
@@ -63,43 +80,36 @@ class FeedCard extends StatelessWidget {
                     );
                   },
                 ),
-              ),
-            ),
-            Container(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: 140,
-                  top: 20,
-                ).copyWith(bottom: 0),
-                child: Text(
-                  _feed.caption,
-                  style: TextStyle(fontSize: 12),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
+                FlatButton(
+                  child: const Text('チャット'),
+                  onPressed: onTap,
                 ),
-              ),
+                FlatButton(
+                  child: const Text('削除'),
+                  onPressed: delete,
+                ),
+              ],
             ),
-            // ignore: deprecated_member_use
-            ButtonTheme.bar(
-              child: ButtonBar(
-                children: <Widget>[
-                  FlatButton(
-                    padding: EdgeInsets.only(
-                      left: 280,
-                      top: 100,
-                    ),
-                    child:  Text('削除',
-                    style: TextStyle(
-                      color: Colors.blueGrey
-                    ),),
-                    onPressed: delete,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
+  }
+
+  _onPopUpMenu(BuildContext context, PostMenu selectedMenu) {
+    switch (selectedMenu) {
+      case PostMenu.DELETE:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (BuildContext context) => Web(
+            ),
+          ),
+        );
+        break;
+      case PostMenu.SHARE:
+        Share.share(feed.imageUrl, subject: feed.caption);
+        break;
+    }
   }
 }

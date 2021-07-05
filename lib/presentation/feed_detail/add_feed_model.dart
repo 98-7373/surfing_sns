@@ -91,7 +91,6 @@ class AddFeeModel extends ChangeNotifier {
       imageUrl: imageUrl,
       imageStoragePath: storageId,
     );
-
     await _feedRepository.add(feed, uid);
   }
 

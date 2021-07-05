@@ -23,8 +23,8 @@ void initState() {
     FeedScreen(),
     SurfScreen(),
     MapScreen(),
-    WeatherPage(),
-    Profile(),
+    // WeatherPage(),
+    // ProfileScreen(),
   ];
   super.initState();
 }
@@ -49,22 +49,22 @@ void initState() {
               icon: FaIcon(FontAwesomeIcons.home),
               label: ("掲示板"),
           ),
-          BottomNavigationBarItem(
-             icon: FaIcon(FontAwesomeIcons.search),
-            label: ("スポット"),
-          ),
+           BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.search),
+             label: ("スポット"),
+           ),
            BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.map),
             label: ("マップ"),
           ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.sun),
-            label: ("天気"),
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.user),
-            label: ("プロフィール"),
-          ),
+          // BottomNavigationBarItem(
+          //   icon: FaIcon(FontAwesomeIcons.sun),
+          //   label: ("天気"),
+          // ),
+          // BottomNavigationBarItem(
+          //   icon: FaIcon(FontAwesomeIcons.user),
+          //   label: ("プロフィール"),
+          // ),
         ],
       ),
     );
