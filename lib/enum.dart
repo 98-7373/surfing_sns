@@ -1,0 +1,4 @@
+enum PostMenu {
+  DELETE,
+  SHARE,
+}

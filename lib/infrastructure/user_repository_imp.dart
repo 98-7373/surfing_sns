@@ -2,13 +2,18 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/storage_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
 import 'package:surfing_sns/domain/entity/user.dart';
 
 class UserRepositoryImp implements UserRepository {
-  UserRepositoryImp({StorageRepository storageRepository})
+  UserRepositoryImp({
+    StorageRepository storageRepository,
+    this.uid,})
       : _storageRepository = storageRepository;
+
   final StorageRepository _storageRepository;
   File imageFile;
   final String displayName = "";
@@ -17,6 +22,7 @@ class UserRepositoryImp implements UserRepository {
   CollectionReference _users;
   String email = "";
   static User  currentUser;
+  final String uid;
 
 
   void init() {
@@ -37,10 +43,26 @@ class UserRepositoryImp implements UserRepository {
       'userId': uid,
     });
   }
+
+  @override
+  Future<void> add(User user, String uid) async {
+    final String getuserId = await _getUserId();
+    final CollectionReference recruitment =
+    _users.doc(getuserId).collection('profile');
+    await recruitment.add(<String, dynamic>{
+      'userId': user.userId,
+      'bio': user.bio,
+      'photoUrl': user.photoUrl,
+      'imageStoragePath': user.imageStoragePath,
+      'profileId': user.profileId,
+      'displayName': user.displayName,
+    });
+  }
+
   Future<List<User>> findAll() async {
-    final String getfeedId = await _getFeedId();
+    final String getuserId = await _getUserId();
     final QuerySnapshot users =
-    await _users.doc(getfeedId).collection('profile').get();
+    await _users.doc(getuserId).collection('profile').get();
     // todosコレクションがない場合はnullを返す
     if (users.docs.isEmpty) {
       return null;
@@ -63,35 +85,21 @@ class UserRepositoryImp implements UserRepository {
   /// ドキュメントfeeds削除処理
   @override
   Future<void> deleteFeeds(String uid,) async {
-    final String getfeedId = await _getFeedId();
-    await _users.doc(getfeedId).collection('profile').doc(uid).delete();
+    final String getuserId = await _getUserId();
+    await _users.doc(getuserId).collection('profile').doc(uid).delete();
   }
 
 
-  @override
-  Future<void> add(User user, String uid) async {
-    final String getfeedId = await _getFeedId();
-    final CollectionReference recruitment =
-    _users.doc(getfeedId).collection('profile');
-    await recruitment.add(<String, dynamic>{
-      'userId': user.userId,
-      'bio': user.bio,
-      'photoUrl': user.photoUrl,
-      'imageStoragePath': user.imageStoragePath,
-      'profileId': user.profileId,
-      'displayName': user.displayName,
-    });
-  }
 
   @override
   Future<User> findById(String uid, String userId) async {
-    final String getfeedId = await _getFeedId();
+    final String getuserId = await _getUserId();
     final DocumentSnapshot result =
-        await _users.doc(getfeedId).collection('profile').doc(userId).get();
+        await _users.doc(getuserId).collection('profile').doc(userId).get();
     User user;
     if (result.id == userId) {
       user = User(
-        userId: getfeedId,
+        userId: getuserId,
         displayName: result['displayName'],
         photoUrl: result['photoUrl'],
         bio: result['bio'],
@@ -103,17 +111,17 @@ class UserRepositoryImp implements UserRepository {
 
   @override
   Future<bool> isExist(String userId) async {
-    final String getfeedId = await _getFeedId();
+    final String getuserId = await _getUserId();
     final DocumentSnapshot result =
-        await _users.doc(getfeedId).collection('profile').doc(userId).get();
+        await _users.doc(getuserId).collection('profile').doc(userId).get();
     return result.exists;
   }
 
   @override
   Future<void> updateUser(User user) async {
-    final String getfeedId = await _getFeedId();
+    final String getuserId = await _getUserId();
     await _users
-        .doc(getfeedId)
+        .doc(getuserId)
         .collection('profile')
         .doc(user.userId)
         .update(<String, dynamic>{
@@ -125,10 +133,10 @@ class UserRepositoryImp implements UserRepository {
       'displayName': user.displayName,
     });
   }
-  Future<String> _getFeedId() async {
-    final String getfeedId =
-    await _storageRepository.loadPersistenceStorage(key_couple_id);
-    return getfeedId;
+  Future<String> _getUserId() async {
+    final String getuserId =
+    await _storageRepository.loadPersistenceUser(key_couple_id, uid);
+    return getuserId;
   }
 
   @override

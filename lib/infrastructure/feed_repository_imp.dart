@@ -1,18 +1,21 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
+import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/storage_repository.dart';
 import 'package:surfing_sns/domain/entity/feed.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:surfing_sns/domain/entity/user.dart';
+import 'package:uuid/uuid.dart';
 import '../domain/repository/feed_repository.dart';
-
 class FeedRepositoryImp implements FeedRepository {
   FeedRepositoryImp({StorageRepository storageRepository})
       : _storageRepository = storageRepository;
   final StorageRepository _storageRepository;
   File imageFile;
   final String title = "";
-
   final String caption = "";
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   CollectionReference _feeds;
@@ -25,7 +28,7 @@ class FeedRepositoryImp implements FeedRepository {
   Future<void> createFeedsCollection(String uid) async {
     // feedsコレクションにfeedを追加する
     final String feedsId = uid;
-    await _feeds.doc(_feeds.id).set(<String, dynamic>{
+    await _feeds.doc(uid).set(<String, dynamic>{
     });
     // couplesコレクションの下にusersサブコレクションを追加して
     // 自分のuserIdを格納しておく
@@ -38,8 +41,9 @@ class FeedRepositoryImp implements FeedRepository {
 
   @override
   Future<void> add(Feed feed, String uid) async {
+    final String getfeedId = await _getFeedId();
     final CollectionReference recruitment =
-    _feeds.doc(_feeds.id).collection('recruitment');
+    _feeds.doc(getfeedId).collection('recruitment');
     await recruitment.add(<String, dynamic>{
       'title': feed.title,
       'caption': feed.caption,
@@ -50,12 +54,32 @@ class FeedRepositoryImp implements FeedRepository {
     });
   }
 
+  //UUid取ってきて、次追加する
+  Future<void> feed(String uid, Feed feed, String caption, String title,
+      String imageUrl, String feedId, File imageFile) async {
+    final storageId = Uuid().v1();
+    final imageUrl = await uploadImageToStorage(imageFile, storageId);
+    final feed = Feed(
+      feedId: Uuid().v1(),
+      userId: uid,
+      imageUrl: imageUrl,
+      title: title,
+      caption: caption,
+      imageStoragePath: storageId,
+    );
+    await insertFeed(feed);
+  }
+  //TODO feedに追加
+  Future<void> insertFeed(Feed feed) async {
+    await _feeds.doc(feed.userId).collection("recruitment").add(feed.toMap());
+  }
   //TODO 取得
   @override
   Future<List<Feed>> findAll() async {
+    final String getfeedId = await _getFeedId();
     final QuerySnapshot feeds =
-    await _feeds.doc(_feeds.id).collection('recruitment').get();
-    // recruitmentコレクションがない場合はnullを返す
+    await _feeds.doc(getfeedId).collection('recruitment').get();
+    // todosコレクションがない場合はnullを返す
     if (feeds.docs.isEmpty) {
       return null;
     }
@@ -74,22 +98,21 @@ class FeedRepositoryImp implements FeedRepository {
     // collectionはあるが、中に一つも要素がない場合はnullが返る
     return result;
   }
-  //TODO
-
   /// uidからFeedを取得する
   /// uidがドキュメントがfeedsコレクションに存在するかどうかの確認
   @override
   Future<bool> isExist(String uid) async {
-
+    final String getfeedId = await _getFeedId();
     final DocumentSnapshot result =
-    await _feeds.doc().collection('recruitment').doc(uid).get();
+    await _feeds.doc(getfeedId).collection('recruitment').doc(uid).get();
     return result.exists;
   }
 
   /// ドキュメントfeeds削除処理
   @override
   Future<void> deleteFeeds(String uid,) async {
-    await _feeds.doc(_feeds.id).collection('recruitment').doc(uid).delete();
+    final String getfeedId = await _getFeedId();
+    await _feeds.doc(getfeedId).collection('recruitment').doc(uid).delete();
   }
 
   @override
@@ -108,11 +131,11 @@ class FeedRepositoryImp implements FeedRepository {
       'userId': feed.userId,
     });
   }
-
   @override
   Future<Feed> findById(String userId, String uid) async {
+    final String getfeedId = await _getFeedId();
     final DocumentSnapshot result =
-    await _feeds.doc().collection('recruitment').doc(userId).get();
+    await _feeds.doc(getfeedId).collection('recruitment').doc(userId).get();
     Feed feed;
     if (result.id == userId) {
       feed = Feed(

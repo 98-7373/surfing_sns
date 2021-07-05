@@ -66,7 +66,6 @@ class SignUpModel extends ChangeNotifier {
       );
       await _userRepository.createUsersCollection(uid);
       await _feedRepository.createFeedsCollection(uid);
-
     } catch (e) {
       throw ('error');
     }

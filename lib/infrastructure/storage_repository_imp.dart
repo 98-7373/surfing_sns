@@ -17,6 +17,11 @@ class StorageRepositoryImp implements StorageRepository {
     final SharedPreferences pref = await _instance.prefs;
     return pref.getString(key);
   }
+  @override
+  Future<String> loadPersistenceUser(String key,  String value) async {
+    final SharedPreferences pref = await _instance.prefs;
+    return pref.getString(key);
+  }
 
   @override
   Future<bool> isExistKey(String key) async {
@@ -29,4 +34,6 @@ class StorageRepositoryImp implements StorageRepository {
     final SharedPreferences pref = await _instance.prefs;
     await pref.remove(key);
   }
+
+
 }
