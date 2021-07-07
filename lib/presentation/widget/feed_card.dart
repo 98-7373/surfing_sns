@@ -34,12 +34,20 @@ class FeedCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           ListTile(
-            leading: Icon(Icons.whatshot),
-            //TODO ユーザー
-            title: Text(_feed.title),
+            // trailing: Icon(Icons.more_vert),
+            // onTap: (){
+            //   Navigator.of(context).push(
+            //     MaterialPageRoute(
+            //       fullscreenDialog: true,
+            //       builder: (BuildContext context) => Web(
+            //       ),
+            //     ),
+            //   );
+            // },
+            title: Text(_feed.title,style: TextStyle(fontSize: 18),),
             subtitle: Text(_feed.caption),
-            trailing: PopupMenuButton(
-              icon: Icon(Icons.more_vert),
+            leading: PopupMenuButton(
+              icon: Icon(Icons.share),
               onSelected: (value) => _onPopUpMenu(context, value),
               itemBuilder: (context) {
                 if (feed.userId == userId) {
