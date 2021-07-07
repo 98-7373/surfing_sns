@@ -20,7 +20,7 @@ class FeedScreen extends StatelessWidget {
           final List<Feed> feedList1 = model.feedList1;
           return Scaffold(
             appBar: AppBar(
-              title: Text('掲示板'),
+              title: Text(''),
               automaticallyImplyLeading: false,
               backgroundColor: Colors.blueGrey,
             ),
