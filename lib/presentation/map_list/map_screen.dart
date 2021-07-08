@@ -613,10 +613,91 @@ class HomePageState extends State<MapScreen> {
           chiba74Marker,
           chiba75Marker,
           chiba76Marker,
-
-
-
-
+        //  神奈川エリア
+          kanagawa1Marker,
+          kanagawa2Marker,
+          kanagawa3Marker,
+          kanagawa4Marker,
+          kanagawa5Marker,
+          kanagawa6Marker,
+          kanagawa7Marker,
+          kanagawa8Marker,
+          kanagawa9Marker,
+          kanagawa10Marker,
+          kanagawa11Marker,
+          kanagawa12Marker,
+          kanagawa13Marker,
+          kanagawa14Marker,
+          kanagawa15Marker,
+          kanagawa16Marker,
+          kanagawa17Marker,
+          kanagawa18Marker,
+          kanagawa19Marker,
+          kanagawa20Marker,
+          kanagawa21Marker,
+          kanagawa22Marker,
+          kanagawa23Marker,
+          kanagawa24Marker,
+          kanagawa25Marker,
+          kanagawa26Marker,
+          kanagawa27Marker,
+          kanagawa28Marker,
+          kanagawa29Marker,
+          kanagawa30Marker,
+          kanagawa31Marker,
+          kanagawa32Marker,
+          kanagawa33Marker,
+          kanagawa34Marker,
+          kanagawa35Marker,
+          kanagawa36Marker,
+          kanagawa37Marker,
+          kanagawa38Marker,
+          kanagawa39Marker,
+          kanagawa40Marker,
+          kanagawa41Marker,
+          kanagawa42Marker,
+          kanagawa43Marker,
+          kanagawa44Marker,
+          kanagawa45Marker,
+          kanagawa46Marker,
+          kanagawa47Marker,
+          kanagawa48Marker,
+          kanagawa49Marker,
+        //  茨城
+          ibaraki1Marker,
+          ibaraki2Marker,
+          ibaraki3Marker,
+          ibaraki4Marker,
+          ibaraki5Marker,
+          ibaraki6Marker,
+          ibaraki7Marker,
+          ibaraki8Marker,
+          ibaraki9Marker,
+          ibaraki10Marker,
+          ibaraki11Marker,
+          ibaraki12Marker,
+          ibaraki13Marker,
+          ibaraki14Marker,
+          ibaraki15Marker,
+          ibaraki16Marker,
+          ibaraki17Marker,
+          ibaraki18Marker,
+          ibaraki19Marker,
+          ibaraki20Marker,
+          ibaraki21Marker,
+          ibaraki22Marker,
+          ibaraki23Marker,
+          ibaraki24Marker,
+          ibaraki25Marker,
+          ibaraki26Marker,
+          ibaraki27Marker,
+          ibaraki28Marker,
+          ibaraki29Marker,
+          ibaraki30Marker,
+          ibaraki31Marker,
+          ibaraki32Marker,
+          ibaraki33Marker,
+          ibaraki34Marker,
 
         },
       ),
@@ -633,7 +714,6 @@ Marker chiba5Marker = Marker(
     BitmapDescriptor.hueViolet,
   ),
 );
-
 Marker chiba6Marker = Marker(
   markerId: MarkerId('片貝漁港'),
   position: LatLng(35.534457, 140.462551),
@@ -1237,5 +1317,670 @@ Marker chiba76Marker = Marker(
     BitmapDescriptor.hueViolet,
   ),
 );
-//神奈川エリア　
+//神奈川エリア　49
+Marker kanagawa1Marker = Marker(
+  markerId: MarkerId('三浦海岸'),
+  position: LatLng(35.18649, 139.65703),
+  infoWindow: InfoWindow(title: '三浦海岸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa2Marker = Marker(
+  markerId: MarkerId('吉浜'),
+  position: LatLng(35.14973, 139.1208),
+  infoWindow: InfoWindow(title: '吉浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa3Marker = Marker(
+  markerId: MarkerId('鎌高前'),
+  position: LatLng(35.30672, 139.50055),
+  infoWindow: InfoWindow(title: '鎌高前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa4Marker = Marker(
+  markerId: MarkerId('湘南港'),
+  position: LatLng(35.30119, 139.48644),
+  infoWindow: InfoWindow(title: '湘南港'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa5Marker = Marker(
+  markerId: MarkerId('腰越漁港'),
+  position: LatLng(35.30715, 139.49221),
+  infoWindow: InfoWindow(title: '腰越漁港'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa6Marker = Marker(
+  markerId: MarkerId('鵠沼銅像前'),
+  position: LatLng(35.31464, 139.47079),
+  infoWindow: InfoWindow(title: '鵠沼銅像前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa7Marker = Marker(
+  markerId: MarkerId('翔洋中前'),
+  position: LatLng(35.31725, 139.45888),
+  infoWindow: InfoWindow(title: '翔洋中前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa8Marker = Marker(
+  markerId: MarkerId('引地川'),
+  position: LatLng(35.31558, 139.46728),
+  infoWindow: InfoWindow(title: '引地川'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa9Marker = Marker(
+  markerId: MarkerId('スケパー前'),
+  position: LatLng(35.31581, 139.46565),
+  infoWindow: InfoWindow(title: 'スケパー前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa10Marker = Marker(
+  markerId: MarkerId('逗子海岸'),
+  position: LatLng(35.29186, 139.57264),
+  infoWindow: InfoWindow(title: '逗子海岸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa11Marker = Marker(
+  markerId: MarkerId('材木座'),
+  position: LatLng(35.30555, 139.55007),
+  infoWindow: InfoWindow(title: '材木座'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa12Marker = Marker(
+  markerId: MarkerId('由比ガ浜'),
+  position: LatLng(35.30929, 139.54224),
+  infoWindow: InfoWindow(title: '由比ガ浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa13Marker = Marker(
+  markerId: MarkerId('稲村ガ崎'),
+  position: LatLng(35.30279, 139.52372),
+  infoWindow: InfoWindow(title: '稲村ガ崎'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa14Marker = Marker(
+  markerId: MarkerId('立石'),
+  position: LatLng(35.24105, 139.597),
+  infoWindow: InfoWindow(title: '立石'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa15Marker = Marker(
+  markerId: MarkerId('秋谷海岸'),
+  position: LatLng(35.23873, 139.60011),
+  infoWindow: InfoWindow(title: '秋谷海岸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa16Marker = Marker(
+  markerId: MarkerId('一色海岸'),
+  position: LatLng(35.26358, 139.57671),
+  infoWindow: InfoWindow(title: '一色海岸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa17Marker = Marker(
+  markerId: MarkerId('長者ヶ崎'),
+  position: LatLng(35.25415, 139.58017),
+  infoWindow: InfoWindow(title: '長者ヶ崎'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa18Marker = Marker(
+  markerId: MarkerId('大崎'),
+  position: LatLng(35.2933, 139.55941),
+  infoWindow: InfoWindow(title: '大崎'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa19Marker = Marker(
+  markerId: MarkerId('カブネ'),
+  position: LatLng(35.29714, 139.55252),
+  infoWindow: InfoWindow(title: 'カブネ'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa20Marker = Marker(
+  markerId: MarkerId('玉石'),
+  position: LatLng(35.30288, 139.55226),
+  infoWindow: InfoWindow(title: '玉石'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa21Marker = Marker(
+  markerId: MarkerId('への字'),
+  position: LatLng(35.30444, 139.51351),
+  infoWindow: InfoWindow(title: 'への字'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa22Marker = Marker(
+  markerId: MarkerId('峰ヶ原'),
+  position: LatLng(35.30592, 139.50535),
+  infoWindow: InfoWindow(title: '峰ヶ原'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa23Marker = Marker(
+  markerId: MarkerId('一本松'),
+  position: LatLng(35.3058, 139.49444),
+  infoWindow: InfoWindow(title: '一本松'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa24Marker = Marker(
+  markerId: MarkerId('恵風園前'),
+  position: LatLng(35.30672, 139.4976),
+  infoWindow: InfoWindow(title: '恵風園前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa25Marker = Marker(
+  markerId: MarkerId('大六'),
+  position: LatLng(35.29958, 139.47452),
+  infoWindow: InfoWindow(title: '大六'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa26Marker = Marker(
+  markerId: MarkerId('水族館前'),
+  position: LatLng(35.30898, 139.47965),
+  infoWindow: InfoWindow(title: '水族館前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa27Marker = Marker(
+  markerId: MarkerId('マクドナルド前'),
+  position: LatLng(35.31441, 139.47168),
+  infoWindow: InfoWindow(title: 'マクドナルド前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa28Marker = Marker(
+  markerId: MarkerId('松波地下道前'),
+  position: LatLng(35.31681, 139.4619),
+  infoWindow: InfoWindow(title: '松波地下道前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa29Marker = Marker(
+  markerId: MarkerId('船前'),
+  position: LatLng(35.31791, 139.45455),
+  infoWindow: InfoWindow(title: '船前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa30Marker = Marker(
+  markerId: MarkerId('辻堂正面'),
+  position: LatLng(35.31813, 139.45319),
+  infoWindow: InfoWindow(title: '辻堂正面'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa31Marker = Marker(
+  markerId: MarkerId('第２駐車場前'),
+  position: LatLng(35.3193, 139.44407),
+  infoWindow: InfoWindow(title: '第２駐車場前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa32Marker = Marker(
+  markerId: MarkerId('汐見台'),
+  position: LatLng(35.31971, 139.43516),
+  infoWindow: InfoWindow(title: '汐見台'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa33Marker = Marker(
+  markerId: MarkerId('チサン'),
+  position: LatLng(35.31939, 139.43234),
+  infoWindow: InfoWindow(title: 'チサン'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa34Marker = Marker(
+  markerId: MarkerId('パーク'),
+  position: LatLng(35.31683, 139.4156),
+  infoWindow: InfoWindow(title: 'パーク'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa35Marker = Marker(
+  markerId: MarkerId('菱沼海岸'),
+  position: LatLng(35.31815, 139.41991),
+  infoWindow: InfoWindow(title: '菱沼海岸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa36Marker = Marker(
+  markerId: MarkerId('Tバー'),
+  position: LatLng(35.31538, 139.41429),
+  infoWindow: InfoWindow(title: 'Tバー'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa37Marker = Marker(
+  markerId: MarkerId('白樺'),
+  position: LatLng(35.31814, 139.40228),
+  infoWindow: InfoWindow(title: '白樺'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa38Marker = Marker(
+  markerId: MarkerId('茅ヶ崎漁港'),
+  position: LatLng(35.31665, 139.39859),
+  infoWindow: InfoWindow(title: '茅ヶ崎漁港'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa39Marker = Marker(
+  markerId: MarkerId('西浜'),
+  position: LatLng(35.31615, 139.39563),
+  infoWindow: InfoWindow(title: '西浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa40Marker = Marker(
+  markerId: MarkerId('柳島'),
+  position: LatLng(35.31641, 139.38497),
+  infoWindow: InfoWindow(title: '柳島'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa41Marker = Marker(
+  markerId: MarkerId('馬入'),
+  position: LatLng(35.31647, 139.37462),
+  infoWindow: InfoWindow(title: '馬入'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa42Marker = Marker(
+  markerId: MarkerId('相模川河口'),
+  position: LatLng(35.31476, 139.36498),
+  infoWindow: InfoWindow(title: '相模川河口'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa43Marker = Marker(
+  markerId: MarkerId('虹ケ浜'),
+  position: LatLng(35.31421, 139.34103),
+  infoWindow: InfoWindow(title: '虹ケ浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa44Marker = Marker(
+  markerId: MarkerId('唐ヶ原'),
+  position: LatLng(35.31267, 139.33186),
+  infoWindow: InfoWindow(title: '唐ヶ原'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa45Marker = Marker(
+  markerId: MarkerId('花水川河口'),
+  position: LatLng(35.31323, 139.33501),
+  infoWindow: InfoWindow(title: '花水川河口'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa46Marker = Marker(
+  markerId: MarkerId('高浜台'),
+  position: LatLng(35.31521, 139.35977),
+  infoWindow: InfoWindow(title: '高浜台'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa47Marker = Marker(
+  markerId: MarkerId('磯高前'),
+  position: LatLng(35.31106, 139.32486),
+  infoWindow: InfoWindow(title: '磯高前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa48Marker = Marker(
+  markerId: MarkerId('大磯'),
+  position: LatLng(35.30944, 139.31971),
+  infoWindow: InfoWindow(title: '大磯'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker kanagawa49Marker = Marker(
+  markerId: MarkerId('大磯北浜海岸'),
+  position: LatLng(35.31069, 139.32243),
+  infoWindow: InfoWindow(title: '大磯北浜海岸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
 //
+//茨城エリア
+Marker ibaraki1Marker = Marker(
+  markerId: MarkerId('二つ島'),
+  position: LatLng(36.80572, 140.76243),
+  infoWindow: InfoWindow(title: '二つ島'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki2Marker = Marker(
+  markerId: MarkerId('高萩'),
+  position: LatLng(36.71312, 140.72461),
+  infoWindow: InfoWindow(title: '高萩'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki3Marker = Marker(
+  markerId: MarkerId('いぶき浜'),
+  position: LatLng(36.69507, 140.71708),
+  infoWindow: InfoWindow(title: 'いぶき浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki4Marker = Marker(
+  markerId: MarkerId('伊師浜'),
+  position: LatLng(36.66562, 140.71486),
+  infoWindow: InfoWindow(title: '伊師浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki5Marker = Marker(
+  markerId: MarkerId('川尻'),
+  position: LatLng(36.65203, 140.69989),
+  infoWindow: InfoWindow(title: '川尻'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki6Marker = Marker(
+  markerId: MarkerId('会瀬'),
+  position: LatLng(36.57999, 140.66123),
+  infoWindow: InfoWindow(title: '会瀬'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki7Marker = Marker(
+  markerId: MarkerId('河原子'),
+  position: LatLng(36.54304, 140.6454),
+  infoWindow: InfoWindow(title: '河原子'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki8Marker = Marker(
+  markerId: MarkerId('水木'),
+  position: LatLng(36.51863, 140.63394),
+  infoWindow: InfoWindow(title: '水木'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki9Marker = Marker(
+  markerId: MarkerId('日立灯台'),
+  position: LatLng(36.40308, 140.61144),
+  infoWindow: InfoWindow(title: '日立灯台'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki10Marker = Marker(
+  markerId: MarkerId('阿字ケ浦'),
+  position: LatLng(36.39156, 140.61449),
+  infoWindow: InfoWindow(title: '阿字ケ浦'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki11Marker = Marker(
+  markerId: MarkerId('大洗'),
+  position: LatLng(36.32868, 140.59374),
+  infoWindow: InfoWindow(title: '大洗'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki12Marker = Marker(
+  markerId: MarkerId('サンビーチ'),
+  position: LatLng(36.30258, 140.56764),
+  infoWindow: InfoWindow(title: 'サンビーチ'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki13Marker = Marker(
+  markerId: MarkerId('大貫'),
+  position: LatLng(36.29728, 140.56419),
+  infoWindow: InfoWindow(title: '大貫'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki14Marker = Marker(
+  markerId: MarkerId('玉田'),
+  position: LatLng(36.22557, 140.56251),
+  infoWindow: InfoWindow(title: '玉田'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki15Marker = Marker(
+  markerId: MarkerId('冷水'),
+  position: LatLng(36.20903, 140.56566),
+  infoWindow: InfoWindow(title: '冷水'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki16Marker = Marker(
+  markerId: MarkerId('大竹海岸'),
+  position: LatLng(36.16188, 140.57844),
+  infoWindow: InfoWindow(title: '大竹海岸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki17Marker = Marker(
+  markerId: MarkerId('岡堀米'),
+  position: LatLng(36.15465, 140.58072),
+  infoWindow: InfoWindow(title: '岡堀米'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki18Marker = Marker(
+  markerId: MarkerId('上沢'),
+  position: LatLng(36.10463, 140.6004),
+  infoWindow: InfoWindow(title: '上沢'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki19Marker = Marker(
+  markerId: MarkerId('汲上'),
+  position: LatLng(36.13005, 140.59033),
+  infoWindow: InfoWindow(title: '汲上'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki20Marker = Marker(
+  markerId: MarkerId('京知釜'),
+  position: LatLng(36.09604, 140.60484),
+  infoWindow: InfoWindow(title: '京知釜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki21Marker = Marker(
+  markerId: MarkerId('角折'),
+  position: LatLng(36.03839, 140.63335),
+  infoWindow: InfoWindow(title: '角折'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki22Marker = Marker(
+  markerId: MarkerId('女神'),
+  position: LatLng(36.03368, 140.63581),
+  infoWindow: InfoWindow(title: '女神'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki23Marker = Marker(
+  markerId: MarkerId('一本松'),
+  position: LatLng(35.3058, 139.49444),
+  infoWindow: InfoWindow(title: '一本松'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki24Marker = Marker(
+  markerId: MarkerId('トップサンテ下'),
+  position: LatLng(36.08691, 140.60862),
+  infoWindow: InfoWindow(title: 'トップサンテ下'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki25Marker = Marker(
+  markerId: MarkerId('明石'),
+  position: LatLng(35.99837, 140.6562),
+  infoWindow: InfoWindow(title: '明石'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki26Marker = Marker(
+  markerId: MarkerId('水族館前'),
+  position: LatLng(35.30898, 139.47965),
+  infoWindow: InfoWindow(title: '水族館前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki27Marker = Marker(
+  markerId: MarkerId('下津'),
+  position: LatLng(35.98193, 140.6648),
+  infoWindow: InfoWindow(title: '下津'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki28Marker = Marker(
+  markerId: MarkerId('平井'),
+  position: LatLng(35.97216, 140.671),
+  infoWindow: InfoWindow(title: '平井'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki29Marker = Marker(
+  markerId: MarkerId('日川浜'),
+  position: LatLng(35.8718, 140.73986),
+  infoWindow: InfoWindow(title: '日川浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki30Marker = Marker(
+  markerId: MarkerId('風車前'),
+  position: LatLng(35.8417, 140.76046),
+  infoWindow: InfoWindow(title: '風車前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki31Marker = Marker(
+  markerId: MarkerId('シーサイドパーク'),
+  position: LatLng(35.78898, 140.80075),
+  infoWindow: InfoWindow(title: 'シーサイドパーク'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki32Marker = Marker(
+  markerId: MarkerId('舎利浜'),
+  position: LatLng(35.77168, 140.81508),
+  infoWindow: InfoWindow(title: '舎利浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki33Marker = Marker(
+  markerId: MarkerId('波崎海岸'),
+  position: LatLng(35.75602, 140.82873),
+  infoWindow: InfoWindow(title: '波崎海岸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker ibaraki34Marker = Marker(
+  markerId: MarkerId('波崎'),
+  position: LatLng(35.75246, 140.83348),
+  infoWindow: InfoWindow(title: '波崎'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
