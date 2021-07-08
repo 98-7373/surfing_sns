@@ -698,7 +698,79 @@ class HomePageState extends State<MapScreen> {
           ibaraki32Marker,
           ibaraki33Marker,
           ibaraki34Marker,
-
+        //  静岡
+          shizuoka1Marker,
+          shizuoka2Marker,
+          shizuoka3Marker,
+          shizuoka4Marker,
+          shizuoka5Marker,
+          shizuoka6Marker,
+          shizuoka7Marker,
+          shizuoka8Marker,
+          shizuoka9Marker,
+          shizuoka10Marker,
+          shizuoka11Marker,
+          shizuoka12Marker,
+          shizuoka13Marker,
+          shizuoka14Marker,
+          shizuoka15Marker,
+          shizuoka16Marker,
+          shizuoka17Marker,
+          shizuoka18Marker,
+          shizuoka19Marker,
+          shizuoka20Marker,
+          shizuoka21Marker,
+          shizuoka22Marker,
+          shizuoka23Marker,
+          shizuoka24Marker,
+          shizuoka25Marker,
+          shizuoka26Marker,
+          shizuoka27Marker,
+          shizuoka28Marker,
+          shizuoka29Marker,
+          shizuoka30Marker,
+          shizuoka31Marker,
+          shizuoka32Marker,
+          shizuoka33Marker,
+          shizuoka34Marker,
+          shizuoka35Marker,
+          shizuoka36Marker,
+          shizuoka37Marker,
+          shizuoka38Marker,
+          shizuoka39Marker,
+          shizuoka40Marker,
+          shizuoka41Marker,
+        //  新潟
+          niigata1Marker,
+          niigata2Marker,
+          niigata3Marker,
+          niigata4Marker,
+          niigata5Marker,
+          niigata6Marker,
+          niigata7Marker,
+          niigata8Marker,
+          niigata9Marker,
+          niigata10Marker,
+          niigata11Marker,
+          niigata12Marker,
+          niigata13Marker,
+          niigata14Marker,
+          niigata15Marker,
+          niigata16Marker,
+          niigata17Marker,
+          niigata18Marker,
+          niigata19Marker,
+          niigata20Marker,
+          niigata21Marker,
+          niigata22Marker,
+          niigata23Marker,
+          niigata24Marker,
+          niigata25Marker,
+          niigata26Marker,
+          niigata27Marker,
+          niigata28Marker,
+          niigata29Marker,
+          niigata30Marker,
         },
       ),
     );
@@ -1980,6 +2052,577 @@ Marker ibaraki34Marker = Marker(
   markerId: MarkerId('波崎'),
   position: LatLng(35.75246, 140.83348),
   infoWindow: InfoWindow(title: '波崎'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+//　静岡
+Marker shizuoka1Marker = Marker(
+  markerId: MarkerId('宇佐美'),
+  position: LatLng(35.00357, 139.08351),
+  infoWindow: InfoWindow(title: '宇佐美'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka2Marker = Marker(
+  markerId: MarkerId('川奈'),
+  position: LatLng(34.95291, 139.13187),
+  infoWindow: InfoWindow(title: '川奈'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka3Marker = Marker(
+  markerId: MarkerId('熱川'),
+  position: LatLng(34.81391, 139.0714),
+  infoWindow: InfoWindow(title: '熱川'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka4Marker = Marker(
+  markerId: MarkerId('今井浜'),
+  position: LatLng(34.7524, 139.00526),
+  infoWindow: InfoWindow(title: '今井浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka5Marker = Marker(
+  markerId: MarkerId('腰越漁港'),
+  position: LatLng(35.30715, 139.49221),
+  infoWindow: InfoWindow(title: '腰越漁港'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka6Marker = Marker(
+  markerId: MarkerId('河津'),
+  position: LatLng(34.74331, 138.998),
+  infoWindow: InfoWindow(title: '河津'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka7Marker = Marker(
+  markerId: MarkerId('プリンス前'),
+  position: LatLng(34.69618, 138.97391),
+  infoWindow: InfoWindow(title: 'プリンス前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka8Marker = Marker(
+  markerId: MarkerId('神社前'),
+  position: LatLng(34.69309, 138.97374),
+  infoWindow: InfoWindow(title: '神社前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka9Marker = Marker(
+  markerId: MarkerId('白浜'),
+  position: LatLng(34.68946, 138.97284),
+  infoWindow: InfoWindow(title: '白浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka10Marker = Marker(
+  markerId: MarkerId('多々戸浜'),
+  position: LatLng(34.66086, 138.93236),
+  infoWindow: InfoWindow(title: '多々戸浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka11Marker = Marker(
+  markerId: MarkerId('入田浜'),
+  position: LatLng(34.65817, 138.9264),
+  infoWindow: InfoWindow(title: '入田浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka12Marker = Marker(
+  markerId: MarkerId('大浜正面'),
+  position: LatLng(34.6532, 138.91919),
+  infoWindow: InfoWindow(title: '大浜正面'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka13Marker = Marker(
+  markerId: MarkerId('弓ヶ浜'),
+  position: LatLng(34.63459, 138.89034),
+  infoWindow: InfoWindow(title: '弓ヶ浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka14Marker = Marker(
+  markerId: MarkerId('田牛'),
+  position: LatLng(34.64065, 138.91389),
+  infoWindow: InfoWindow(title: '田牛'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka15Marker = Marker(
+  markerId: MarkerId('八木沢'),
+  position: LatLng(34.89564, 138.7764),
+  infoWindow: InfoWindow(title: '八木沢'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka16Marker = Marker(
+  markerId: MarkerId('大浜'),
+  position: LatLng(34.76872, 138.7741),
+  infoWindow: InfoWindow(title: '大浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka17Marker = Marker(
+  markerId: MarkerId('吉田港'),
+  position: LatLng(34.752, 138.26296),
+  infoWindow: InfoWindow(title: '吉田港'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka18Marker = Marker(
+  markerId: MarkerId('静波'),
+  position: LatLng(34.7311, 138.23237),
+  infoWindow: InfoWindow(title: '静波'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka19Marker = Marker(
+  markerId: MarkerId('勝俣川河口'),
+  position: LatLng(34.72732, 138.22746),
+  infoWindow: InfoWindow(title: '勝俣川河口'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka20Marker = Marker(
+  markerId: MarkerId('鹿島'),
+  position: LatLng(34.72384, 138.22466),
+  infoWindow: InfoWindow(title: '鹿島'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka21Marker = Marker(
+  markerId: MarkerId('片浜'),
+  position: LatLng(34.71435, 138.21672),
+  infoWindow: InfoWindow(title: '片浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka22Marker = Marker(
+  markerId: MarkerId('峰ヶ原'),
+  position: LatLng(35.30592, 139.50535),
+  infoWindow: InfoWindow(title: '峰ヶ原'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka23Marker = Marker(
+  markerId: MarkerId('相良'),
+  position: LatLng(34.68361, 138.20569),
+  infoWindow: InfoWindow(title: '相良'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka24Marker = Marker(
+  markerId: MarkerId('須々木'),
+  position: LatLng(34.66638, 138.19497),
+  infoWindow: InfoWindow(title: '須々木'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka25Marker = Marker(
+  markerId: MarkerId('坂井港'),
+  position: LatLng(34.70155, 138.21348),
+  infoWindow: InfoWindow(title: '坂井港'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka26Marker = Marker(
+  markerId: MarkerId('御前崎メイン'),
+  position: LatLng(34.59985, 138.21083),
+  infoWindow: InfoWindow(title: '御前崎メイン'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka27Marker = Marker(
+  markerId: MarkerId('メロン前'),
+  position: LatLng(34.59878, 138.21474),
+  infoWindow: InfoWindow(title: 'メロン前'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka28Marker = Marker(
+  markerId: MarkerId('御前崎坂下'),
+  position: LatLng(34.60058, 138.20673),
+  infoWindow: InfoWindow(title: '御前崎坂下'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka29Marker = Marker(
+  markerId: MarkerId('豊浜'),
+  position: LatLng(34.66798, 137.91246),
+  infoWindow: InfoWindow(title: '豊浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka30Marker = Marker(
+  markerId: MarkerId('菊川'),
+  position: LatLng(34.64776, 138.0623),
+  infoWindow: InfoWindow(title: '菊川'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka31Marker = Marker(
+  markerId: MarkerId('福田'),
+  position: LatLng(34.66411, 137.89244),
+  infoWindow: InfoWindow(title: '福田'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka32Marker = Marker(
+  markerId: MarkerId('鮫島'),
+  position: LatLng(34.65866, 137.84815),
+  infoWindow: InfoWindow(title: '鮫島'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka33Marker = Marker(
+  markerId: MarkerId('駒場'),
+  position: LatLng(34.64814, 137.80958),
+  infoWindow: InfoWindow(title: '駒場'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka34Marker = Marker(
+  markerId: MarkerId('五島'),
+  position: LatLng(34.65641, 137.7509),
+  infoWindow: InfoWindow(title: '五島'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka35Marker = Marker(
+  markerId: MarkerId('中田島'),
+  position: LatLng(34.65871, 137.74229),
+  infoWindow: InfoWindow(title: '中田島'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka36Marker = Marker(
+  markerId: MarkerId('一条'),
+  position: LatLng(34.66762, 137.69246),
+  infoWindow: InfoWindow(title: '一条'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka37Marker = Marker(
+  markerId: MarkerId('舞阪灯台'),
+  position: LatLng(34.6761, 137.61275),
+  infoWindow: InfoWindow(title: '舞阪灯台'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka38Marker = Marker(
+  markerId: MarkerId('舞阪メイン'),
+  position: LatLng(34.67648, 137.60156),
+  infoWindow: InfoWindow(title: '舞阪メイン'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka39Marker = Marker(
+  markerId: MarkerId('新居浜'),
+  position: LatLng(34.67977, 137.5862),
+  infoWindow: InfoWindow(title: '新居浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka40Marker = Marker(
+  markerId: MarkerId('潮見坂'),
+  position: LatLng(34.67541, 137.49838),
+  infoWindow: InfoWindow(title: '潮見坂'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker shizuoka41Marker = Marker(
+  markerId: MarkerId('大倉戸'),
+  position: LatLng(34.67843, 137.53467),
+  infoWindow: InfoWindow(title: '大倉戸'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+
+// 新潟
+Marker niigata1Marker = Marker(
+  markerId: MarkerId('郷津'),
+  position: LatLng(37.17096, 138.22234),
+  infoWindow: InfoWindow(title: '郷津'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata2Marker = Marker(
+  markerId: MarkerId('百川'),
+  position: LatLng(37.11465, 138.02119),
+  infoWindow: InfoWindow(title: '百川'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata3Marker = Marker(
+  markerId: MarkerId('米山'),
+  position: LatLng(37.31893, 138.43428),
+  infoWindow: InfoWindow(title: '米山'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata4Marker = Marker(
+  markerId: MarkerId('名立'),
+  position: LatLng(37.16371, 138.08574),
+  infoWindow: InfoWindow(title: '名立'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata5Marker = Marker(
+  markerId: MarkerId('谷浜'),
+  position: LatLng(37.1632, 138.17356),
+  infoWindow: InfoWindow(title: '谷浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata6Marker = Marker(
+  markerId: MarkerId('荒浜'),
+  position: LatLng(37.41095, 138.58209),
+  infoWindow: InfoWindow(title: '荒浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata7Marker = Marker(
+  markerId: MarkerId('大湊'),
+  position: LatLng(37.44467, 138.60291),
+  infoWindow: InfoWindow(title: '大湊'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata8Marker = Marker(
+  markerId: MarkerId('高浜海水浴場'),
+  position: LatLng(37.45418, 138.60788),
+  infoWindow: InfoWindow(title: '高浜海水浴場'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata9Marker = Marker(
+  markerId: MarkerId('落水'),
+  position: LatLng(37.5784, 138.72763),
+  infoWindow: InfoWindow(title: '落水'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata10Marker = Marker(
+  markerId: MarkerId('松波'),
+  position: LatLng(37.39463, 138.5692),
+  infoWindow: InfoWindow(title: '松波'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata11Marker = Marker(
+  markerId: MarkerId('寺泊'),
+  position: LatLng(37.64991, 138.76873),
+  infoWindow: InfoWindow(title: '寺泊'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata12Marker = Marker(
+  markerId: MarkerId('野積海水浴場'),
+  position: LatLng(37.69773, 138.78456),
+  infoWindow: InfoWindow(title: '野積海水浴場'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata13Marker = Marker(
+  markerId: MarkerId('白岩'),
+  position: LatLng(37.72622, 138.78949),
+  infoWindow: InfoWindow(title: '白岩'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata14Marker = Marker(
+  markerId: MarkerId('間瀬下山海水浴場'),
+  position: LatLng(37.74532, 138.79788),
+  infoWindow: InfoWindow(title: '間瀬下山海水浴場'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata15Marker = Marker(
+  markerId: MarkerId('五ヶ浜'),
+  position: LatLng(37.7692, 138.80928),
+  infoWindow: InfoWindow(title: '五ヶ浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata16Marker = Marker(
+  markerId: MarkerId('巻漁港'),
+  position: LatLng(37.80828, 138.83414),
+  infoWindow: InfoWindow(title: '巻漁港'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata17Marker = Marker(
+  markerId: MarkerId('加治川河口'),
+  position: LatLng(38.02586, 139.28497),
+  infoWindow: InfoWindow(title: '加治川河口'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata18Marker = Marker(
+  markerId: MarkerId('新川'),
+  position: LatLng(37.866, 138.92098),
+  infoWindow: InfoWindow(title: '新川'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata19Marker = Marker(
+  markerId: MarkerId('五十嵐浜'),
+  position: LatLng(37.87326, 138.93304),
+  infoWindow: InfoWindow(title: '五十嵐浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata20Marker = Marker(
+  markerId: MarkerId('小針浜海水浴場'),
+  position: LatLng(37.89629, 138.97848),
+  infoWindow: InfoWindow(title: '小針浜海水浴場'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata21Marker = Marker(
+  markerId: MarkerId('藤塚浜 海水浴場'),
+  position: LatLng(38.03956, 139.30095),
+  infoWindow: InfoWindow(title: '藤塚浜 海水浴場'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata22Marker = Marker(
+  markerId: MarkerId('青山'),
+  position: LatLng(37.9024, 138.98917),
+  infoWindow: InfoWindow(title: '青山'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata23Marker = Marker(
+  markerId: MarkerId('島見'),
+  position: LatLng(37.97592, 139.18078),
+  infoWindow: InfoWindow(title: '島見'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata24Marker = Marker(
+  markerId: MarkerId('東港'),
+  position: LatLng(38.01301, 139.26172),
+  infoWindow: InfoWindow(title: '東港'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata25Marker = Marker(
+  markerId: MarkerId('笹口浜'),
+  position: LatLng(38.08869, 139.35727),
+  infoWindow: InfoWindow(title: '笹口浜'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata26Marker = Marker(
+  markerId: MarkerId('立壁'),
+  position: LatLng(37.71079, 138.7878),
+  infoWindow: InfoWindow(title: '立壁'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata27Marker = Marker(
+  markerId: MarkerId('西三川'),
+  position: LatLng(37.89826, 138.28939),
+  infoWindow: InfoWindow(title: '西三川'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata28Marker = Marker(
+  markerId: MarkerId('椿尾海水浴場'),
+  position: LatLng(37.88553, 138.28995),
+  infoWindow: InfoWindow(title: '椿尾海水浴場'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata29Marker = Marker(
+  markerId: MarkerId('尖閣湾'),
+  position: LatLng(38.10094, 138.26088),
+  infoWindow: InfoWindow(title: '尖閣湾'),
+  icon: BitmapDescriptor.defaultMarkerWithHue(
+    BitmapDescriptor.hueViolet,
+  ),
+);
+Marker niigata30Marker = Marker(
+  markerId: MarkerId('素浜'),
+  position: LatLng(37.84871, 138.26983),
+  infoWindow: InfoWindow(title: '素浜'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueViolet,
   ),
