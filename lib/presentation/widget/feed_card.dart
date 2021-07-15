@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
+import 'package:surfing_sns/chat/chat.dart';
 import 'package:surfing_sns/domain/entity/feed.dart';
 import 'package:surfing_sns/enum.dart';
 import 'package:surfing_sns/screen/enlarge_image_screen.dart';
@@ -50,6 +51,7 @@ class FeedCard extends StatelessWidget {
               icon: Icon(Icons.share),
               onSelected: (value) => _onPopUpMenu(context, value),
               itemBuilder: (context) {
+                //TODO 自分以外分ける
                 if (feed.userId == userId) {
                   return [
                     PopupMenuItem(
@@ -90,7 +92,15 @@ class FeedCard extends StatelessWidget {
                 ),
                 FlatButton(
                   child: const Text('チャット'),
-                  onPressed: onTap,
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (BuildContext context) => Chat(
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 FlatButton(
                   child: const Text('削除'),

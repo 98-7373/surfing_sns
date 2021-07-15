@@ -17,7 +17,6 @@ class FeedScreen extends StatelessWidget {
       child: Consumer<FeedModel>(
         builder: (BuildContext context, FeedModel model, Widget child) {
           final List<Feed> feedList = model.feedList;
-          final List<Feed> feedList1 = model.feedList1;
           return Scaffold(
             appBar: AppBar(
               title: Text(''),
