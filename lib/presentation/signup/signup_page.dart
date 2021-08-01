@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:surfing_sns/domain/repository/chat_repository.dart';
 import 'package:surfing_sns/presentation/signup/signup_model.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
@@ -22,6 +23,7 @@ class SignUpPage extends StatelessWidget {
         userRepository: context.read<UserRepository>(),
         feedRepository: context.read<FeedRepository>(),
         storageRepository: context.read<StorageRepository>(),
+        chatRepository: context.read<ChatRepository>()
       )..init(uid: uid),
       child: Scaffold(
         body: Consumer<SignUpModel>(

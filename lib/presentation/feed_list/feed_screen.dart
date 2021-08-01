@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:surfing_sns/chat_class.dart';
+import 'package:surfing_sns/domain/repository/chat_repository.dart';
 import 'package:surfing_sns/presentation/feed_detail/add_feed_page.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/domain/entity/feed.dart';
@@ -12,11 +14,15 @@ class FeedScreen extends StatelessWidget {
     return ChangeNotifierProvider<FeedModel>(
       create: (BuildContext context) =>
       FeedModel(
-        feedRepository: context.read<FeedRepository>(),)
-        ..init(),
+        feedRepository: context.read<FeedRepository>(),
+        chatRepository: context.read<ChatRepository>(),
+      )
+        ..init()
+        ..initChat(),
       child: Consumer<FeedModel>(
         builder: (BuildContext context, FeedModel model, Widget child) {
           final List<Feed> feedList = model.feedList;
+          final List<Chat> chatList = model.chatList;
           return Scaffold(
             appBar: AppBar(
               title: Text(''),
@@ -31,6 +37,7 @@ class FeedScreen extends StatelessWidget {
                     children: _buildTodoCardList(
                       context: context,
                       feedList: feedList,
+                      chatList: chatList,
                       model: model,
                     ),
                   )
@@ -68,6 +75,7 @@ class FeedScreen extends StatelessWidget {
     @required BuildContext context,
     @required FeedModel model,
     Feed feed,
+    Chat chat,
   }) async {
     await Navigator.push(
       context,
@@ -78,31 +86,31 @@ class FeedScreen extends StatelessWidget {
       ),
     );
     model.init();
-
   }
   List<FeedCard> _buildTodoCardList({
     BuildContext context,
     List<Feed> feedList,
+    List<Chat> chatList,
     FeedModel model,
-  }) {
+  })
+     {
     return feedList
-        .map((Feed feed) => FeedCard(
-      feed: feed,
-      imageUrl: feed.imageUrl,
-      onTap: () async {
-        await _pushWithReload(
-          context: context,
+        .map((Feed feed) =>
+        FeedCard(
           feed: feed,
-          model: model,
-        );
-      },
-      delete: () async {
-        await model.deleteFeeds(feed.userId);
-      },
-    ))
+          imageUrl: feed.imageUrl,
+          //TODO Feedのなかにchat入れるか？
+          onTap: () async {
+            await _pushWithReload(
+              context: context,
+              feed: feed,
+              model: model,
+            );
+          },
+          delete: () async {
+            await model.deleteFeeds(feed.userId);
+          },
+        ))
         .toList();
   }
 }
-
-
-

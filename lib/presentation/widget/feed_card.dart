@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:surfing_sns/chat/chat.dart';
+import 'package:surfing_sns/chat_class.dart';
 import 'package:surfing_sns/domain/entity/feed.dart';
 import 'package:surfing_sns/enum.dart';
 import 'package:surfing_sns/screen/enlarge_image_screen.dart';
@@ -10,13 +11,15 @@ import 'package:surfing_sns/web.dart';
 class FeedCard extends StatelessWidget {
   const FeedCard({
     @required Feed feed,
+    @required Chat chat,
     this.onChangeCheck,
     this.onTap,
     this.delete,
     this.isDeletable,
     this.imageUrl, this.userId,
-  }) : _feed = feed;
-
+  }) : _feed = feed,
+       _chat = chat;
+  //Feed
   final Feed _feed;
   final Function(bool) onChangeCheck;
   final Function onTap;
@@ -26,6 +29,9 @@ class FeedCard extends StatelessWidget {
   Feed get feed => _feed;
   final String imageUrl;
   final String userId;
+  //Chat
+  final Chat _chat;
+  Chat get chat => _chat;
 
 
   @override
@@ -96,7 +102,8 @@ class FeedCard extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         fullscreenDialog: true,
-                        builder: (BuildContext context) => Chat(
+                        builder: (BuildContext context) => ChatPage(
+                          chat: chat,
                         ),
                       ),
                     );

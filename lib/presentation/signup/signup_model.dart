@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
+import 'package:surfing_sns/domain/repository/chat_repository.dart';
 import 'package:surfing_sns/domain/repository/feed_repository.dart';
 import 'package:surfing_sns/domain/repository/storage_repository.dart';
 import 'package:surfing_sns/domain/repository/user_repository.dart';
@@ -15,17 +16,22 @@ class SignUpModel extends ChangeNotifier {
     @required FirebaseAuthRepository authRepository,
     @required UserRepository userRepository,
     @required StorageRepository storageRepository,
-    @required FeedRepository feedRepository
+    @required FeedRepository feedRepository,
+    @required ChatRepository chatRepository,
+
   })
       : _authRepository = authRepository,
         _userRepository = userRepository,
         _storageRepository = storageRepository,
-        _feedRepository = feedRepository;
+        _feedRepository = feedRepository,
+        _chatRepository = chatRepository;
 
   final FirebaseAuthRepository _authRepository;
   final UserRepository _userRepository;
   final StorageRepository _storageRepository;
   final FeedRepository _feedRepository;
+  final ChatRepository _chatRepository;
+
   String email = '';
   String password = '';
   String _uid;
@@ -66,6 +72,7 @@ class SignUpModel extends ChangeNotifier {
       );
       await _userRepository.createUsersCollection(uid);
       await _feedRepository.createFeedsCollection(uid);
+      await _chatRepository.createChatsCollection(uid);
     } catch (e) {
       throw ('error');
     }

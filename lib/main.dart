@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:surfing_sns/domain/repository/chat_repository.dart';
+import 'package:surfing_sns/infrastructure/chat_repository_imp.dart';
 import 'package:surfing_sns/presentation/signup/signup_page.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/infrastructure/auth_repository_imp.dart';
@@ -36,6 +38,11 @@ void main() async {
           storageRepository: context.read<StorageRepository>(),
         )..init(),
       ),
+      Provider<ChatRepository>(
+        create: (BuildContext context) => ChatRepositoryImp(
+          storageRepository: context.read<StorageRepository>(),
+        )..init(),
+      ),
     ],
     child: MyApp(),
   ));
@@ -50,6 +57,7 @@ class MyApp extends StatelessWidget {
       userRepository: context.read<UserRepository>(),
       feedRepository: context.read<FeedRepository>(),
       storageRepository: context.read<StorageRepository>(),
+      chatRepository: context.read<ChatRepository>(),
     );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -59,6 +67,7 @@ class MyApp extends StatelessWidget {
           userRepository: context.read<UserRepository>(),
           authRepository: context.read<FirebaseAuthRepository>(),
           storageRepository: context.read<StorageRepository>(),
+          chatRepository:  context.read<ChatRepository>(),
         ),
         child: Scaffold(
           body: Consumer<MainModels>(builder: (context, model, child) {
