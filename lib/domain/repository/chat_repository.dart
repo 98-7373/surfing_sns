@@ -9,6 +9,7 @@ abstract class ChatRepository {
   Future<bool> isExist(String uid);
   Future<void> deleteChats(String uid,);
   Future<void> updateChat(Chat chat);
+  Future<void> get(Chat chat,);
   Future<String> uploadImageToStorage(File imageFile, String storageId);
 
 }

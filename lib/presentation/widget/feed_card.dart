@@ -80,42 +80,42 @@ class FeedCard extends StatelessWidget {
               },),
           ),
           Image.network(feed.imageUrl),
-          ButtonTheme.bar(
-            child: ButtonBar(
-              children: <Widget>[
-                FlatButton(
-                  child: const Text('詳細'),
-                  onPressed: ()  {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (BuildContext context) => EnlargeImageScreen(
-                          feed: feed,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                FlatButton(
-                  child: const Text('チャット'),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (BuildContext context) => ChatPage(
-                          chat: chat,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                FlatButton(
-                  child: const Text('削除'),
-                  onPressed: delete,
-                ),
-              ],
-            ),
-          ),
+          // ButtonTheme.bar(
+          //   child: ButtonBar(
+          //     children: <Widget>[
+          //       FlatButton(
+          //         child: const Text('詳細'),
+          //         onPressed: ()  {
+          //           Navigator.of(context).push(
+          //             MaterialPageRoute(
+          //               fullscreenDialog: true,
+          //               builder: (BuildContext context) => EnlargeImageScreen(
+          //                 feed: feed,
+          //               ),
+          //             ),
+          //           );
+          //         },
+          //       ),
+          //       FlatButton(
+          //         child: const Text('チャット'),
+          //         onPressed: () {
+          //           Navigator.of(context).push(
+          //             MaterialPageRoute(
+          //               fullscreenDialog: true,
+          //               builder: (BuildContext context) => ChatPage(
+          //                 chat: chat,
+          //               ),
+          //             ),
+          //           );
+          //         },
+          //       ),
+          //       FlatButton(
+          //         child: const Text('削除'),
+          //         onPressed: delete,
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

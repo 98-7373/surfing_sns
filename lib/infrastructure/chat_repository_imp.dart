@@ -11,7 +11,7 @@ class ChatRepositoryImp implements ChatRepository {
       : _storageRepository = storageRepository;
   final StorageRepository _storageRepository;
   File imageFile;
-  final String title = "";
+  final String comment = "";
   final String caption = "";
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   CollectionReference _chats;
@@ -49,6 +49,10 @@ class ChatRepositoryImp implements ChatRepository {
     });
   }
 
+  Future<void> get(Chat chat,) async {
+   await _chats.doc(comment).get();
+
+  }
   //UUid取ってきて、次追加する
   Future<void> feed(String uid, Chat chat, String caption, String title,
       String imageUrl, String feedId, File imageFile) async {
@@ -83,7 +87,7 @@ class ChatRepositoryImp implements ChatRepository {
         .map(
           (QueryDocumentSnapshot chat) => Chat(
             commentUserId: chat.id,
-            comment: chat['comment'],
+            comment: comment,
             profileId: chat['profileId'],
             commentDateTime: chat['commentDateTime'],
             chatId: chat['chatId'],

@@ -18,9 +18,11 @@ class ChatPage extends StatelessWidget {
     this.onTap,
     this.delete,
     this.isDeletable,
-    this.imageUrl, this.userId,
-  }) : _feed = feed,
+    this.imageUrl,
+    this.userId,
+  })  : _feed = feed,
         _chat = chat;
+
   //Feed
   final Feed _feed;
   final Function(bool) onChangeCheck;
@@ -31,11 +33,11 @@ class ChatPage extends StatelessWidget {
   Feed get feed => _feed;
   final String imageUrl;
   final String userId;
+
   //Chat
   final Chat _chat;
+
   Chat get chat => _chat;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +138,7 @@ class ChatPage extends StatelessWidget {
                                     padding: const EdgeInsets.all(16.0),
                                     child: InkWell(
                                       child: Text(
-                                        'sa',
+                                        _chat.comment,
                                         style: TextStyle(
                                           color: Colors.white,
                                         ),
@@ -231,7 +233,7 @@ class ChatPage extends StatelessWidget {
                               model.endLoading();
                             },
                           ),
-                        //  TODO fecth
+                          //  TODO fecth
                         ],
                       ),
                     ),

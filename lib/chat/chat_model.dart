@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:surfing_sns/chat_class.dart';
 import 'package:surfing_sns/domain/repository/auth_repository.dart';
 import 'package:surfing_sns/domain/repository/chat_repository.dart';
@@ -68,7 +69,7 @@ class ChatModel extends ChangeNotifier {
     final CollectionReference recruitment =
     _chats.doc(getchatId).collection('chats');
     await recruitment.add(<String, dynamic>{
-      'comment': comment,
+      'comment': chat.comment,
       'commentUseId': chat.commentUserId,
       'profileId': chat.profileId,
       'commentDateTime': DateTime.now(),
@@ -96,6 +97,7 @@ class ChatModel extends ChangeNotifier {
       profileId: uid,
     );
     await _chatRepository.add(chat, uid);
+    await _chatRepository.get(chat);
   }
 
 
@@ -111,7 +113,7 @@ class ChatModel extends ChangeNotifier {
   // コンストラクタではFeedRepositoryImpの方を渡しているので
   // 実際の処理はそちらを参照すること
   Future<void> fetchFeedList() async {
-    _feedList = await _feedRepository.findAll();
+    _chatList = await _chatRepository.findAll();
     notifyListeners();
   }
 
@@ -139,8 +141,12 @@ class ChatModel extends ChangeNotifier {
     await fetchChatList();
     notifyListeners();
   }
+  Future<void> getChat() async {
 
-  Future<String> _getChatId() async {
+  }
+
+
+    Future<String> _getChatId() async {
     final String getchatId =
     await _storageRepository.loadPersistenceStorage(key_couple_id);
     return getchatId;
