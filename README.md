@@ -32,20 +32,16 @@ New Issueをクリックすると5つのテンプレートがあります(salon_
 
 
 ## 開発環境
-- [✓] Flutter (Channel stable, 1.22.4, on macOS 11.2.3 20D91 darwin-x64, locale
-    ja-JP)
-- [✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
-- [✓] Xcode - develop for iOS and macOS (Xcode 12.4)
-- [✓] Android Studio (version 4.1)
-- [✓] Android Studio (version 4.1)
-- [!] Connected device
-    ! No devices available
+Doctor summary (to see all details, run flutter doctor -v):
+[✓] Flutter (Channel stable, 2.2.3, on macOS 11.6 20G165 darwin-x64, locale ja-JP)
+[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+[✓] Xcode - develop for iOS and macOS
+[✓] Chrome - develop for the web
+[✓] Android Studio (version 4.1)
+[✓] Android Studio (version 4.1)
+[✓] Connected device (1 available)
 
-- ! Doctor found issues in 1 category.
-- Flutter 1.22.4 • channel stable • https://github.com/flutter/flutter.git
-- Framework • revision 1aafb3a8b9 (5 months ago) • 2020-11-13 09:59:28 -0800
-- Engine • revision 2c956a31c0
-- Tools • Dart 2.10.4
+
 
  [Firebaseプロジェクト](https://console.firebase.google.com/u/0/project/flutter-univ-surfing-sns/overview?hl=ja)
  [ワイヤーフレーム(デザイン)](https://www.figma.com/file/ovMlLUIaovCln5l5nT6j3A/%E3%82%B5%E3%83%BC%E3%83%95%E3%82%A1%E3%83%BC%E5%B0%82%E7%94%A8SNS?node-id=0%3A1)
