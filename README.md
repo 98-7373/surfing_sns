@@ -33,13 +33,13 @@ New Issueをクリックすると5つのテンプレートがあります(salon_
 
 ## 開発環境
 Doctor summary (to see all details, run flutter doctor -v):
-[✓] Flutter (Channel stable, 2.2.3, on macOS 11.6 20G165 darwin-x64, locale ja-JP)
-[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
-[✓] Xcode - develop for iOS and macOS
-[✓] Chrome - develop for the web
-[✓] Android Studio (version 4.1)
-[✓] Android Studio (version 4.1)
-[✓] Connected device (1 available)
+- [✓] Flutter (Channel stable, 2.2.3, on macOS 11.6 20G165 darwin-x64, locale ja-JP)
+- [✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+- [✓] Xcode - develop for iOS and macOS
+- [✓] Chrome - develop for the web
+- [✓] Android Studio (version 4.1)
+- [✓] Android Studio (version 4.1)
+- [✓] Connected device (1 available)
 
 
 
